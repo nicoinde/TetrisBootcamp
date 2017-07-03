@@ -6,14 +6,14 @@
 App::App()
 {
 }
-int App::main() {
+int App::ejecucion() {
 	juego.iniciar();
 	return 0;
 }
 
 int main(int argc, char** args) {
 	App app;
-	app.main();
+	app.ejecucion();
 	return 0;
 }
 
