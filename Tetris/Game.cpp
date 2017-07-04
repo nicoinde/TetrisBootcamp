@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <random>
 #include <iostream>
+
 using namespace std;
 
 uniform_int_distribution<int> randomPiezas(0, 6);
@@ -11,7 +12,7 @@ Game::Game()
 {
 	endGame = false;
 	intervalo = 0.5;
-	pieza=generarPieza();
+	//pieza=generarPieza();
 }
 
 Game::~Game()
@@ -27,7 +28,9 @@ int Game::iniciar() {
 bool Game::ciclo() {
 	sf::Event event;
 	sf::Clock clock;
-	while (gestor.ventana.isOpen()) {
+	// se que deberia trabajar con un metodo gestor.getVentana() 
+	//en vez de acceder directamente a la ventana, pero esto es para probar la funcionalidad nomas
+	while (gestor.ventana.isOpen()) { 
 		while (gestor.ventana.pollEvent(event)) {
 			if (event.type == sf::Event::EventType::Closed) {
 				gestor.ventana.close();
@@ -84,11 +87,11 @@ bool Game::moveRight() {
 	return true;
 }
 bool Game::rotateTetro() {
-	pieza.rotar();
+	//pieza.rotar();
 	return true;
 }
 
-Tetromino Game::generarPieza() {
+/*Tetromino Game::generarPieza() {
 	Tetromino tetro;
 	int aux = randomPiezas(randomPieces);
 	switch (aux)
@@ -113,4 +116,4 @@ Tetromino Game::generarPieza() {
 	
 	
 	return tetro;
-}
+}*/

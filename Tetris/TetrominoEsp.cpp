@@ -3,8 +3,8 @@
 
 // ---------------------------TETROMINO I ------------------------------------------------
 
-TetrominoI::TetrominoI()
-{
+TetrominoI::TetrominoI():Tetromino()
+{	
 	generarFormas();
 }
 
@@ -18,15 +18,28 @@ int TetrominoI::rotar() {
 }
 
 void TetrominoI::generarFormas() {
-	posiciones.pos1[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 1,1,1,1 },{ 0,0,0,0 } };
-	posiciones.pos2[width][height] = { { 0,1,0,0 },{ 0,1,0,0 },{ 0,1,0,0 },{ 0,1,0,0 } };
+	/*int a[3][3] = { { 1,2,3 },
+	{ 4,5,6 },
+	{ 7,8,9 } };*/
+	/*posiciones.pos1[width][height] = { 
+		{ 0,0,0,0 },
+		{ 0,0,0,0 },
+		{ 1,1,1,1 },
+		{ 0,0,0,0 } };
+	posiciones.pos2[width][height] = { 
+		{ 0,1,0,0 },
+		{ 0,1,0,0 },
+		{ 0,1,0,0 },
+		{ 0,1,0,0 } };*/
 
 }
 
 
+
+
 // ---------------------------TETROMINO J ------------------------------------------------
 
-TetrominoJ::TetrominoJ()
+TetrominoJ::TetrominoJ() :Tetromino()
 {
 	generarFormas();
 }
@@ -41,15 +54,31 @@ int TetrominoJ::rotar() {
 }
 
 void TetrominoJ::generarFormas() {
-	posiciones.pos1[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 0,2,0,0 },{ 0,2,2,2 } };
-	posiciones.pos2[width][height] = { { 0,0,0,0 },{ 0,0,2,0 },{ 0,0,2,0 },{ 0,2,2,0 } };
-	posiciones.pos3[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 0,2,2,2 },{ 0,0,0,2 } };
-	posiciones.pos4[width][height] = { { 0,0,0,0 },{ 0,2,2,0 },{ 0,2,0,0 },{ 0,2,0,0 } };
+	/*posiciones.pos1[width][height] = { 
+		{ 0,0,0,0 },
+		{ 0,0,0,0 },
+		{ 0,2,0,0 },
+		{ 0,2,2,2 } };
+	posiciones.pos2[width][height] = {
+		{ 0,0,0,0 },
+		{ 0,0,2,0 },
+		{ 0,0,2,0 },
+		{ 0,2,2,0 } };
+	posiciones.pos3[width][height] = {
+		{ 0,0,0,0 },
+		{ 0,0,0,0 },
+		{ 0,2,2,2 },
+		{ 0,0,0,2 } };
+	posiciones.pos4[width][height] = {
+		{ 0,0,0,0 },
+		{ 0,2,2,0 },
+		{ 0,2,0,0 },
+		{ 0,2,0,0 } };*/
 }
 
 // ---------------------------TETROMINO L ------------------------------------------------
 
-TetrominoL::TetrominoL()
+TetrominoL::TetrominoL() :Tetromino()
 {
 	generarFormas();
 }
@@ -63,15 +92,31 @@ int TetrominoL::rotar() {
 	return 0;
 }
 void TetrominoL::generarFormas() {
-	posiciones.pos1[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 0,0,0,3 },{ 0,3,3,3 } };
-	posiciones.pos2[width][height] = { { 0,0,0,0 },{ 0,3,0,0 },{ 0,3,0,0 },{ 0,3,3,0 } };
-	posiciones.pos3[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 0,3,3,3 },{ 0,3,0,0 } };
-	posiciones.pos4[width][height] = { { 0,0,0,0 },{ 0,3,3,0 },{ 0,0,3,0 },{ 0,0,3,0 } };
+	/*posiciones.pos1[width][height] = { 
+		{ 0,0,0,0 },
+		{ 0,0,0,0 },
+		{ 0,0,0,3 },
+		{ 0,3,3,3 } };
+	posiciones.pos2[width][height] = { 
+		{ 0,0,0,0 },
+		{ 0,3,0,0 },
+		{ 0,3,0,0 },
+		{ 0,3,3,0 } };
+	posiciones.pos3[width][height] = {
+		{ 0,0,0,0 },
+		{ 0,0,0,0 },
+		{ 0,3,3,3 },
+		{ 0,3,0,0 } };
+	posiciones.pos4[width][height] = {
+		{ 0,0,0,0 },
+		{ 0,3,3,0 },
+		{ 0,0,3,0 },
+		{ 0,0,3,0 } };*/
 }
 
 // ---------------------------TETROMINO O ------------------------------------------------
 
-TetrominoO::TetrominoO()
+TetrominoO::TetrominoO() :Tetromino()
 {
 	generarFormas();
 }
@@ -86,14 +131,14 @@ int TetrominoO::rotar() {
 }
 
 void TetrominoO::generarFormas() {
-	posiciones.pos1[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 0,4,4,0 },{ 0,4,4,0 } };
+	//posiciones.pos1[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 0,4,4,0 },{ 0,4,4,0 } };
 
 }
 
 
 // ---------------------------TETROMINO S ------------------------------------------------
 
-TetrominoS::TetrominoS()
+TetrominoS::TetrominoS() :Tetromino()
 {
 	generarFormas();
 }
@@ -108,7 +153,7 @@ int TetrominoS::rotar() {
 }
 
 void TetrominoS::generarFormas() {
-	posiciones.pos1[width][height] = {
+	/*posiciones.pos1[width][height] = {
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,0,5,5 },
@@ -117,13 +162,13 @@ void TetrominoS::generarFormas() {
 		{ 0,0,0,0 },
 		{ 0,5,0,0 },
 		{ 0,5,5,0 },
-		{ 0,0,5,0 } };
+		{ 0,0,5,0 } };*/
 }
 
 
 // ---------------------------TETROMINO T ------------------------------------------------
 
-TetrominoT::TetrominoT()
+TetrominoT::TetrominoT() :Tetromino()
 {
 	generarFormas();
 }
@@ -137,7 +182,7 @@ int TetrominoT::rotar() {
 	return 0;
 }
 void TetrominoT::generarFormas() {
-	posiciones.pos1[width][height] = { 
+	/*posiciones.pos1[width][height] = { 
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,6,6,6 },
@@ -156,13 +201,13 @@ void TetrominoT::generarFormas() {
 		{ 0,0,0,0 },
 		{ 0,0,6,0 },
 		{ 0,6,6,0 },
-		{ 0,0,6,0 } };
+		{ 0,0,6,0 } };*/
 }
 
 
 // ---------------------------TETROMINO Z ------------------------------------------------
 
-TetrominoZ::TetrominoZ()
+TetrominoZ::TetrominoZ() :Tetromino()
 {
 	generarFormas();
 }
@@ -177,7 +222,7 @@ int TetrominoZ::rotar() {
 }
 
 void TetrominoZ::generarFormas() {
-	posiciones.pos1[width][height] = {
+	/*posiciones.pos1[width][height] = {
 		{0,0,0,0},
 		{0,0,0,0},
 		{0,7,7,0},
@@ -187,5 +232,5 @@ void TetrominoZ::generarFormas() {
 		{ 0,0,0,0 },
 		{ 0,0,7,0 },
 		{ 0,7,7,0 },
-		{ 0,7,0,0 } };
+		{ 0,7,0,0 } };*/
 }

@@ -1,12 +1,15 @@
 #include "Gestor.h"
 
 
-
+const sf::Vector2u sizeVentana(412, 600);
 Gestor::Gestor()
 {
 	/*ventana.setSize(sf::Vector2u(412, 600));
 	ventana.setTitle("Tetris");*/
-	ventana.create(sf::VideoMode(500, 600), "tete");
+	
+		//ventana.create(sf::VideoMode(500, 600), "tete");
+	ventana.setSize(sizeVentana);
+	ventana.setTitle("Tetris");
 }
 
 

@@ -8,7 +8,7 @@ public:
 	TetrominoI();
 	~TetrominoI();
 	int rotar();
-	int** getForma();
+	//int** getForma();
 	void generarFormas();
 private:
 	struct {
@@ -24,7 +24,7 @@ public:
 	TetrominoJ();
 	~TetrominoJ();
 	int rotar();
-	int** getForma();
+	//int** getForma();
 	void generarFormas();
 private:
 	struct {
@@ -42,7 +42,7 @@ public:
 	TetrominoL();
 	~TetrominoL();
 	int rotar();
-	int** getForma();
+	//int** getForma();
 	void generarFormas();
 private:
 	struct {
@@ -60,7 +60,7 @@ public:
 	TetrominoO();
 	~TetrominoO();
 	int rotar();
-	int** getForma();
+	//int** getForma();
 	void generarFormas();
 private:
 	struct {
@@ -75,7 +75,7 @@ public:
 	TetrominoS();
 	~TetrominoS();
 	int rotar(); 
-	int** getForma();
+	//int** getForma();
 	void generarFormas();
 private:
 	struct {
@@ -91,7 +91,7 @@ public:
 	TetrominoT();
 	~TetrominoT();
 	int rotar();
-	int** getForma();
+	//int** getForma();
 	void generarFormas();
 private:
 	struct {
@@ -109,7 +109,7 @@ public:
 	TetrominoZ();
 	~TetrominoZ();
 	int rotar();
-	int** getForma();
+	//int** getForma();
 	void generarFormas();
 private:
 	struct {

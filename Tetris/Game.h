@@ -5,6 +5,7 @@
 class Game
 {
 public:
+	//template<Tetromino Tetro>
 	Game();
 	//Game(Gestor &ges);
 	~Game();
@@ -15,14 +16,15 @@ public:
 	bool moveLeft();
 	bool moveRight();
 	bool fastDown();
+	//TetrominoI pieza;
 
 private:
 	Gestor gestor;
 	bool endGame;
 	float intervalo;
-	Tetromino pieza;
-	Tetromino piezaSig;
+	
+	//template<Tetromino> piezaSig;
 	Board tablero;
-	Tetromino generarPieza();
+	//template<Tetromino> generarPieza();
 };
 

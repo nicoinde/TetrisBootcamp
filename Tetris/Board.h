@@ -6,9 +6,10 @@ public:
 	Board();
 	~Board();
 	//enum valores{0,1,2,3,4,5,6,7};
+	void mostrar();             //solo para ver como se crea el tablero borrar despues
 	int** getTablero();
 	void setTablero(int** tab);
-	bool asentar(Board &tab, Tetromino &pieza, int x, int y);
+	//bool asentar(Board &tab, Tetromino &pieza, int x, int y);
 private:
 	int** tablero;
 
