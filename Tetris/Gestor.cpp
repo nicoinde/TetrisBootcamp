@@ -8,8 +8,9 @@ Gestor::Gestor()
 	ventana.setTitle("Tetris");*/
 	
 		//ventana.create(sf::VideoMode(500, 600), "tete");
-	ventana.setSize(sizeVentana);
-	ventana.setTitle("Tetris");
+	//ventana.setSize(sizeVentana);
+	//ventana.setTitle("Tetris");
+	cargarImagenes();
 }
 
 
@@ -70,6 +71,23 @@ bool Gestor::cargarImagenes() {
 	
 	return true;
 }
+
+//sf::RenderWindow* Gestor::getVentana()
+//{
+//	return ventana;
+//}
+//
+//void Gestor::setVentana(sf::RenderWindow vent)
+//{
+//	ventana = &vent;
+//}
+
+//void Gestor::drawTablero(int tablero[22][13])
+//{
+//	
+//}
+
+
 
 //sf::RenderWindow Gestor::getVentana() {
 //	return 

@@ -7,11 +7,14 @@ using namespace std;
 uniform_int_distribution<int> randomPiezas(0, 6);
 random_device rd;
 mt19937 randomPieces(rd());
+sf::RenderWindow ventana(sf::VideoMode(412, 600), "Tetris");
+
 
 Game::Game()
 {
 	endGame = false;
 	intervalo = 0.5;
+	/*gestor.setVentana(&ventana);*/
 	//pieza=generarPieza();
 }
 
@@ -20,7 +23,7 @@ Game::~Game()
 }
 
 int Game::iniciar() {
-	gestor.cargarImagenes();
+//	gestor.cargarImagenes();
 	ciclo();
 	return 0;
 }
@@ -30,15 +33,15 @@ bool Game::ciclo() {
 	sf::Clock clock;
 	// se que deberia trabajar con un metodo gestor.getVentana() 
 	//en vez de acceder directamente a la ventana, pero esto es para probar la funcionalidad nomas
-	while (gestor.ventana.isOpen()) { 
-		while (gestor.ventana.pollEvent(event)) {
+	while (ventana.isOpen()) { 
+		while (ventana.pollEvent(event)) {
 			if (event.type == sf::Event::EventType::Closed) {
-				gestor.ventana.close();
+				ventana.close();
 			}
 
 			if (event.type==sf::Event::EventType::KeyPressed) {
 				switch (event.key.code) {
-				case sf::Keyboard::Q: gestor.ventana.close();
+				case sf::Keyboard::Q: ventana.close();
 					break;
 				case sf::Keyboard::A:
 				case sf::Keyboard::Left: 
@@ -63,9 +66,9 @@ bool Game::ciclo() {
 		if (clock.getElapsedTime().asSeconds() > intervalo) {
 			stepDown();
 		}
-		gestor.ventana.clear(sf::Color::White);
-		gestor.ventana.draw(gestor.bg);
-		gestor.ventana.display();
+		ventana.clear(sf::Color::White);
+		ventana.draw(gestor.bg);
+		ventana.display();
 	}
 	return !endGame;
 }
