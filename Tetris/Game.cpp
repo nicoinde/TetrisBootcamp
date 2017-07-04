@@ -68,9 +68,15 @@ bool Game::ciclo() {
 		}
 		ventana.clear(sf::Color::White);
 		ventana.draw(gestor.bg);
+		drawPieces();
 		ventana.display();
 	}
 	return !endGame;
+}
+
+bool Game::drawPieces() {
+
+	return false;
 }
 
 bool Game::stepDown() {
@@ -94,7 +100,9 @@ bool Game::rotateTetro() {
 	return true;
 }
 
-/*Tetromino Game::generarPieza() {
+
+
+Tetromino Game::generarPieza() {
 	Tetromino tetro;
 	int aux = randomPiezas(randomPieces);
 	switch (aux)
@@ -119,4 +127,4 @@ bool Game::rotateTetro() {
 	
 	
 	return tetro;
-}*/
+}

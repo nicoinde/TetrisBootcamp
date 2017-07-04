@@ -9,9 +9,13 @@ public:
 	void mostrar();             //solo para ver como se crea el tablero borrar despues
 	int** getTablero();
 	void setTablero(int** tab);
-	//bool asentar(Board &tab, Tetromino &pieza, int x, int y);
+	int verificarLineasCompletas();
+	void limpiarLinea(int x);
+	bool asentar(int pieza[Tetromino::tetroHeight][Tetromino::tetroWidth], int x, int y);
+	bool moveDown(int pieza[Tetromino::tetroHeight][Tetromino::tetroWidth], int x, int y);
 private:
 	int** tablero;
+	bool colision;
 
 };
 

@@ -21,18 +21,19 @@ void TetrominoI::generarFormas() {
 	/*int a[3][3] = { { 1,2,3 },
 	{ 4,5,6 },
 	{ 7,8,9 } };*/
-	/*posiciones.pos1[width][height] = { 
+	/*posiciones.pos0= { 
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 1,1,1,1 },
 		{ 0,0,0,0 } };
-	posiciones.pos2[width][height] = { 
+	posiciones.pos1 = { 
 		{ 0,1,0,0 },
 		{ 0,1,0,0 },
 		{ 0,1,0,0 },
 		{ 0,1,0,0 } };*/
 
 }
+
 
 
 
@@ -54,22 +55,22 @@ int TetrominoJ::rotar() {
 }
 
 void TetrominoJ::generarFormas() {
-	/*posiciones.pos1[width][height] = { 
+	/*posiciones.pos0[width][height] = { 
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,2,0,0 },
 		{ 0,2,2,2 } };
-	posiciones.pos2[width][height] = {
+	posiciones.pos1[width][height] = {
 		{ 0,0,0,0 },
 		{ 0,0,2,0 },
 		{ 0,0,2,0 },
 		{ 0,2,2,0 } };
-	posiciones.pos3[width][height] = {
+	posiciones.pos2[width][height] = {
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,2,2,2 },
 		{ 0,0,0,2 } };
-	posiciones.pos4[width][height] = {
+	posiciones.pos3[width][height] = {
 		{ 0,0,0,0 },
 		{ 0,2,2,0 },
 		{ 0,2,0,0 },

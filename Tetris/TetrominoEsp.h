@@ -10,11 +10,20 @@ public:
 	int rotar();
 	//int** getForma();
 	void generarFormas();
-private:
 	struct {
-		int pos1[height][width];
-		int pos2[height][width];
+		int pos0[tetroHeight][tetroWidth] = { 
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 1,1,1,1 },
+			{ 0,0,0,0 } };
+		int pos1[tetroHeight][tetroWidth] = {
+			{ 0,1,0,0 },
+			{ 0,1,0,0 },
+			{ 0,1,0,0 },
+			{ 0,1,0,0 } };
 	}posiciones;
+private:
+	
 };
 
 class TetrominoJ :
@@ -26,13 +35,31 @@ public:
 	int rotar();
 	//int** getForma();
 	void generarFormas();
-private:
 	struct {
-		int pos1[height][width];
-		int pos2[height][width];
-		int pos3[height][width];
-		int pos4[height][width];
+		int pos0[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,2,0,0 },
+			{ 0,2,2,2 } };
+		int pos1[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,2,0 },
+			{ 0,0,2,0 },
+			{ 0,2,2,0 } };
+		int pos2[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,2,2,2 },
+			{ 0,0,0,2 } };
+		int pos3[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,2,2,0 },
+			{ 0,2,0,0 },
+			{ 0,2,0,0 } };
+
 	}posiciones;
+private:
+	
 };
 
 class TetrominoL :
@@ -46,10 +73,26 @@ public:
 	void generarFormas();
 private:
 	struct {
-		int pos1[height][width];
-		int pos2[height][width];
-		int pos3[height][width];
-		int pos4[height][width];
+		int pos0[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,0,0,3 },
+			{ 0,3,3,3 } };
+		int pos1[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,3,0,0 },
+			{ 0,3,0,0 },
+			{ 0,3,3,0 } };
+		int pos2[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,3,3,3 },
+			{ 0,3,0,0 } };
+		int pos3[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,3,3,0 },
+			{ 0,0,3,0 },
+			{ 0,0,3,0 } };
 	}posiciones;
 };
 
@@ -64,7 +107,12 @@ public:
 	void generarFormas();
 private:
 	struct {
-		int pos1[height][width];
+		int pos0[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,4,4,0 },
+			{ 0,4,4,0 } };
+		
 	}posiciones;
 };
 
@@ -79,8 +127,16 @@ public:
 	void generarFormas();
 private:
 	struct {
-		int pos1[height][width];
-		int pos2[height][width];
+		int pos0[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,0,5,5 },
+			{ 0,5,5,0 } };
+		int pos1[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,5,0,0 },
+			{ 0,5,5,0 },
+			{ 0,0,5,0 } };
 	}posiciones;
 };
 
@@ -95,10 +151,26 @@ public:
 	void generarFormas();
 private:
 	struct {
-		int pos1[height][width];
-		int pos2[height][width];
-		int pos3[height][width];
-		int pos4[height][width];
+		int pos0[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,6,6,6 },
+			{ 0,0,6,0 } };
+		int pos1[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,6,0 },
+			{ 0,0,6,6 },
+			{ 0,0,6,0 } };
+		int pos2[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,6,0 },
+			{ 0,6,6,6 },
+			{ 0,0,0,0 } };
+		int pos3[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,6,0 },
+			{ 0,6,6,0 },
+			{ 0,0,6,0 } };
 	}posiciones;
 };
 
@@ -113,8 +185,17 @@ public:
 	void generarFormas();
 private:
 	struct {
-		int pos1[height][width];
-		int pos2[height][width];
+		int pos0[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,0,0 },
+			{ 0,7,7,0 },
+			{ 0,0,7,7 }
+		};
+		int pos1[tetroHeight][tetroWidth] = {
+			{ 0,0,0,0 },
+			{ 0,0,7,0 },
+			{ 0,7,7,0 },
+			{ 0,7,0,0 } };
 	}posiciones;
 };
 

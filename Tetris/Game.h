@@ -16,6 +16,7 @@ public:
 	bool moveLeft();
 	bool moveRight();
 	bool fastDown();
+	bool drawPieces();
 	//TetrominoI pieza;
 
 private:
@@ -25,6 +26,6 @@ private:
 	
 	//template<Tetromino> piezaSig;
 	Board tablero;
-	//template<Tetromino> generarPieza();
+	Tetromino generarPieza();
 };
 
