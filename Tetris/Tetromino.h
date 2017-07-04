@@ -9,6 +9,7 @@ public:
 	virtual int** getForma();
 	static const unsigned tetroWidth = 4;
 	static const unsigned tetroHeight = 4;
+	struct Posiciones;
 
 
 protected:

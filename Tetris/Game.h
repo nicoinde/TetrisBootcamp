@@ -21,11 +21,16 @@ public:
 
 private:
 	Gestor gestor;
+	struct Piezas{
+		Tetromino pieza;
+		float posX;
+		float posY;
+	}pieza, piezaSig;
 	bool endGame;
 	float intervalo;
 	
 	//template<Tetromino> piezaSig;
 	Board tablero;
-	Tetromino generarPieza();
+	void generarPieza();
 };
 

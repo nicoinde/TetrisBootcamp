@@ -10,7 +10,7 @@ public:
 	int rotar();
 	//int** getForma();
 	void generarFormas();
-	struct {
+	struct Posiciones {
 		int pos0[tetroHeight][tetroWidth] = { 
 			{ 0,0,0,0 },
 			{ 0,0,0,0 },
@@ -35,7 +35,7 @@ public:
 	int rotar();
 	//int** getForma();
 	void generarFormas();
-	struct {
+	struct Posiciones {
 		int pos0[tetroHeight][tetroWidth] = {
 			{ 0,0,0,0 },
 			{ 0,0,0,0 },
@@ -72,7 +72,7 @@ public:
 	//int** getForma();
 	void generarFormas();
 private:
-	struct {
+	struct Posiciones {
 		int pos0[tetroHeight][tetroWidth] = {
 			{ 0,0,0,0 },
 			{ 0,0,0,0 },
@@ -106,7 +106,7 @@ public:
 	//int** getForma();
 	void generarFormas();
 private:
-	struct {
+	struct Posiciones {
 		int pos0[tetroHeight][tetroWidth] = {
 			{ 0,0,0,0 },
 			{ 0,0,0,0 },
@@ -126,7 +126,7 @@ public:
 	//int** getForma();
 	void generarFormas();
 private:
-	struct {
+	struct Posiciones {
 		int pos0[tetroHeight][tetroWidth] = {
 			{ 0,0,0,0 },
 			{ 0,0,0,0 },
@@ -150,7 +150,7 @@ public:
 	//int** getForma();
 	void generarFormas();
 private:
-	struct {
+	struct Posiciones {
 		int pos0[tetroHeight][tetroWidth] = {
 			{ 0,0,0,0 },
 			{ 0,0,0,0 },
@@ -184,7 +184,7 @@ public:
 	//int** getForma();
 	void generarFormas();
 private:
-	struct {
+	struct Posiciones{
 		int pos0[tetroHeight][tetroWidth] = {
 			{ 0,0,0,0 },
 			{ 0,0,0,0 },

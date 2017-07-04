@@ -8,6 +8,8 @@ uniform_int_distribution<int> randomPiezas(0, 6);
 random_device rd;
 mt19937 randomPieces(rd());
 sf::RenderWindow ventana(sf::VideoMode(412, 600), "Tetris");
+const unsigned short posInicialY = 9;
+const unsigned short posInicialX = 0;
 
 
 Game::Game()
@@ -80,7 +82,8 @@ bool Game::drawPieces() {
 }
 
 bool Game::stepDown() {
-	return true;
+	bool aux=true;//=tablero.moveDown(pieza.pieza.getPosicion(), pieza.posX, pieza.posY);
+	return aux;
 }
 
 bool Game::fastDown() {
@@ -102,7 +105,7 @@ bool Game::rotateTetro() {
 
 
 
-Tetromino Game::generarPieza() {
+void Game::generarPieza() {
 	Tetromino tetro;
 	int aux = randomPiezas(randomPieces);
 	switch (aux)
@@ -124,7 +127,8 @@ Tetromino Game::generarPieza() {
 	default:
 		break;
 	}
-	
-	
-	return tetro;
+	pieza = piezaSig;
+	piezaSig.pieza=tetro;
+	piezaSig.posX = posInicialX;
+	piezaSig.posY = posInicialY;
 }
