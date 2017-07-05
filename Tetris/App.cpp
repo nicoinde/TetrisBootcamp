@@ -8,7 +8,7 @@ App::App()
 {
 }
 int App::ejecucion() {
-	juego.iniciar();
+	juego.tick();
 	return 0;
 }
 
@@ -20,4 +20,14 @@ int main(int argc, char** args) {
 
 App::~App()
 {
+}
+
+int App::loop() {
+	while (ges.getVentana()->isOpen()) {
+		while (ges.getVentana()->pollEvent(ges.getEvent())) {
+			juego.tick(ges.getEvent(), ges.getClock());
+		}
+		ges.drawPieces(juego.getBoard());
+	}
+
 }

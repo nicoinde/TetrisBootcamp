@@ -9,7 +9,7 @@ using namespace std;
 uniform_int_distribution<int> randomPiezas(0, 6);
 random_device rd;
 mt19937 randomPieces(rd());
-sf::RenderWindow ventana(sf::VideoMode(412, 600), "Tetris");
+
 const unsigned short posInicialY = 9;
 const unsigned short posInicialX = 0;
 
@@ -28,18 +28,12 @@ Game::~Game()
 {
 }
 
-int Game::iniciar() {
-//	gestor.cargarImagenes();
-	ciclo();
-	return 0;
-}
 
-bool Game::ciclo() {
-	sf::Event event;
-	sf::Clock clock;
+bool Game::tick(sf::Event event, sf::) {
+
 	// se que deberia trabajar con un metodo gestor.getVentana() 
 	//en vez de acceder directamente a la ventana, pero esto es para probar la funcionalidad nomas
-	while (ventana.isOpen()) { 
+	
 		while (ventana.pollEvent(event)) {
 			if (event.type == sf::Event::EventType::Closed) {
 				ventana.close();
@@ -122,29 +116,27 @@ bool Game::rotateTetro() {
 
 
 void Game::generarPieza() {
-	Tetromino tetro;
+	pieza = piezaSig;
 	int aux = randomPiezas(randomPieces);
 	switch (aux)
 	{
 	case 0: 
-		tetro = TetrominoI::TetrominoI(); break;
+		piezaSig.pieza= &tetros[0]; break;
 	case 1:
-		tetro = TetrominoJ::TetrominoJ(); break;
+		piezaSig.pieza = &tetros[1]; break;
 	case 2:
-		tetro = TetrominoL::TetrominoL(); break;
+		piezaSig.pieza = &tetros[2]; break;
 	case 3:
-		tetro = TetrominoO::TetrominoO(); break;
+		piezaSig.pieza = &tetros[3]; break;
 	case 4:
-		tetro = TetrominoS::TetrominoS(); break;
+		piezaSig.pieza = &tetros[4]; break;
 	case 5:
-		tetro = TetrominoT::TetrominoT(); break;
+		piezaSig.pieza = &tetros[5]; break;
 	case 6:
-		tetro = TetrominoZ::TetrominoZ(); break;
+		piezaSig.pieza = &tetros[6]; break;
 	default:
 		break;
 	}
-	pieza = piezaSig;
-	piezaSig.pieza=tetro;
 	piezaSig.posX = posInicialX;
 	piezaSig.posY = posInicialY;
 }

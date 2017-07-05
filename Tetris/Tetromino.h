@@ -1,4 +1,9 @@
 #pragma once
+struct Piezas {
+	Tetromino * pieza;
+	float posX;
+	float posY;
+};
 class Tetromino
 {
 public:

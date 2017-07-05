@@ -1,6 +1,6 @@
 #pragma once
-#include "Gestor.h"
-#include "TetrominoEsp.h"
+#include "GestorGrafico.h"
+#include "Tetromino.h"
 #include "Board.h"
 class Game
 {
@@ -9,8 +9,7 @@ public:
 	Game();
 	//Game(Gestor &ges);
 	~Game();
-	int iniciar();
-	bool ciclo();
+	bool tick();
 	bool stepDown();
 	bool rotateTetro();
 	bool moveLeft();
@@ -20,18 +19,14 @@ public:
 	//TetrominoI pieza;
 
 private:
-	Gestor gestor;
-	struct Piezas{
-		Tetromino pieza;
-		float posX;
-		float posY;
-	}pieza, piezaSig;
+	
+	struct Piezas pieza;
+	struct Piezas piezaSig;
 	bool endGame;
 	float intervalo;
 	int** tableroPrueba;
 	void makeTableroPrueba();
-	
-	//template<Tetromino> piezaSig;
+	Tetromino tetros[7];	
 	Board tablero;
 	void generarPieza();
 };

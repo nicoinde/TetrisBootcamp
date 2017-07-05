@@ -1,5 +1,4 @@
 #pragma once
-#include "Gestor.h"
 #include "Game.h"
 class App
 {
@@ -7,8 +6,9 @@ public:
 	App();
 	~App();
 	int ejecucion();
+	int loop();
 private:
-	Gestor ges;
+	GestorGrafico ges;
 	Game juego;
 };
 
