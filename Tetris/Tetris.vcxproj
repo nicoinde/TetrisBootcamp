@@ -143,13 +143,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gestor.h" />
+    <ClInclude Include="Tetromino.h" />
+    <ClInclude Include="TetrominoEsp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gestor.cpp" />
+    <ClCompile Include="Tetromino.cpp" />
+    <ClCompile Include="TetrominoEsp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\bg.png" />

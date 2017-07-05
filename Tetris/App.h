@@ -6,7 +6,7 @@ class App
 public:
 	App();
 	~App();
-	int main();
+	int ejecucion();
 private:
 	Gestor ges;
 	Game juego;
