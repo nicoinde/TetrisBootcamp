@@ -16,7 +16,7 @@ public:
 	bool moveLeft();
 	bool moveRight();
 	bool fastDown();
-	bool drawPieces();
+	
 	//TetrominoI pieza;
 
 private:
@@ -28,6 +28,8 @@ private:
 	}pieza, piezaSig;
 	bool endGame;
 	float intervalo;
+	int** tableroPrueba;
+	void makeTableroPrueba();
 	
 	//template<Tetromino> piezaSig;
 	Board tablero;

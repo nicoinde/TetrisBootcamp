@@ -34,6 +34,11 @@ void Board::mostrar() {
 
 }
 
+int ** Board::getTablero()
+{
+	return tablero;
+}
+
 //este metodo se encarga de registrar el movimiento del tetromino en el tablero
 bool Board::moveDown(int pieza[Tetromino::tetroHeight][Tetromino::tetroWidth], int x, int y) {
 	colision = asentar(pieza, x, y+1);
