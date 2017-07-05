@@ -87,6 +87,7 @@ bool Game::ciclo() {
 
 bool Game::stepDown() {
 	bool aux=true;//=tablero.moveDown(pieza.pieza.getPosicion(), pieza.posX, pieza.posY);
+	//aun no decido si bajar aca la pieza y utilizar board.asentar o usar board.boveDown con referencia
 	return aux;
 }
 
@@ -96,14 +97,25 @@ bool Game::fastDown() {
 }
 
 bool Game::moveLeft() {
+	if (pieza.posX>=0) {
+		pieza.posX--;
+	}
+	else {
+		return false;
+	}
 	return true;
 }
 bool Game::moveRight() {
-	
+	if (pieza.posX<20) {
+		pieza.posX++;
+	}
+	else {
+		return false;
+	}
 	return true;
 }
 bool Game::rotateTetro() {
-	//pieza.rotar();
+	//pieza.pieza.rotar();
 	return true;
 }
 
