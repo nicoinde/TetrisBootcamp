@@ -13,34 +13,32 @@ const unsigned short posInicialY = 9;
 const unsigned short posInicialX = 0;
 
 
-Game::Game():score(0),endGame(false), intervalo (0.5),tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
+
+Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(0.5), lastIntervalo(intervalo), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
 {
-		
+	piezaSig.pieza = tetroL;
+	generarPieza();
+	stepDown();
 }
 
 Game::~Game()
 {
 }
 
-void Game::cargarTetrominos()
-{
-	tetroI = new TetrominoI();
-}
 
 
-bool Game::tick(sf::Event &event, sf::Clock &clock) {
-	bool done=handleInput(event);
-	return done;
+bool Game::tick(sf::Keyboard::Key input) {
+	handleInput(input);
+	return !endGame;
 }
 
 
 
 
 
-bool Game::handleInput(sf::Event &event)
+void Game::handleInput(sf::Keyboard::Key input)
 {
-	if (event.type == sf::Event::EventType::KeyPressed) {
-		switch (event.key.code) {
+		switch (input) {
 		case sf::Keyboard::A:
 		case sf::Keyboard::Left:
 			moveLeft();
@@ -59,19 +57,54 @@ bool Game::handleInput(sf::Event &event)
 			break;
 		default:break;
 		}
-	}
-	return true;
+}
+
+void Game::releaseFastDown(){
+	intervalo = lastIntervalo;
+	acelerado = false;
 }
 
 
 bool Game::stepDown() {
-	bool aux = true;//=tablero.moveDown(pieza.pieza.getPosicion(), pieza.posX, pieza.posY);
-	//aun no decido si bajar aca la pieza y utilizar board.asentar o usar board.boveDown con referencia
-	return aux;
+	int lineas = 0;
+	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
+		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
+	}
+	else
+	{
+		lineas = tablero.verificarLineasCompletas();
+		if (lineas > 0) {
+			score += lineas * 10;
+
+			if (lineasCompletas / 10 != (lineasCompletas + lineas) / 10) {
+				subirNivel();
+			}
+			lineasCompletas += lineas;
+
+		}
+		generarPieza();
+		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+			endGame = true;
+		}
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+
+	}
+	return !endGame;
+}
+
+void Game::subirNivel() {
+	++nivel;
+	lastIntervalo = intervalo;
+	intervalo += 0.05f;
 }
 
 bool Game::fastDown() {
-	intervalo /= 4;
+	if (!acelerado) {
+		intervalo /= 4;
+		acelerado = true;
+
+	}
 	return true;
 }
 
@@ -90,9 +123,18 @@ int Game::getScore()
 	return score;
 }
 
+Tetromino * Game::getPiezaSig()
+{
+	return piezaSig.pieza;
+}
+
 bool Game::moveLeft() {
 	if (pieza.posX >= 0) {
-		pieza.posX--;
+		if (!tablero.hayColision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
+			pieza.posX++;
+			tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+			tablero.asentar(pieza.pieza, pieza.posX - 1, pieza.posY);
+		}
 	}
 	else {
 		return false;
@@ -100,8 +142,12 @@ bool Game::moveLeft() {
 	return true;
 }
 bool Game::moveRight() {
-	if (pieza.posX < 20) {
-		pieza.posX++;
+	if (pieza.posX < 21) {
+		if (!tablero.hayColision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
+			pieza.posX++;
+			tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+			tablero.asentar(pieza.pieza, pieza.posX + 1, pieza.posY);
+		}
 	}
 	else {
 		return false;
@@ -109,14 +155,23 @@ bool Game::moveRight() {
 	return true;
 }
 bool Game::rotateTetro() {
-	//pieza.pieza.rotar();
+	pieza.pieza->rotar();
+	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+	}else {
+		pieza.pieza->rotarInverso();
+	}
 	return true;
+	
 }
 
 
 
 void Game::generarPieza() {
-	pieza = piezaSig;
+	pieza.pieza = piezaSig.pieza;
+	pieza.posX = posInicialX;
+	pieza.posY = posInicialY;
 	int aux = randomPiezas(randomPieces);
 	switch (aux)
 	{
@@ -137,6 +192,7 @@ void Game::generarPieza() {
 	default:
 		break;
 	}
-	piezaSig.posX = posInicialX;
-	piezaSig.posY = posInicialY;
+	pieza.pieza->resetRotacion();
+	piezaSig.pieza->resetRotacion();
+
 }

@@ -5,6 +5,7 @@
 
 TetrominoI::TetrominoI():Tetromino()
 {	
+	cantRotPosibles = 2;
 	generarFormas();
 }
 
@@ -61,11 +62,15 @@ void TetrominoI::generarFormas() {
 
 int TetrominoI::getCelda(int x, int y)
 {
-	switch (rotacionActual) {
-	case 0: return pos0[x][y]; break;
-	case 1: return pos1[x][y]; break;
-	}
+	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
+		switch (rotacionActual) {
+		case 0: return pos0[x][y]; break;
+		case 1: return pos1[x][y]; break;
+		default: return -1;
+		}
+	}
+	return -1;
 }
 
 
@@ -76,6 +81,7 @@ int TetrominoI::getCelda(int x, int y)
 
 TetrominoJ::TetrominoJ() :Tetromino()
 {
+	cantRotPosibles = 4;
 	generarFormas();
 }
 
@@ -163,19 +169,24 @@ void TetrominoJ::generarFormas() {
 
 int TetrominoJ::getCelda(int x, int y)
 {
-	switch (rotacionActual) {
-	case 0: return pos0[x][y]; break;
-	case 1: return pos1[x][y]; break;
-	case 2: return pos2[x][y]; break;
-	case 3: return pos3[x][y]; break;
-	}
+	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
+		switch (rotacionActual) {
+		case 0: return pos0[x][y]; break;
+		case 1: return pos1[x][y]; break;
+		case 2: return pos2[x][y]; break;
+		case 3: return pos3[x][y]; break;
+		default: return -1;
+		}
+	}
+	return -1;
 }
 
 // ---------------------------TETROMINO L ------------------------------------------------
 
 TetrominoL::TetrominoL() :Tetromino()
 {
+	cantRotPosibles = 4;
 	generarFormas();
 }
 
@@ -262,19 +273,24 @@ void TetrominoL::generarFormas() {
 }
 int TetrominoL::getCelda(int x, int y)
 {
-	switch (rotacionActual) {
-	case 0: return pos0[x][y]; break;
-	case 1: return pos1[x][y]; break;
-	case 2: return pos2[x][y]; break;
-	case 3: return pos3[x][y]; break;
-	}
+	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
+		switch (rotacionActual) {
+		case 0: return pos0[x][y]; break;
+		case 1: return pos1[x][y]; break;
+		case 2: return pos2[x][y]; break;
+		case 3: return pos3[x][y]; break;
+		default: return -1;
+		}
+	}
+	return -1;
 }
 
 // ---------------------------TETROMINO O ------------------------------------------------
 
 TetrominoO::TetrominoO() :Tetromino()
 {
+	cantRotPosibles = 1;
 	generarFormas();
 }
 
@@ -306,7 +322,6 @@ void TetrominoO::generarFormas() {
 
 int TetrominoO::getCelda(int x, int y)
 {
-
 return pos0[x][y]; 
 }
 
@@ -367,11 +382,15 @@ void TetrominoS::generarFormas() {
 
 int TetrominoS::getCelda(int x, int y)
 {
-	switch (rotacionActual) {
-	case 0: return pos0[x][y]; break;
-	case 1: return pos1[x][y]; break;
-	}
+	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
+		switch (rotacionActual) {
+		case 0: return pos0[x][y]; break;
+		case 1: return pos1[x][y]; break;
+		default: return -1;
+		}
+	}
+	return -1;
 }
 
 
@@ -379,6 +398,7 @@ int TetrominoS::getCelda(int x, int y)
 
 TetrominoT::TetrominoT() :Tetromino()
 {
+	cantRotPosibles = 4;
 	generarFormas();
 }
 
@@ -465,11 +485,17 @@ void TetrominoT::generarFormas() {
 }
 int TetrominoT::getCelda(int x, int y)
 {
-	switch (rotacionActual) {
-	case 0: return pos0[x][y]; break;
-	case 1: return pos1[x][y]; break;
-	}
+	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
+		switch (rotacionActual) {
+		case 0: return pos0[x][y]; break;
+		case 1: return pos1[x][y]; break;
+		case 2: return pos2[x][y]; break;
+		case 3: return pos3[x][y]; break;
+		default: return -1;
+		}
+	}
+	return -1;
 }
 
 
@@ -477,6 +503,7 @@ int TetrominoT::getCelda(int x, int y)
 
 TetrominoZ::TetrominoZ() :Tetromino()
 {
+	cantRotPosibles = 2;
 	generarFormas();
 }
 
@@ -529,9 +556,13 @@ void TetrominoZ::generarFormas() {
 
 int TetrominoZ::getCelda(int x, int y)
 {
-	switch (rotacionActual) {
-	case 0: return pos0[x][y]; break;
-	case 1: return pos1[x][y]; break;
-	}
+	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
+		switch (rotacionActual) {
+		case 0: return pos0[x][y]; break;
+		case 1: return pos1[x][y]; break;
+		default: return -1;
+		}
+	}
+	return -1;
 }

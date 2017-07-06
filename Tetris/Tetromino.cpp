@@ -18,9 +18,21 @@ int Tetromino::rotar()
 	return rotacionActual;
 }
 
+int Tetromino::rotarInverso()
+{
+	int aux = (rotacionActual +cantRotPosibles - 1) % cantRotPosibles;
+	rotacionActual = aux;
+	return rotacionActual;
+}
+
 int Tetromino::getRotacion()
 {
 	return rotacionActual;
+}
+
+void Tetromino::resetRotacion()
+{
+	rotacionActual = 0;
 }
 
 

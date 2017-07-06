@@ -1,11 +1,11 @@
 d:\globant\tetris\tetrisbootcamp\tetris\debug\vc141.pdb
 d:\globant\tetris\tetrisbootcamp\tetris\debug\vc141.idb
-d:\globant\tetris\tetrisbootcamp\tetris\debug\app.obj
-d:\globant\tetris\tetrisbootcamp\tetris\debug\game.obj
-d:\globant\tetris\tetrisbootcamp\tetris\debug\gestor.obj
+d:\globant\tetris\tetrisbootcamp\tetris\debug\board.obj
+d:\globant\tetris\tetrisbootcamp\tetris\debug\gestorgrafico.obj
 d:\globant\tetris\tetrisbootcamp\tetris\debug\tetromino.obj
 d:\globant\tetris\tetrisbootcamp\tetris\debug\tetrominoesp.obj
-d:\globant\tetris\tetrisbootcamp\tetris\debug\board.obj
+d:\globant\tetris\tetrisbootcamp\tetris\debug\app.obj
+d:\globant\tetris\tetrisbootcamp\tetris\debug\game.obj
 d:\globant\tetris\tetrisbootcamp\debug\tetris.ilk
 d:\globant\tetris\tetrisbootcamp\debug\tetris.exe
 d:\globant\tetris\tetrisbootcamp\debug\tetris.pdb

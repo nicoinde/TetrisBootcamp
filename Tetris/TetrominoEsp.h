@@ -8,6 +8,7 @@ public:
 	TetrominoI();
 	~TetrominoI();
 	int rotar();
+
 	int getCelda(int x, int y);
 	void generarFormas();
 	
