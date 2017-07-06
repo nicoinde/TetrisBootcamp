@@ -10,5 +10,6 @@ public:
 private:
 	GestorGrafico ges;
 	Game juego;
+	bool modified;
 };
 

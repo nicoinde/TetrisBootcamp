@@ -1,6 +1,6 @@
 #pragma once
 struct Piezas {
-	Tetromino * pieza;
+	Tetromino * pieza=nullptr;
 	float posX;
 	float posY;
 };

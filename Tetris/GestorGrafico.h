@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML\Graphics.hpp"
+#include "Board.h"
 
 class GestorGrafico
 {
@@ -14,7 +15,7 @@ public:
 	void setVentana(sf::RenderWindow &vent);
 	sf::Event getEvent();
 	sf::Clock getClock();
-	void drawPieces(sf::RenderWindow &vent, int** tablero);
+	void drawPieces(Board &tablero);
 	
 
 private:

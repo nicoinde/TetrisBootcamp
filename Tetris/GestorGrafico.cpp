@@ -86,7 +86,7 @@ sf::Clock GestorGrafico::getClock()
 	return clock;
 }
 
-void GestorGrafico::drawPieces(sf::RenderWindow & vent, int ** tablero)
+void GestorGrafico::drawPieces(Board &tablero)
 {
 	for (short i = 0; i < 10; ++i)
 	{

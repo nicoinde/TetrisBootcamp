@@ -1,7 +1,6 @@
 #pragma once
 #include "GestorGrafico.h"
 #include "Tetromino.h"
-#include "Board.h"
 class Game
 {
 public:
@@ -9,12 +8,16 @@ public:
 	Game();
 	//Game(Gestor &ges);
 	~Game();
-	bool tick();
+	void cargarTetrominos();
+	bool tick(sf::Event &event, sf::Clock &clock);
+	bool handleInput(sf::Event &event);
 	bool stepDown();
 	bool rotateTetro();
 	bool moveLeft();
 	bool moveRight();
 	bool fastDown();
+	Board* getBoard();
+	float getIntervalo();
 	
 	//TetrominoI pieza;
 
@@ -26,7 +29,7 @@ private:
 	float intervalo;
 	int** tableroPrueba;
 	void makeTableroPrueba();
-	Tetromino tetros[7];	
+	Tetromino * tetroI, * tetroJ, * tetroL, * tetroO, * tetroS, * tetroT, * tetroZ;	
 	Board tablero;
 	void generarPieza();
 };

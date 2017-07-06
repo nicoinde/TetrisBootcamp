@@ -1,4 +1,6 @@
 #include "App.h"
+#include <chrono>
+#include <thread>
 
 
 
@@ -25,8 +27,15 @@ App::~App()
 int App::loop() {
 	while (ges.getVentana()->isOpen()) {
 		while (ges.getVentana()->pollEvent(ges.getEvent())) {
+			modified = true;
+			if (ges.getEvent().type == sf::Event::EventType::Closed) {
+				ges.getVentana()->close();
+			}
 			juego.tick(ges.getEvent(), ges.getClock());
 		}
+		if (ges.getClock().getElapsedTime().asSeconds() > juego.getIntervalo()) {
+			juego.stepDown();
+
 		ges.drawPieces(juego.getBoard());
 	}
 
