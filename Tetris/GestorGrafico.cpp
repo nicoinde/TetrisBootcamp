@@ -2,6 +2,8 @@
 
 
 const sf::Vector2u sizeVentana(412, 600); 
+const float offsetX = 5.0;
+const float offsetY = 5.0;
 
 
 GestorGrafico::GestorGrafico(): offsetX(5.0),offsetY(5.0), squareOffset(30.0)
@@ -98,7 +100,8 @@ void GestorGrafico::drawPieces(Board &tablero)
 	for (int i = 0; i < 10; ++i)
 	{
 		for (int j = 0; j < 20; ++j) {
-			switch (tablero.getTablero()[i][j])
+			int aux = tablero.getCelda(i, j);
+			switch (aux)
 			{
 			case 1:
 				iSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
@@ -141,12 +144,12 @@ void GestorGrafico::drawBg()
 	ventana->draw(bgSpr);
 }
 
-void GestorGrafico::drawScore(int punt)
-{
-	char* puntaje;
-	
-	score.setString(puntaje);
-}
+//void GestorGrafico::drawScore(int punt)
+//{
+//	char* puntaje;
+//	
+//	score.setString(puntaje);
+//}
 
 sf::RenderWindow* GestorGrafico::getVentana()
 {
