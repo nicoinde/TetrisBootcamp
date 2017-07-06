@@ -13,14 +13,9 @@ const unsigned short posInicialY = 9;
 const unsigned short posInicialX = 0;
 
 
-Game::Game()
+Game::Game():score(0),endGame(false), intervalo (0.5),tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
 {
-	endGame = false;
-	intervalo = 0.5;
-	tableroPrueba = nullptr;
-	makeTableroPrueba();
-	/*gestor.setVentana(&ventana);*/
-	//pieza=generarPieza();
+		
 }
 
 Game::~Game()
@@ -34,10 +29,11 @@ void Game::cargarTetrominos()
 
 
 bool Game::tick(sf::Event &event, sf::Clock &clock) {
-	handleInput(event);
-
-
+	bool done=handleInput(event);
+	return done;
 }
+
+
 
 
 
@@ -89,6 +85,11 @@ float Game::getIntervalo()
 	return intervalo;
 }
 
+int Game::getScore()
+{
+	return score;
+}
+
 bool Game::moveLeft() {
 	if (pieza.posX >= 0) {
 		pieza.posX--;
@@ -120,35 +121,22 @@ void Game::generarPieza() {
 	switch (aux)
 	{
 	case 0:
-		piezaSig.pieza = &tetros[0]; break;
+		piezaSig.pieza = tetroI; break;
 	case 1:
-		piezaSig.pieza = &tetros[1]; break;
+		piezaSig.pieza = tetroJ; break;
 	case 2:
-		piezaSig.pieza = &tetros[2]; break;
+		piezaSig.pieza = tetroL; break;
 	case 3:
-		piezaSig.pieza = &tetros[3]; break;
+		piezaSig.pieza = tetroO; break;
 	case 4:
-		piezaSig.pieza = &tetros[4]; break;
+		piezaSig.pieza = tetroS; break;
 	case 5:
-		piezaSig.pieza = &tetros[5]; break;
+		piezaSig.pieza = tetroT; break;
 	case 6:
-		piezaSig.pieza = &tetros[6]; break;
+		piezaSig.pieza = tetroZ; break;
 	default:
 		break;
 	}
 	piezaSig.posX = posInicialX;
 	piezaSig.posY = posInicialY;
-}
-
-void Game::makeTableroPrueba() {
-	tableroPrueba = new int*[10];
-	for (short i = 0; i < 10; ++i)
-	{
-		tableroPrueba[i] = new int[20];
-		for (short j = 0; j < 20; ++j)
-		{
-			tableroPrueba[i][j] = randomPiezas(randomPieces) + 1;
-
-		}
-	}
 }

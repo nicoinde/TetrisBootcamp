@@ -5,7 +5,6 @@ class App
 public:
 	App();
 	~App();
-	int ejecucion();
 	int loop();
 private:
 	GestorGrafico ges;

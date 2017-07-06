@@ -34,7 +34,7 @@ void Board::mostrar() {
 
 }
 
-int ** Board::getTablero()
+int** Board::getTablero()
 {
 	return tablero;
 }

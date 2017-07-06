@@ -2,9 +2,8 @@
 
 
 
-Tetromino::Tetromino()
+Tetromino::Tetromino() :rotacionActual(0)
 {
-	rotacionActual = 0;
 }
 
 
@@ -14,17 +13,15 @@ Tetromino::~Tetromino()
 
 int Tetromino::rotar()
 {
-	int aux = (rotacionActual + 1) % 4;
+	int aux = (rotacionActual + 1) % cantRotPosibles;
 	rotacionActual = aux;
 	return rotacionActual;
 }
 
-int Tetromino::getPosicion()
+int Tetromino::getRotacion()
 {
 	return rotacionActual;
 }
 
-int** Tetromino::getForma() {
-	int** aux = nullptr;
-	return aux;
-}
+
+

@@ -88,38 +88,38 @@ sf::Clock GestorGrafico::getClock()
 
 void GestorGrafico::drawPieces(Board &tablero)
 {
-	for (short i = 0; i < 10; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
-		for (short j = 0; j < 20; ++j) {
-			switch (tablero[i][j])
+		for (int j = 0; j < 20; ++j) {
+			switch (tablero.getTablero()[i][j])
 			{
 			case 1:
 				iSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
-				vent.draw(iSpr);
+				ventana->draw(iSpr);
 				break;
 			case 2:
 				jSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
-				vent.draw(jSpr);
+				ventana->draw(jSpr);
 				break;
 			case 3:
 				lSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
-				vent.draw(lSpr);
+				ventana->draw(lSpr);
 				break;
 			case 4:
 				oSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
-				vent.draw(oSpr);
+				ventana->draw(oSpr);
 				break;
 			case 5:
 				sSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
-				vent.draw(sSpr);
+				ventana->draw(sSpr);
 				break;
 			case 6:
 				tSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
-				vent.draw(tSpr);
+				ventana->draw(tSpr);
 				break;
 			case 7:
 				zSpr.setPosition(offsetX + i*squareOffset, offsetY + j*squareOffset);
-				vent.draw(zSpr);
+				ventana->draw(zSpr);
 				break;
 
 			default:
@@ -127,6 +127,11 @@ void GestorGrafico::drawPieces(Board &tablero)
 			}
 		}
 	}
+}
+
+void GestorGrafico::drawBg()
+{
+	ventana->draw(bgSpr);
 }
 
 sf::RenderWindow* GestorGrafico::getVentana()

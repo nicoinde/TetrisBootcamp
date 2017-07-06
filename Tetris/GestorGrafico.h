@@ -12,10 +12,10 @@ public:
 	bool cargarImagenes();
 	sf::Event getEvent();
 	sf::RenderWindow * getVentana();
-	void setVentana(sf::RenderWindow &vent);
-	sf::Event getEvent();
+	//void setVentana(sf::RenderWindow &vent);
 	sf::Clock getClock();
 	void drawPieces(Board &tablero);
+	void drawBg();
 	
 
 private:
