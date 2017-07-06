@@ -145,7 +145,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Gestor.h" />
+    <ClInclude Include="GestorGrafico.h" />
     <ClInclude Include="Tetromino.h" />
     <ClInclude Include="TetrominoEsp.h" />
   </ItemGroup>
@@ -153,7 +153,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gestor.cpp" />
+    <ClCompile Include="GestorGrafico.cpp" />
     <ClCompile Include="Tetromino.cpp" />
     <ClCompile Include="TetrominoEsp.cpp" />
   </ItemGroup>

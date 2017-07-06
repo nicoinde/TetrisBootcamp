@@ -17,20 +17,54 @@ int TetrominoI::rotar() {
 	return 0;
 }
 
+
 void TetrominoI::generarFormas() {
-	/*int a[3][3] = { { 1,2,3 },
-	{ 4,5,6 },
-	{ 7,8,9 } };*/
-	/*posiciones.pos0= { 
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if (i==2) {
+				pos0[i][j] = 1;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if (j == 1) {
+				pos0[i][j] = 1;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}
+	
+	/*
+	pos0=  
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 1,1,1,1 },
-		{ 0,0,0,0 } };
-	posiciones.pos1 = { 
+		{ 0,0,0,0 } 
+	pos1 = 
 		{ 0,1,0,0 },
 		{ 0,1,0,0 },
 		{ 0,1,0,0 },
-		{ 0,1,0,0 } };*/
+		{ 0,1,0,0 } 
+		*/
+
+}
+
+int TetrominoI::getCelda(int x, int y)
+{
+	switch (rotacionActual) {
+	case 0: return pos0[x][y]; break;
+	case 1: return pos1[x][y]; break;
+	}
 
 }
 
@@ -55,26 +89,87 @@ int TetrominoJ::rotar() {
 }
 
 void TetrominoJ::generarFormas() {
-	/*posiciones.pos0[width][height] = { 
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 2&&j==2)||(i==3&&j>0)) {
+				pos0[i][j] = 2;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((j == 1&&j==4)||(i>0&&j==2)) {
+				pos1[i][j] = 2;
+			}
+			else {
+				pos1[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 2&&j>1)||(i==4&&j==4)) {
+				pos2[i][j] = 2;
+			}
+			else {
+				pos2[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((j == 1&&i>0)||(j==2&&i==1)) {
+				pos3[i][j] = 2;
+			}
+			else {
+				pos3[i][j] = 0;
+			}
+		}
+	}
+		
+	/*
+	pos0 =
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,2,0,0 },
-		{ 0,2,2,2 } };
-	posiciones.pos1[width][height] = {
+		{ 0,2,2,2 }
+	pos1=
 		{ 0,0,0,0 },
 		{ 0,0,2,0 },
 		{ 0,0,2,0 },
 		{ 0,2,2,0 } };
-	posiciones.pos2[width][height] = {
+	pos2=
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,2,2,2 },
 		{ 0,0,0,2 } };
-	posiciones.pos3[width][height] = {
+	pos3=
 		{ 0,0,0,0 },
 		{ 0,2,2,0 },
 		{ 0,2,0,0 },
 		{ 0,2,0,0 } };*/
+}
+
+int TetrominoJ::getCelda(int x, int y)
+{
+	switch (rotacionActual) {
+	case 0: return pos0[x][y]; break;
+	case 1: return pos1[x][y]; break;
+	case 2: return pos2[x][y]; break;
+	case 3: return pos3[x][y]; break;
+	}
+
 }
 
 // ---------------------------TETROMINO L ------------------------------------------------
@@ -93,26 +188,87 @@ int TetrominoL::rotar() {
 	return 0;
 }
 void TetrominoL::generarFormas() {
-	/*posiciones.pos1[width][height] = { 
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i ==2  && j == 4) || (i == 3 && j>0)) {
+				pos0[i][j] = 3;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 1 && j == 1) || (i>0 && j == 2)) {
+				pos1[i][j] = 3;
+			}
+			else {
+				pos1[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 2 && j>1) || (i == 4 && j == 2)) {
+				pos2[i][j] = 3;
+			}
+			else {
+				pos2[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((j == 1 && i>0) || (j == 2 && i == 3)) {
+				pos3[i][j] = 3;
+			}
+			else {
+				pos3[i][j] = 0;
+			}
+		}
+	}
+	
+	/*pos0
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,0,0,3 },
 		{ 0,3,3,3 } };
-	posiciones.pos2[width][height] = { 
-		{ 0,0,0,0 },
-		{ 0,3,0,0 },
-		{ 0,3,0,0 },
-		{ 0,3,3,0 } };
-	posiciones.pos3[width][height] = {
+	pos1=
+	{ 0,0,0,0 },
+	{ 0,3,3,0 },
+	{ 0,0,3,0 },
+	{ 0,0,3,0 } }
+		
+	pos2
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,3,3,3 },
 		{ 0,3,0,0 } };
-	posiciones.pos4[width][height] = {
-		{ 0,0,0,0 },
-		{ 0,3,3,0 },
-		{ 0,0,3,0 },
-		{ 0,0,3,0 } };*/
+	pos3= {
+	{ 0,0,0,0 },
+	{ 0,3,0,0 },
+	{ 0,3,0,0 },
+	{ 0,3,3,0 } };
+		;*/
+}
+int TetrominoL::getCelda(int x, int y)
+{
+	switch (rotacionActual) {
+	case 0: return pos0[x][y]; break;
+	case 1: return pos1[x][y]; break;
+	case 2: return pos2[x][y]; break;
+	case 3: return pos3[x][y]; break;
+	}
+
 }
 
 // ---------------------------TETROMINO O ------------------------------------------------
@@ -132,15 +288,34 @@ int TetrominoO::rotar() {
 }
 
 void TetrominoO::generarFormas() {
-	//posiciones.pos1[width][height] = { { 0,0,0,0 },{ 0,0,0,0 },{ 0,4,4,0 },{ 0,4,4,0 } };
+	
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if (i > 1 && j < 4 && j > 0 ) {
+				pos0[i][j] = 4;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}//pos0 { { 0,0,0,0 },{ 0,0,0,0 },{ 0,4,4,0 },{ 0,4,4,0 } };
 
+}
+
+int TetrominoO::getCelda(int x, int y)
+{
+
+return pos0[x][y]; 
 }
 
 
 // ---------------------------TETROMINO S ------------------------------------------------
 
-TetrominoS::TetrominoS() :Tetromino()
+TetrominoS::TetrominoS()
 {
+	cantRotPosibles = 2;
 	generarFormas();
 }
 
@@ -154,16 +329,49 @@ int TetrominoS::rotar() {
 }
 
 void TetrominoS::generarFormas() {
-	/*posiciones.pos1[width][height] = {
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 2 && j > 1) || (i == 3 && j>0&&j<3)) {
+				pos0[i][j] = 5;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i<3 && i > 0 && j ==1) || (i>1 && j == 2)) {
+				pos1[i][j] = 5;
+			}
+			else {
+				pos1[i][j] = 0;
+			}
+		}
+	}
+	/*pos0=
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,0,5,5 },
 		{ 0,5,5,0 } };
-	posiciones.pos2[width][height] = { 
+	pos1=
 		{ 0,0,0,0 },
 		{ 0,5,0,0 },
 		{ 0,5,5,0 },
 		{ 0,0,5,0 } };*/
+}
+
+int TetrominoS::getCelda(int x, int y)
+{
+	switch (rotacionActual) {
+	case 0: return pos0[x][y]; break;
+	case 1: return pos1[x][y]; break;
+	}
+
 }
 
 
@@ -183,26 +391,85 @@ int TetrominoT::rotar() {
 	return 0;
 }
 void TetrominoT::generarFormas() {
-	/*posiciones.pos1[width][height] = { 
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 2 && j > 0) || (i == 3 && j==2)) {
+				pos0[i][j] = 6;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((j == 2 && i >0) || (i==2 && j == 4)) {
+				pos1[i][j] = 6;
+			}
+			else {
+				pos1[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 2 && j>0) || (i == 1 && j == 2)) {
+				pos2[i][j] = 6;
+			}
+			else {
+				pos2[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((j == 2 && i>0) || (j == 1 && i == 1)) {
+				pos3[i][j] = 6;
+			}
+			else {
+				pos3[i][j] = 0;
+			}
+		}
+	}
+
+	
+
+	/*pos0=
 		{ 0,0,0,0 },
 		{ 0,0,0,0 },
 		{ 0,6,6,6 },
 		{ 0,0,6,0 } };
-	posiciones.pos2[width][height] = { 
+	pos1=
 		{ 0,0,0,0 },
 		{ 0,0,6,0 },
 		{ 0,0,6,6 },
 		{ 0,0,6,0 } };
-	posiciones.pos3[width][height] = {
+	pos2=
 		{ 0,0,0,0 },
 		{ 0,0,6,0 },
 		{ 0,6,6,6 },
 		{ 0,0,0,0 } };
-	posiciones.pos4[width][height] = { 
+	pos3=
 		{ 0,0,0,0 },
 		{ 0,0,6,0 },
 		{ 0,6,6,0 },
 		{ 0,0,6,0 } };*/
+}
+int TetrominoT::getCelda(int x, int y)
+{
+	switch (rotacionActual) {
+	case 0: return pos0[x][y]; break;
+	case 1: return pos1[x][y]; break;
+	}
+
 }
 
 
@@ -223,15 +490,48 @@ int TetrominoZ::rotar() {
 }
 
 void TetrominoZ::generarFormas() {
-	/*posiciones.pos1[width][height] = {
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i == 3 && j > 1) || (i == 2 && j>0 && j<3)) {
+				pos0[i][j] = 7;
+			}
+			else {
+				pos0[i][j] = 0;
+			}
+		}
+	}
+	for (short i = 0; i < tetroHeight; ++i)
+	{
+		for (short j = 0; j < tetroWidth; ++j)
+		{
+			if ((i<3 && i > 0 && j == 2) || (i>1 && j == 1)) {
+				pos1[i][j] = 7;
+			}
+			else {
+				pos1[i][j] = 0;
+			}
+		}
+	}
+	/*pos0=
 		{0,0,0,0},
 		{0,0,0,0},
 		{0,7,7,0},
 		{0,0,7,7}
-	};
-	posiciones.pos2[width][height] = {
+	
+	pos1=
 		{ 0,0,0,0 },
 		{ 0,0,7,0 },
 		{ 0,7,7,0 },
 		{ 0,7,0,0 } };*/
+}
+
+int TetrominoZ::getCelda(int x, int y)
+{
+	switch (rotacionActual) {
+	case 0: return pos0[x][y]; break;
+	case 1: return pos1[x][y]; break;
+	}
+
 }

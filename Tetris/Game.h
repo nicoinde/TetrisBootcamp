@@ -1,7 +1,12 @@
 #pragma once
-#include "Gestor.h"
-#include "TetrominoEsp.h"
-#include "Board.h"
+#include "GestorGrafico.h"
+#include "Tetromino.h"
+struct Piezas {
+	Tetromino *pieza;
+	float posX;
+	float posY;
+};
+
 class Game
 {
 public:
@@ -9,30 +14,33 @@ public:
 	Game();
 	//Game(Gestor &ges);
 	~Game();
-	int iniciar();
-	bool ciclo();
+	void cargarTetrominos();
+	bool tick(sf::Event &event, sf::Clock &clock);
+	bool handleInput(sf::Event &event);
 	bool stepDown();
 	bool rotateTetro();
 	bool moveLeft();
 	bool moveRight();
 	bool fastDown();
+	Board* getBoard();
+	Board tablero;
+	float getIntervalo();
+	int getScore();
 	
 	//TetrominoI pieza;
 
 private:
-	Gestor gestor;
-	struct Piezas{
-		Tetromino pieza;
-		float posX;
-		float posY;
-	}pieza, piezaSig;
+	
 	bool endGame;
 	float intervalo;
-	int** tableroPrueba;
-	void makeTableroPrueba();
+	int score;
+	//int** tableroPrueba;
 	
-	//template<Tetromino> piezaSig;
-	Board tablero;
+	Tetromino * tetroI, * tetroJ, * tetroL, * tetroO, * tetroS, * tetroT, * tetroZ;	
+	struct Piezas pieza;
+	struct Piezas piezaSig;
+	//Board *tablero;
 	void generarPieza();
+	void makeTableroPrueba();
 };
 

@@ -8,21 +8,12 @@ public:
 	TetrominoI();
 	~TetrominoI();
 	int rotar();
-	//int** getForma();
+	int getCelda(int x, int y);
 	void generarFormas();
-	struct Posiciones {
-		int pos0[tetroHeight][tetroWidth] = { 
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 1,1,1,1 },
-			{ 0,0,0,0 } };
-		int pos1[tetroHeight][tetroWidth] = {
-			{ 0,1,0,0 },
-			{ 0,1,0,0 },
-			{ 0,1,0,0 },
-			{ 0,1,0,0 } };
-	}posiciones;
+	
 private:
+	int pos0[tetroHeight][tetroWidth];
+	int pos1[tetroHeight][tetroWidth];
 	
 };
 
@@ -33,33 +24,14 @@ public:
 	TetrominoJ();
 	~TetrominoJ();
 	int rotar();
-	//int** getForma();
+	int getCelda(int x, int y);
 	void generarFormas();
-	struct Posiciones {
-		int pos0[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,2,0,0 },
-			{ 0,2,2,2 } };
-		int pos1[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,2,0 },
-			{ 0,0,2,0 },
-			{ 0,2,2,0 } };
-		int pos2[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,2,2,2 },
-			{ 0,0,0,2 } };
-		int pos3[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,2,2,0 },
-			{ 0,2,0,0 },
-			{ 0,2,0,0 } };
-
-	}posiciones;
-private:
 	
+private:
+	int pos0[tetroHeight][tetroWidth];
+	int pos1[tetroHeight][tetroWidth];
+	int pos2[tetroHeight][tetroWidth];
+	int pos3[tetroHeight][tetroWidth];
 };
 
 class TetrominoL :
@@ -69,31 +41,13 @@ public:
 	TetrominoL();
 	~TetrominoL();
 	int rotar();
-	//int** getForma();
+	int getCelda(int x, int y);
 	void generarFormas();
 private:
-	struct Posiciones {
-		int pos0[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,0,0,3 },
-			{ 0,3,3,3 } };
-		int pos1[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,3,0,0 },
-			{ 0,3,0,0 },
-			{ 0,3,3,0 } };
-		int pos2[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,3,3,3 },
-			{ 0,3,0,0 } };
-		int pos3[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,3,3,0 },
-			{ 0,0,3,0 },
-			{ 0,0,3,0 } };
-	}posiciones;
+	int pos0[tetroHeight][tetroWidth];
+	int pos1[tetroHeight][tetroWidth];
+	int pos2[tetroHeight][tetroWidth];
+	int pos3[tetroHeight][tetroWidth];
 };
 
 class TetrominoO :
@@ -103,17 +57,11 @@ public:
 	TetrominoO();
 	~TetrominoO();
 	int rotar();
-	//int** getForma();
+	int getCelda(int x, int y);
 	void generarFormas();
 private:
-	struct Posiciones {
-		int pos0[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,4,4,0 },
-			{ 0,4,4,0 } };
-		
-	}posiciones;
+	int pos0[tetroHeight][tetroWidth];
+
 };
 
 class TetrominoS :
@@ -123,21 +71,11 @@ public:
 	TetrominoS();
 	~TetrominoS();
 	int rotar(); 
-	//int** getForma();
+	int getCelda(int x, int y);
 	void generarFormas();
 private:
-	struct Posiciones {
-		int pos0[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,0,5,5 },
-			{ 0,5,5,0 } };
-		int pos1[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,5,0,0 },
-			{ 0,5,5,0 },
-			{ 0,0,5,0 } };
-	}posiciones;
+	int pos0[tetroHeight][tetroWidth];
+	int pos1[tetroHeight][tetroWidth];
 };
 
 class TetrominoT :
@@ -147,31 +85,13 @@ public:
 	TetrominoT();
 	~TetrominoT();
 	int rotar();
-	//int** getForma();
+	int getCelda(int x, int y);
 	void generarFormas();
 private:
-	struct Posiciones {
-		int pos0[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,6,6,6 },
-			{ 0,0,6,0 } };
-		int pos1[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,6,0 },
-			{ 0,0,6,6 },
-			{ 0,0,6,0 } };
-		int pos2[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,6,0 },
-			{ 0,6,6,6 },
-			{ 0,0,0,0 } };
-		int pos3[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,6,0 },
-			{ 0,6,6,0 },
-			{ 0,0,6,0 } };
-	}posiciones;
+	int pos0[tetroHeight][tetroWidth];
+	int pos1[tetroHeight][tetroWidth];
+	int pos2[tetroHeight][tetroWidth];
+	int pos3[tetroHeight][tetroWidth];
 };
 
 class TetrominoZ :
@@ -181,22 +101,11 @@ public:
 	TetrominoZ();
 	~TetrominoZ();
 	int rotar();
-	//int** getForma();
+	int getCelda(int x, int y);
 	void generarFormas();
 private:
-	struct Posiciones{
-		int pos0[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,0,0 },
-			{ 0,7,7,0 },
-			{ 0,0,7,7 }
-		};
-		int pos1[tetroHeight][tetroWidth] = {
-			{ 0,0,0,0 },
-			{ 0,0,7,0 },
-			{ 0,7,7,0 },
-			{ 0,7,0,0 } };
-	}posiciones;
+	int pos0[tetroHeight][tetroWidth];
+	int pos1[tetroHeight][tetroWidth];
 };
 
 
