@@ -10,12 +10,13 @@ public:
 	
 	void trySprites(sf::RenderWindow &vent);
 	bool cargarImagenes();
-	sf::Event getEvent();
+	sf::Event &getEvent();
 	sf::RenderWindow * getVentana();
 	//void setVentana(sf::RenderWindow &vent);
 	sf::Clock getClock();
 	void drawPieces(Board &tablero);
 	void drawBg();
+	void drawScore(int score);
 	
 
 private:
@@ -28,7 +29,8 @@ private:
 	sf::Texture bgTex, iTex, jTex, lTex, oTex, sTex, tTex, zTex;
 	sf::Sprite bgSpr, iSpr, jSpr, lSpr, oSpr, sSpr, tSpr, zSpr;
 	sf::Clock clock;
-	
+	sf::Font font;
+	sf::Text score;
 	
 };
 

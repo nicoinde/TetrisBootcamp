@@ -72,11 +72,18 @@ bool GestorGrafico::cargarImagenes() {
 		zSpr.setTexture(zTex);
 		zSpr.setScale(1.05f, 1.05f);
 	}
+
+	if (!font.loadFromFile("Assets/Coffee House.ttf")) {
+		return false;
+	}
+	else {
+		score.setFont(font);
+	}
 	
 	return true;
 }
 
-sf::Event GestorGrafico::getEvent()
+sf::Event &GestorGrafico::getEvent()
 {
 	return event;
 }
@@ -126,12 +133,19 @@ void GestorGrafico::drawPieces(Board &tablero)
 				break;
 			}
 		}
+
 	}
 }
-
 void GestorGrafico::drawBg()
 {
 	ventana->draw(bgSpr);
+}
+
+void GestorGrafico::drawScore(int punt)
+{
+	char* puntaje;
+	
+	score.setString(puntaje);
 }
 
 sf::RenderWindow* GestorGrafico::getVentana()
