@@ -65,8 +65,8 @@ int TetrominoI::getCelda(int x, int y)
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
 		switch (rotacionActual) {
-		case 0: return pos0[x][y]; break;
-		case 1: return pos1[x][y]; break;
+		case 0: return pos0[y][x]; break;
+		case 1: return pos1[y][x]; break;
 		default: return -1;
 		}
 	}

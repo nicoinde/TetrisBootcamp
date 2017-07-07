@@ -9,8 +9,8 @@ uniform_int_distribution<int> randomPiezas(0, 6);
 random_device rd;
 mt19937 randomPieces(rd());
 
-const unsigned short posInicialY = 9;
-const unsigned short posInicialX = 0;
+const unsigned short posInicialY = 0;
+const unsigned short posInicialX = 3;
 
 
 
@@ -18,7 +18,8 @@ Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(
 {
 	piezaSig.pieza = tetroL;
 	generarPieza();
-	stepDown();
+	generarPieza();
+	stepDown2();
 }
 
 Game::~Game()
@@ -70,9 +71,12 @@ bool Game::stepDown() {
 	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
 		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
+		pieza.posY++;
+		cout<<"stepdown succesfull"<<endl;
 	}
 	else
 	{
+		cout << "stepdown unsuccesfull" << endl;
 		lineas = tablero.verificarLineasCompletas();
 		if (lineas > 0) {
 			score += lineas * 10;
@@ -86,8 +90,38 @@ bool Game::stepDown() {
 		generarPieza();
 		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
 			endGame = true;
+			cout << "fin del juego" << endl;
 		}
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+
+	}
+	return !endGame;
+}
+
+bool Game::stepDown2() {
+	int lineas = 0;
+	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
+		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
+		pieza.posY++;
+	}
+	else
+	{
+		lineas = tablero.verificarLineasCompletas();
+		if (lineas > 0) {
+			score += lineas * 10;
+
+			if (lineasCompletas / 10 != (lineasCompletas + lineas) / 10) {
+				subirNivel();
+			}
+			lineasCompletas += lineas;
+
+		}
+		/*generarPieza();
+		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+			endGame = true;
+		}
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);*/
 
 	}
 	return !endGame;
@@ -129,11 +163,11 @@ Tetromino * Game::getPiezaSig()
 }
 
 bool Game::moveLeft() {
-	if (pieza.posX >= 0) {
+	if (pieza.posX >= tablero.softLeftBorder) {
 		if (!tablero.hayColision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
-			pieza.posX++;
 			tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-			tablero.asentar(pieza.pieza, pieza.posX - 1, pieza.posY);
+			pieza.posX--;			
+			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
 		}
 	}
 	else {
@@ -142,11 +176,11 @@ bool Game::moveLeft() {
 	return true;
 }
 bool Game::moveRight() {
-	if (pieza.posX < 21) {
+	if (pieza.posX < tablero.softRightBorder) {
 		if (!tablero.hayColision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
-			pieza.posX++;
 			tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-			tablero.asentar(pieza.pieza, pieza.posX + 1, pieza.posY);
+			pieza.posX++;
+			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
 		}
 	}
 	else {

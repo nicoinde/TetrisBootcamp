@@ -14,10 +14,10 @@ public:
 	Game();
 	//Game(Gestor &ges);
 	~Game();
-	void cargarTetrominos();
 	bool tick(sf::Keyboard::Key input);
 	void handleInput(sf::Keyboard::Key input);
 	bool stepDown();
+	bool stepDown2();
 	bool rotateTetro();
 	bool moveLeft();
 	bool moveRight();

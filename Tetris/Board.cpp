@@ -33,7 +33,7 @@ void Board::mostrar() {
 }
 
 bool Board::hayColision(Tetromino *pieza, int x, int y) {
-	for (int i = 3; y+i >= y; --i)
+	for (int i = 0; i < pieza->tetroHeight; ++i)
 	{
 		for (short j = 0; j< pieza->tetroWidth; ++j)
 		{
@@ -70,9 +70,9 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 //me falta implementar los templates para la derivacion de los tetrominos
 bool Board::asentar(Tetromino *pieza, int x, int y) {
 
-	for (int i=0; i>=pieza->tetroHeight; ++i)
+	for (int i=0; i<pieza->tetroHeight; ++i)
 	{	
-		for (short j =0; j<pieza->tetroWidth; ++j)
+		for (short j=0; j<pieza->tetroWidth; ++j)
 		{
 			if(pieza->getCelda(i,j)>0){
 				
