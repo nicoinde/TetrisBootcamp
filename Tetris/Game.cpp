@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <random>
 #include <iostream>
+#include <string.h>
 
 
 using namespace std;
@@ -9,12 +10,12 @@ uniform_int_distribution<int> randomPiezas(0, 6);
 random_device rd;
 mt19937 randomPieces(rd());
 
-const unsigned short posInicialY = 1;
+const unsigned short posInicialY = 0;
 const unsigned short posInicialX = 3;
 
 
 
-Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(8.0), lastIntervalo(intervalo), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
+Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(4.0), lastIntervalo(4.0), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
 {
 	piezaSig.pieza = tetroL;
 	generarPieza();
@@ -24,77 +25,11 @@ Game::~Game()
 {
 }
 
-
-
-bool Game::tick(sf::Keyboard::Key input) {
-	handleInput(input);
-	return !endGame;
-}
-
-
-
-
-
-void Game::handleInput(sf::Keyboard::Key input)
-{
-		switch (input) {
-		case sf::Keyboard::A:
-		case sf::Keyboard::Left:
-			moveLeft();
-			break;
-		case sf::Keyboard::W:
-		case sf::Keyboard::Up:
-			rotateTetro();
-			break;
-		case sf::Keyboard::D:
-		case sf::Keyboard::Right:
-			moveRight();
-			break;
-		case sf::Keyboard::S:
-		case sf::Keyboard::Down:
-			fastDown();
-			break;
-		default:break;
-		}
-}
-
 void Game::releaseFastDown(){
 	intervalo = lastIntervalo;
 	acelerado = false;
 }
 
-
-//bool Game::stepDown() {
-//	int lineas = 0;
-//	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
-//		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-//		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
-//		pieza.posY++;
-//		cout<<"stepdown succesfull"<<endl;
-//	}
-//	else
-//	{
-//		cout << "stepdown unsuccesfull" << endl;
-//		lineas = tablero.verificarLineasCompletas();
-//		if (lineas > 0) {
-//			score += lineas * 10;
-//
-//			if (lineasCompletas / 10 != (lineasCompletas + lineas) / 10) {
-//				subirNivel();
-//			}
-//			lineasCompletas += lineas;
-//
-//		}
-//		generarPieza();
-//		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
-//			endGame = true;
-//			cout << "fin del juego" << endl;
-//		}
-//		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-//
-//	}
-//	return !endGame;
-//}
 
 bool Game::stepDown() {
 	int lineas = 0;
@@ -144,9 +79,16 @@ bool Game::getEndGame()
 	return endGame;
 }
 
-void Game::showEndGame()
+void Game::showEndGame() // mensaje interno para ver si anda el corte
 {
 	cout << "Hay EndGame==TRUE!!!"<<endl;
+}
+
+void Game::stop() // esto es solo para pausar la ejecucion 
+{
+	char nombre =0;
+	cout << "ingrese su Nombre: ";
+	cin >> nombre;
 }
 
 bool Game::fastDown() {
@@ -173,30 +115,18 @@ int Game::getScore()
 	return score;
 }
 
-Tetromino * Game::getPiezaSig()
+void Game::restart()
 {
-	return piezaSig.pieza;
+	tablero.restart();
+	score = 0;
+	generarPieza();
 }
 
-//bool Game::moveLeft() {
-//	if (pieza.posX >= tablero.softLeftBorder) {
-//		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-//		if (!tablero.hayColision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
-//			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-//			pieza.posX--;			
-//			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-//		}
-//		else {
-//			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-//			return false;
-//		}
-//	}
-//	else {
-//		
-//		return false;
-//	}
-//	return true;
-//}
+Tetromino * Game::getPiezaSig()
+{	
+	piezaSig.pieza->rotar();
+	return piezaSig.pieza;
+}
 
 bool Game::moveLeft() {
 	if (pieza.posX >= tablero.softLeftBorder) {
@@ -224,26 +154,6 @@ bool Game::moveLeft() {
 	return true;
 }
 
-//bool Game::moveRight() {
-//	if (pieza.posX < tablero.softRightBorder) {
-//		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-//		cout << "despues del clear" << endl;
-//		tablero.mostrar();
-//		if (!tablero.hayColision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
-//			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-//			pieza.posX++;
-//			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-//		}
-//		else {
-//			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-//			return false;
-//		}
-//	}
-//	else {
-//		return false;
-//	}
-//	return true;
-//}
 
 bool Game::moveRight() {
 	if (pieza.posX < tablero.softRightBorder) {
@@ -269,19 +179,7 @@ bool Game::moveRight() {
 	}
 	return true;
 }
-//bool Game::rotateTetro() {
-//	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-//	pieza.pieza->rotar();
-//	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
-//		//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-//		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-//	}else {
-//		pieza.pieza->rotarInverso();
-//		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-//	}
-//	return true;
-//	
-//}
+
 
 bool Game::rotateTetro() {
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
@@ -298,48 +196,6 @@ bool Game::rotateTetro() {
 	return true;
 
 }
-
-//void Game::mostrarTetromino() {
-//	tetroI->mostrarTetro();
-//	tetroI->rotar();
-//	tetroI->mostrarTetro();
-//	tetroI->rotar();
-//	tetroJ->mostrarTetro();
-//	tetroJ->rotar();
-//	tetroJ->mostrarTetro();
-//	tetroJ->rotar();
-//	tetroJ->mostrarTetro();
-//	tetroJ->rotar();
-//	tetroJ->mostrarTetro();
-//	tetroJ->rotar();
-//	tetroL->mostrarTetro();
-//	tetroL->rotar();
-//	tetroL->mostrarTetro();
-//	tetroL->rotar();
-//	tetroL->mostrarTetro();
-//	tetroL->rotar();
-//	tetroL->mostrarTetro();
-//	tetroL->rotar();
-//	tetroO->mostrarTetro();
-//	tetroO->rotar();
-//	tetroS->mostrarTetro();
-//	tetroS->rotar();
-//	tetroS->mostrarTetro();
-//	tetroS->rotar();
-//	tetroT->mostrarTetro();
-//	tetroT->rotar();
-//	tetroT->mostrarTetro();
-//	tetroT->rotar();
-//	tetroT->mostrarTetro();
-//	tetroT->rotar();
-//	tetroT->mostrarTetro();
-//	tetroT->rotar();
-//	tetroZ->mostrarTetro();
-//	tetroZ->rotar();
-//	tetroZ->mostrarTetro();
-//	tetroZ->rotar();
-//	
-//}
 
 
 void Game::generarPieza() {

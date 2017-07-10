@@ -31,7 +31,7 @@ private:
 	sf::Sprite bgSpr, iSpr, jSpr, lSpr, oSpr, sSpr, tSpr, zSpr;
 	sf::Clock clock;
 	sf::Font font;
-	sf::Text score;
+	sf::Text puntaje;
 	
 };
 

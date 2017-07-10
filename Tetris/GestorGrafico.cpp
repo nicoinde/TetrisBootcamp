@@ -1,5 +1,6 @@
 #include "GestorGrafico.h"
-
+#include <string.h>
+using namespace std;
 
 const sf::Vector2u sizeVentana(412, 600); 
 //const float offsetX = 5.0;
@@ -30,14 +31,14 @@ bool GestorGrafico::cargarImagenes() {
 	}
 	else {
 		iSpr.setTexture(iTex);
-		iSpr.setScale(1.04, 1.04);
+		iSpr.setScale(1.04f, 1.04f);
 	}
 	if (!jTex.loadFromFile("Assets/j.png")) {
 		return false;
 	}
 	else {
 		jSpr.setTexture(jTex);
-		jSpr.setScale(1.04, 1.04);
+		jSpr.setScale(1.04f, 1.04f);
 		
 	}
 	if (!lTex.loadFromFile("Assets/l.png")) {
@@ -45,7 +46,7 @@ bool GestorGrafico::cargarImagenes() {
 	}
 	else {
 		lSpr.setTexture(lTex);
-		lSpr.setScale(1.04, 1.04);
+		lSpr.setScale(1.04f, 1.04f);
 		
 	}
 	if (!oTex.loadFromFile("Assets/o.png")) {
@@ -53,35 +54,39 @@ bool GestorGrafico::cargarImagenes() {
 	}
 	else {
 		oSpr.setTexture(oTex);
-		oSpr.setScale(1.04, 1.04);
+		oSpr.setScale(1.04f, 1.04f);
 	}
 	if (!sTex.loadFromFile("Assets/s.png")) {
 		return false;
 	}
 	else {
 		sSpr.setTexture(sTex);
-		sSpr.setScale(1.04, 1.04);
+		sSpr.setScale(1.04f, 1.04f);
 	}
 	if (!tTex.loadFromFile("Assets/t.png")) {
 		return false;
 	}
 	else {
 		tSpr.setTexture(tTex);
-		tSpr.setScale(1.04, 1.04);
+		tSpr.setScale(1.04f, 1.04f);
 	}
 	if (!zTex.loadFromFile("Assets/z.png")) {
 		return false;
 	}
 	else {
 		zSpr.setTexture(zTex);
-		zSpr.setScale(1.04, 1.04);
+		zSpr.setScale(1.04f, 1.04f);
 	}
 
 	if (!font.loadFromFile("Assets/Coffee House.ttf")) {
 		return false;
 	}
 	else {
-		score.setFont(font);
+		puntaje.setFont(font);
+		puntaje.setPosition(312.0, 198.0);
+		/*puntaje.setCharacterSize(25);*/
+		puntaje.setFillColor(sf::Color::White);
+		puntaje.setColor(sf::Color::Blue);
 	}
 	
 	return true;
@@ -146,12 +151,18 @@ void GestorGrafico::drawBg()
 	ventana->draw(bgSpr);
 }
 
-//void GestorGrafico::drawScore(int punt)
-//{
-//	char* puntaje;
-//	
-//	score.setString(puntaje);
-//}
+void GestorGrafico::drawScore(int score)
+{
+	std::string str=to_string(score);
+	
+	puntaje.setString(str);
+	ventana->draw(puntaje);
+}
+
+void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
+{
+	
+}
 
 sf::RenderWindow* GestorGrafico::getVentana()
 {

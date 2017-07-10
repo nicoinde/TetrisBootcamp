@@ -15,6 +15,7 @@ public:
 	bool clearTetromino(Tetromino *pieza, int x, int y);
 	bool asentar(Tetromino *pieza, int x, int y);
 	int getCelda(int x, int y);
+	void restart();
 	static const unsigned short boardWidth = 13;
 	static const unsigned short boardHeight = 22;
 	static const unsigned short softLeftBorder = 0;

@@ -10,14 +10,7 @@ static const unsigned short softBottomBorder = 21;
 static const unsigned short softUpperBorder = 1;
 Board::Board()
 {
-	for (int i = 0; i < boardHeight; ++i)
-	{
-
-		for (short j = 0; j < boardWidth; ++j)
-		{
-			tablero[i][j] = 0;
-		}
-	}
+	restart();
 }
 
 void Board::mostrar() {
@@ -95,6 +88,18 @@ int Board::getCelda(int x, int y)
 	return tablero[y][x];
 }
 
+void Board::restart()
+{
+	for (int i = 0; i < boardHeight; ++i)
+	{
+
+		for (short j = 0; j < boardWidth; ++j)
+		{
+			tablero[i][j] = 0;
+		}
+	}
+}
+
 int Board::verificarLineasCompletas() {
 	int cont = 0;
 	for (short i = (softBottomBorder - 1); i > 1; --i) {
@@ -119,14 +124,20 @@ int Board::verificarLineasCompletas() {
 }
 
 void Board::limpiarLinea(int y) {
-
 	for (short i = y; i > softUpperBorder; --i) {
+		int cont = 0;
 		for (short j = softLeftBorder + 1; j < softRightBorder; ++j) {
 			tablero[i][j] = tablero[i - 1][j];
-			mostrar();
-			cout << "---------------------------------------" << endl;
-		}
+			if (tablero[i][j] != 0) {
+				cont++;
+			}
 
+			/*mostrar();
+			cout << "---------------------------------------" << endl;*/
+		}
+		if (cont == 0) {
+			i = softUpperBorder;
+		}
 	}
 
 }

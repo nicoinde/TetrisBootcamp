@@ -17,23 +17,21 @@ public:
 	bool tick(sf::Keyboard::Key input);
 	void handleInput(sf::Keyboard::Key input);
 	bool stepDown();
-	bool stepDown2();
 	bool rotateTetro();
 	bool moveLeft();
 	bool moveRight();
-	bool rotateTetro2();
-	bool moveLeft2();
-	bool moveRight2();
 	bool fastDown();
 	void releaseFastDown();
 	Board* getBoard();
 	Board tablero;
 	float getIntervalo();
 	int getScore();
+	void restart();
 	Tetromino * getPiezaSig();
 	void subirNivel();
 	bool getEndGame();
 	void showEndGame();
+	void stop();
 	//void mostrarTetromino();
 	
 	//TetrominoI pieza;
