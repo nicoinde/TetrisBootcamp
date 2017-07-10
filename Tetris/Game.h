@@ -32,7 +32,9 @@ public:
 	int getScore();
 	Tetromino * getPiezaSig();
 	void subirNivel();
-	void mostrarTetromino();
+	bool getEndGame();
+	void showEndGame();
+	//void mostrarTetromino();
 	
 	//TetrominoI pieza;
 
@@ -47,11 +49,10 @@ private:
 	Tetromino *tetroS;
 	Tetromino *tetroT;
 	Tetromino *tetroZ;
-//	Tetromino *prueba;
 	struct Piezas pieza;
 	struct Piezas piezaSig;
 	//Board *tablero;
 	void generarPieza();
-//	void makeTableroPrueba();
+
 };
 

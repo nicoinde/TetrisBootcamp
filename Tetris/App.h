@@ -6,6 +6,7 @@ public:
 	App();
 	~App();
 	int loop();
+	void draw();
 private:
 	
 	bool modified;

@@ -36,10 +36,10 @@ void TetrominoI::generarFormas() {
 		for (short j = 0; j < tetroWidth; ++j)
 		{
 			if (j == 1) {
-				pos0[i][j] = 1;
+				pos1[i][j] = 1;
 			}
 			else {
-				pos0[i][j] = 0;
+				pos1[i][j] = 0;
 			}
 		}
 	}
@@ -71,7 +71,19 @@ int TetrominoI::getCelda(int x, int y)
 	}
 	return -1;
 }
+void TetrominoI::mostrarTetro() {
+	cout << "Rotacion Nro: " << rotacionActual << endl;
 
+
+	cout << "tetro con acceso getCelda(x,y) con (j,i)" << endl;
+	for (int i = 0; i < tetroHeight; i++) {
+		for (int j = 0; j < tetroWidth; j++)
+		{
+			cout << getCelda(j, i);
+		}
+		cout << endl;
+	}
+}
 
 
 
@@ -96,7 +108,7 @@ void TetrominoJ::generarFormas() {
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((i == 2&&j==2)||(i==3&&j>0)) {
+			if ((i == 2&&j==1)||(i==3&&j>0)) {
 				pos0[i][j] = 2;
 			}
 			else {
@@ -120,7 +132,7 @@ void TetrominoJ::generarFormas() {
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((i == 2&&j>1)||(i==4&&j==4)) {
+			if ((i == 2&&j>0)||(i==3&&j==3)) {
 				pos2[i][j] = 2;
 			}
 			else {
@@ -179,6 +191,20 @@ int TetrominoJ::getCelda(int x, int y)
 	return -1;
 }
 
+void TetrominoJ::mostrarTetro() {
+	cout << "Rotacion Nro: " << rotacionActual << endl;
+
+
+	cout << "tetro con acceso getCelda(x,y) con (j,i)" << endl;
+	for (int i = 0; i < tetroHeight; i++) {
+		for (int j = 0; j < tetroWidth; j++)
+		{
+			cout << getCelda(j, i);
+		}
+		cout << endl;
+	}
+}
+
 // ---------------------------TETROMINO L ------------------------------------------------
 
 TetrominoL::TetrominoL() :Tetromino()
@@ -222,7 +248,7 @@ void TetrominoL::generarFormas() {
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((i == 2 && j>1) || (i == 3 && j == 2)) {
+			if ((i == 2 && j>0) || (i == 3 && j == 1)) {
 				pos2[i][j] = 3;
 			}
 			else {
@@ -328,6 +354,19 @@ int TetrominoO::getCelda(int x, int y)
 {
 return pos0[y][x];
 }
+void TetrominoO::mostrarTetro() {
+	cout << "Rotacion Nro: " << rotacionActual << endl;
+
+
+	cout << "tetro con acceso getCelda(x,y) con (j,i)" << endl;
+	for (int i = 0; i < tetroHeight; i++) {
+		for (int j = 0; j < tetroWidth; j++)
+		{
+			cout << getCelda(j, i);
+		}
+		cout << endl;
+	}
+}
 
 
 // ---------------------------TETROMINO S ------------------------------------------------
@@ -395,6 +434,20 @@ int TetrominoS::getCelda(int x, int y)
 	return -1;
 }
 
+void TetrominoS::mostrarTetro() {
+	cout << "Rotacion Nro: " << rotacionActual << endl;
+
+
+	cout << "tetro con acceso getCelda(x,y) con (j,i)" << endl;
+	for (int i = 0; i < tetroHeight; i++) {
+		for (int j = 0; j < tetroWidth; j++)
+		{
+			cout << getCelda(j, i);
+		}
+		cout << endl;
+	}
+}
+
 
 // ---------------------------TETROMINO T ------------------------------------------------
 
@@ -427,7 +480,7 @@ void TetrominoT::generarFormas() {
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((j == 2 && i >0) || (i==2 && j == 4)) {
+			if ((j == 2 && i >0) || (i==2 && j == 3)) {
 				pos1[i][j] = 6;
 			}
 			else {
@@ -451,7 +504,7 @@ void TetrominoT::generarFormas() {
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((j == 2 && i>0) || (j == 1 && i == 1)) {
+			if ((j == 2 && i>0) || (j ==1 && i == 2)) {
 				pos3[i][j] = 6;
 			}
 			else {
@@ -488,14 +541,28 @@ int TetrominoT::getCelda(int x, int y)
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
 		switch (rotacionActual) {
-		case 0: return pos0[x][y]; break;
-		case 1: return pos1[x][y]; break;
-		case 2: return pos2[x][y]; break;
-		case 3: return pos3[x][y]; break;
+		case 0: return pos0[y][x]; break;
+		case 1: return pos1[y][x]; break;
+		case 2: return pos2[y][x]; break;
+		case 3: return pos3[y][x]; break;
 		default: return -1;
 		}
 	}
 	return -1;
+}
+
+void TetrominoT::mostrarTetro() {
+	cout << "Rotacion Nro: " << rotacionActual << endl;
+
+
+	cout << "tetro con acceso getCelda(x,y) con (j,i)" << endl;
+	for (int i = 0; i < tetroHeight; i++) {
+		for (int j = 0; j < tetroWidth; j++)
+		{
+			cout << getCelda(j, i);
+		}
+		cout << endl;
+	}
 }
 
 
@@ -556,10 +623,24 @@ int TetrominoZ::getCelda(int x, int y)
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
 		switch (rotacionActual) {
-		case 0: return pos0[x][y]; break;
-		case 1: return pos1[x][y]; break;
+		case 0: return pos0[y][x]; break;
+		case 1: return pos1[y][x]; break;
 		default: return -1;
 		}
 	}
 	return -1;
+}
+
+void TetrominoZ::mostrarTetro() {
+	cout << "Rotacion Nro: " << rotacionActual << endl;
+
+
+	cout << "tetro con acceso getCelda(x,y) con (j,i)" << endl;
+	for (int i = 0; i < tetroHeight; i++) {
+		for (int j = 0; j < tetroWidth; j++)
+		{
+			cout << getCelda(j, i);
+		}
+		cout << endl;
+	}
 }

@@ -9,21 +9,15 @@ uniform_int_distribution<int> randomPiezas(0, 6);
 random_device rd;
 mt19937 randomPieces(rd());
 
-const unsigned short posInicialY = 0;
+const unsigned short posInicialY = 1;
 const unsigned short posInicialX = 3;
 
 
 
-Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(22.5), lastIntervalo(intervalo), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
+Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(8.0), lastIntervalo(intervalo), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
 {
 	piezaSig.pieza = tetroL;
 	generarPieza();
-	generarPieza();
-	/*prueba = new TetrominoL();*/
-	//piezaPrueba.pieza = prueba;
-	//piezaPrueba.posX=3;
-	//piezaPrueba.posY = 0;
-	//stepDown2();
 }
 
 Game::~Game()
@@ -129,11 +123,11 @@ bool Game::stepDown() {
 			lineasCompletas += lineas;
 
 		}
-		/*generarPieza();
+		generarPieza();
 		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
 			endGame = true;
 		}
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);*/
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
 
 	}
 	return !endGame;
@@ -143,6 +137,16 @@ void Game::subirNivel() {
 	++nivel;
 	lastIntervalo = intervalo;
 	intervalo += 0.05f;
+}
+
+bool Game::getEndGame()
+{
+	return endGame;
+}
+
+void Game::showEndGame()
+{
+	cout << "Hay EndGame==TRUE!!!"<<endl;
 }
 
 bool Game::fastDown() {
@@ -294,15 +298,47 @@ bool Game::rotateTetro() {
 	return true;
 
 }
-//
+
 //void Game::mostrarTetromino() {
-//	piezaPrueba.pieza->mostrarTetro();
-//	piezaPrueba.pieza->rotar();
-//	piezaPrueba.pieza->mostrarTetro();
-//	piezaPrueba.pieza->rotar();
-//	piezaPrueba.pieza->mostrarTetro();
-//	piezaPrueba.pieza->rotar();
-//	piezaPrueba.pieza->mostrarTetro();
+//	tetroI->mostrarTetro();
+//	tetroI->rotar();
+//	tetroI->mostrarTetro();
+//	tetroI->rotar();
+//	tetroJ->mostrarTetro();
+//	tetroJ->rotar();
+//	tetroJ->mostrarTetro();
+//	tetroJ->rotar();
+//	tetroJ->mostrarTetro();
+//	tetroJ->rotar();
+//	tetroJ->mostrarTetro();
+//	tetroJ->rotar();
+//	tetroL->mostrarTetro();
+//	tetroL->rotar();
+//	tetroL->mostrarTetro();
+//	tetroL->rotar();
+//	tetroL->mostrarTetro();
+//	tetroL->rotar();
+//	tetroL->mostrarTetro();
+//	tetroL->rotar();
+//	tetroO->mostrarTetro();
+//	tetroO->rotar();
+//	tetroS->mostrarTetro();
+//	tetroS->rotar();
+//	tetroS->mostrarTetro();
+//	tetroS->rotar();
+//	tetroT->mostrarTetro();
+//	tetroT->rotar();
+//	tetroT->mostrarTetro();
+//	tetroT->rotar();
+//	tetroT->mostrarTetro();
+//	tetroT->rotar();
+//	tetroT->mostrarTetro();
+//	tetroT->rotar();
+//	tetroZ->mostrarTetro();
+//	tetroZ->rotar();
+//	tetroZ->mostrarTetro();
+//	tetroZ->rotar();
+//	
 //}
 
 

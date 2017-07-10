@@ -11,6 +11,8 @@ public:
 
 	int getCelda(int x, int y);
 	void generarFormas();
+
+	void mostrarTetro();
 	
 private:
 	int pos0[tetroHeight][tetroWidth];
@@ -27,6 +29,7 @@ public:
 	int rotar();
 	int getCelda(int x, int y);
 	void generarFormas();
+	void mostrarTetro();
 	
 private:
 	int pos0[tetroHeight][tetroWidth];
@@ -61,6 +64,7 @@ public:
 	int rotar();
 	int getCelda(int x, int y);
 	void generarFormas();
+	void mostrarTetro();
 private:
 	int pos0[tetroHeight][tetroWidth];
 
@@ -75,6 +79,7 @@ public:
 	int rotar(); 
 	int getCelda(int x, int y);
 	void generarFormas();
+	void mostrarTetro();
 private:
 	int pos0[tetroHeight][tetroWidth];
 	int pos1[tetroHeight][tetroWidth];
@@ -89,6 +94,7 @@ public:
 	int rotar();
 	int getCelda(int x, int y);
 	void generarFormas();
+	void mostrarTetro();
 private:
 	int pos0[tetroHeight][tetroWidth];
 	int pos1[tetroHeight][tetroWidth];
@@ -105,6 +111,7 @@ public:
 	int rotar();
 	int getCelda(int x, int y);
 	void generarFormas();
+	void mostrarTetro();
 private:
 	int pos0[tetroHeight][tetroWidth];
 	int pos1[tetroHeight][tetroWidth];

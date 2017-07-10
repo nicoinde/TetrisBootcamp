@@ -3,16 +3,16 @@
 using namespace std;
 
 static const unsigned short boardWidth = 13;
-static const unsigned short boardHeight = 22;
+static const unsigned short boardHeight = 21;
 static const unsigned short softLeftBorder = 1;
 static const unsigned short softRightBorder = 12;
-static const unsigned short softBottomBorder = 22;
+static const unsigned short softBottomBorder = 21;
 static const unsigned short softUpperBorder = 1;
 Board::Board()
 {
 	for (int i = 0; i < boardHeight; ++i)
 	{
-		
+
 		for (short j = 0; j < boardWidth; ++j)
 		{
 			tablero[i][j] = 0;
@@ -35,17 +35,17 @@ void Board::mostrar() {
 bool Board::hayColision(Tetromino *pieza, int x, int y) {
 	for (int i = 0; i < pieza->tetroHeight; ++i)
 	{
-		for (short j = 0; j< pieza->tetroWidth; ++j)
+		for (short j = 0; j < pieza->tetroWidth; ++j)
 		{
-			if (pieza->getCelda(j,i) != 0) {
-				if (x + i < softLeftBorder || x + i > softRightBorder || y + j > softBottomBorder) {
+			if (pieza->getCelda(j, i) != 0) {
+				if (x + j <= softLeftBorder || x + j >= softRightBorder || y + i >= softBottomBorder) {
 					return true;;
 				}
 
 				if (tablero[y + i][x + j] != 0) {
 					return true;
 				}
-				
+
 			}
 
 		}
@@ -59,7 +59,7 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 		for (int j = 0; j < pieza->tetroWidth; ++j)
 		{
 			if (pieza->getCelda(j, i) != 0) {
-				tablero[y+i][x+j] = 0;
+				tablero[y + i][x + j] = 0;
 			}
 		}
 	}
@@ -70,21 +70,21 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 //me falta implementar los templates para la derivacion de los tetrominos
 bool Board::asentar(Tetromino *pieza, int x, int y) {
 
-	for (int i=0; i<pieza->tetroHeight; ++i)
-	{	
-		for (short j=0; j<pieza->tetroWidth; ++j)
+	for (int i = 0; i < pieza->tetroHeight; ++i)
+	{
+		for (short j = 0; j < pieza->tetroWidth; ++j)
 		{
-			if(pieza->getCelda(j,i)>0){
-				
-					tablero[y + i][x + j] = pieza->getCelda(j,i);
-				
+			if (pieza->getCelda(j, i) > 0) {
+
+				tablero[y + i][x + j] = pieza->getCelda(j, i);
+
 			}
 			else {
 				if (pieza->getCelda(j, i) == -1) {
 					return false;
 				}
 			}
-			
+
 		}
 	}
 	return true;
@@ -95,14 +95,14 @@ int Board::getCelda(int x, int y)
 	return tablero[y][x];
 }
 
-int Board::verificarLineasCompletas(){
-	int cont=0;
-	for (short i = (softBottomBorder-1); i > 1;--i) {
+int Board::verificarLineasCompletas() {
+	int cont = 0;
+	for (short i = (softBottomBorder - 1); i > 1; --i) {
 		bool completa = true;
-		for (short j = softLeftBorder+1; (j < softRightBorder&&i>0); ++j) {
+		for (short j = softLeftBorder + 1; (j > softLeftBorder && j < softRightBorder&&i>0); ++j) {
 			if (tablero[i][j] == 0) {
 				completa = false;
-				j = 0;
+				j = softLeftBorder;
 				if (i > 0) {
 					--i;
 				}
@@ -119,12 +119,14 @@ int Board::verificarLineasCompletas(){
 }
 
 void Board::limpiarLinea(int y) {
-	
+
 	for (short i = y; i > softUpperBorder; --i) {
-		for (short j = softLeftBorder+1; j < softRightBorder; ++j) {
-			tablero[i][j] = tablero[i + 1][j + 1];
+		for (short j = softLeftBorder + 1; j < softRightBorder; ++j) {
+			tablero[i][j] = tablero[i - 1][j];
+			mostrar();
+			cout << "---------------------------------------" << endl;
 		}
-		
+
 	}
 
 }
