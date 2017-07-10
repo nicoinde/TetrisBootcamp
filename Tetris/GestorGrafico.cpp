@@ -6,7 +6,7 @@ const float offsetX = 5.0;
 const float offsetY = 5.0;
 
 
-GestorGrafico::GestorGrafico(): offsetX(5.0),offsetY(5.0), squareOffset(30.0)
+GestorGrafico::GestorGrafico(): offsetX(5.0),offsetY(4.8), squareOffset(30.0)
 {
 	ventana = new sf::RenderWindow (sf::VideoMode(412, 600), "Tetris");
 	cargarImagenes();

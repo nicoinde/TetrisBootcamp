@@ -35,5 +35,10 @@ void Tetromino::resetRotacion()
 	rotacionActual = 0;
 }
 
+void Tetromino::mostrarTetro()
+{
+
+}
+
 
 

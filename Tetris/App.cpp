@@ -6,7 +6,7 @@
 
 
 
-App::App():modified(true)
+App::App() :modified(true)
 {
 }
 
@@ -22,9 +22,10 @@ App::~App()
 }
 
 int App::loop() {
-	ges.getClock().restart();
-	juego.stepDown2();
-	juego.tablero.mostrar();
+	sf::Clock clock;
+	clock.restart();
+	//juego.stepDown2();
+	//juego.tablero.mostrar();
 	ges.drawBg();
 	ges.drawPieces(juego.tablero);
 	ges.getVentana()->display();
@@ -34,7 +35,7 @@ int App::loop() {
 			if (ges.event.type == sf::Event::EventType::Closed) {
 				ges.getVentana()->close();
 			}
-			
+
 			if (ges.event.type == sf::Event::EventType::KeyPressed) {
 				//juego.tick(ges.getEvent().key.code);
 				switch (ges.event.key.code) {
@@ -45,7 +46,7 @@ int App::loop() {
 					break;
 				case sf::Keyboard::W:
 				case sf::Keyboard::Up:
-					juego.rotateTetro(); 
+					juego.rotateTetro();
 					juego.tablero.mostrar();
 					break;
 				case sf::Keyboard::D:
@@ -57,6 +58,9 @@ int App::loop() {
 				case sf::Keyboard::Down:
 					juego.fastDown();
 					break;
+					//case sf::Keyboard::X:
+					//	juego.mostrarTetromino();
+					//	break;
 
 				case sf::Keyboard::B:
 					juego.stepDown();
@@ -77,34 +81,30 @@ int App::loop() {
 				}
 			}
 
-			//if (ges.getClock().getElapsedTime().asSeconds() > juego.getIntervalo()) {
-			//	//juego.stepDown();
-			//	juego.stepDown();
-			//	juego.tablero.mostrar();
-			//	ges.getClock().restart();
-			//}
+			if (clock.getElapsedTime().asSeconds() > juego.getIntervalo()) {
+				//juego.stepDown2();
+				juego.stepDown();
+				/*juego.tablero.mostrar();*/
+				clock.restart();
+			}
 
 			//if (modified) {
-			//	ges.getVentana()->clear();
-			//	ges.drawBg();
-			//	//makeTableroPrueba();
-			//	//gestor.drawPieces(ventana, tableroPrueba);
-			//	//gestor.trySprites(ventana);
+			ges.getVentana()->clear();
+			ges.drawBg();
 
-			//	//system.sleep(1/60);
 
-			//	ges.drawPieces(juego.tablero);
-			//	//ges.drawScore(juego.getScore());
-			//	//ges.drawPiezaSig(juego.getPiezaSig());
-			//	ges.getVentana()->display();
-			//	modified = false;
-			//}
+			ges.drawPieces(juego.tablero);
+			//ges.drawScore(juego.getScore());
+			//ges.drawPiezaSig(juego.getPiezaSig());
+			ges.getVentana()->display();
+			/*	modified = false;
+			}*/
 			//std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
 		}
 		//if (ges.getClock().getElapsedTime().asSeconds() > juego.getIntervalo()) {
-		//	//juego.stepDown();
-		//	juego.stepDown2();
+		//	juego.stepDown();
+		//	//juego.stepDown2();
 		//	ges.getClock().restart();
 		//}
 
@@ -124,7 +124,7 @@ int App::loop() {
 		//	modified = false;
 		//}
 		//std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		
+
 
 	}
 	return 0;

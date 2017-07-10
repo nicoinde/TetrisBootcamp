@@ -7,6 +7,7 @@ public:
 	~App();
 	int loop();
 private:
+	
 	bool modified;
 	GestorGrafico ges;
 	Game juego;
