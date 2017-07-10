@@ -27,57 +27,55 @@ int App::loop() {
 
 	while (ges.getVentana()->isOpen()) {
 		draw();
-		if (!juego.getEndGame())
-		{
-			while (ges.getVentana()->pollEvent(ges.event)) {
-				if (ges.event.type == sf::Event::EventType::Closed) {
-					ges.getVentana()->close();
-				}
-
-				if (ges.event.type == sf::Event::EventType::KeyPressed) {
-					//juego.tick(ges.getEvent().key.code);
-					switch (ges.event.key.code) {
-					case sf::Keyboard::A:
-					case sf::Keyboard::Left:
-						juego.moveLeft();
-						break;
-					case sf::Keyboard::W:
-					case sf::Keyboard::Up:
-						juego.rotateTetro();
-						break;
-					case sf::Keyboard::D:
-					case sf::Keyboard::Right:
-						juego.moveRight();
-						break;
-					case sf::Keyboard::R:
-						juego.restart();
-						break;
-					case sf::Keyboard::S:
-					case sf::Keyboard::Down:
-						//juego.fastDown();
-						juego.stepDown();
-						break;
-
-					default:break;
-					}
-				}
-				if (ges.event.type == sf::Event::EventType::KeyReleased) {
-					if (ges.event.key.code == sf::Keyboard::S) {
-						juego.releaseFastDown();
-					}
-				}
-				//std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
+		while (ges.getVentana()->pollEvent(ges.event)) {
+			if (ges.event.type == sf::Event::EventType::Closed) {
+				ges.getVentana()->close();
 			}
 
-			if (clock.getElapsedTime().asSeconds() > juego.getIntervalo()) {
-				juego.stepDown();
-				clock.restart();
+			if (ges.event.type == sf::Event::EventType::KeyPressed) {
+				//juego.tick(ges.getEvent().key.code);
+				switch (ges.event.key.code) {
+				case sf::Keyboard::A:
+				case sf::Keyboard::Left:
+					juego.moveLeft();
+					break;
+				case sf::Keyboard::W:
+				case sf::Keyboard::Up:
+					juego.rotateTetro();
+					break;
+				case sf::Keyboard::D:
+				case sf::Keyboard::Right:
+					juego.moveRight();
+					break;
+				case sf::Keyboard::R:
+					juego.restart();
+					break;
+				case sf::Keyboard::S:
+				case sf::Keyboard::Down:
+					//juego.fastDown();
+					juego.stepDown();
+					break;
+
+				default:break;
+				}
 			}
-			/*draw();*/
+			if (ges.event.type == sf::Event::EventType::KeyReleased) {
+				if (ges.event.key.code == sf::Keyboard::S) {
+					juego.releaseFastDown();
+				}
+			}
+			//std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
 		}
-		else { //a pretty lame excuse of an EndGame Sign until i found something better
+
+		if (clock.getElapsedTime().asSeconds() > juego.getIntervalo()) {
+			juego.stepDown();
+			clock.restart();
+		}
+		/*draw();*/
+		if (juego.getEndGame())
+		{
+			//a pretty lame excuse of an EndGame Sign until i found something better
 			juego.showEndGame();
 			juego.stop();
 		}
@@ -91,6 +89,6 @@ void App::draw()
 	ges.drawBg();
 	ges.drawPieces(juego.tablero);
 	ges.drawScore(juego.getScore());
-	//ges.drawPiezaSig(juego.getPiezaSig());
+	ges.drawPiezaSig(juego.getPiezaSig());
 	ges.getVentana()->display();
 }

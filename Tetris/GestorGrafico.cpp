@@ -3,8 +3,8 @@
 using namespace std;
 
 const sf::Vector2u sizeVentana(412, 600); 
-//const float offsetX = 5.0;
-//const float offsetY = 5.0;
+const float piezaSigOffsetX = 312.0;
+const float piezaSigOffsetY = 39.0;
 
 
 GestorGrafico::GestorGrafico(): offsetX(-19.0),offsetY(-48), squareOffset(29.0)
@@ -154,14 +154,53 @@ void GestorGrafico::drawBg()
 void GestorGrafico::drawScore(int score)
 {
 	std::string str=to_string(score);
-	
 	puntaje.setString(str);
 	ventana->draw(puntaje);
 }
 
 void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
 {
-	
+	for (int i = 0; i < piezaSig->tetroHeight; ++i)
+	{
+		for (int j = 1; j < piezaSig->tetroWidth; ++j) {
+			int aux = piezaSig->getCelda(j, i);
+			switch (aux)
+			{
+			case 1:
+				iSpr.setPosition(piezaSigOffsetX+ (j-1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				ventana->draw(iSpr);
+				break;
+			case 2:
+				jSpr.setPosition(piezaSigOffsetX + (j-1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				ventana->draw(jSpr);
+				break;
+			case 3:
+				lSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				ventana->draw(lSpr);
+				break;
+			case 4:
+				oSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				ventana->draw(oSpr);
+				break;
+			case 5:
+				sSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				ventana->draw(sSpr);
+				break;
+			case 6:
+				tSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				ventana->draw(tSpr);
+				break;
+			case 7:
+				zSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				ventana->draw(zSpr);
+				break;
+
+			default:
+				break;
+			}
+		}
+
+	}
 }
 
 sf::RenderWindow* GestorGrafico::getVentana()

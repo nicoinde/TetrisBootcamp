@@ -123,8 +123,10 @@ void Game::restart()
 }
 
 Tetromino * Game::getPiezaSig()
-{	
-	piezaSig.pieza->rotar();
+{
+	if (piezaSig.pieza->getRotacion() == 0 || piezaSig.pieza->getRotacion() == 2) {
+		piezaSig.pieza->rotar();
+	}
 	return piezaSig.pieza;
 }
 
