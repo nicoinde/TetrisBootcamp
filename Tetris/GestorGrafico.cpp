@@ -6,7 +6,7 @@ const float offsetX = 5.0;
 const float offsetY = 5.0;
 
 
-GestorGrafico::GestorGrafico(): offsetX(5.0),offsetY(5.0), squareOffset(30.0)
+GestorGrafico::GestorGrafico(): offsetX(5.0),offsetY(4.8), squareOffset(30.0)
 {
 	ventana = new sf::RenderWindow (sf::VideoMode(412, 600), "Tetris");
 	cargarImagenes();
@@ -30,49 +30,49 @@ bool GestorGrafico::cargarImagenes() {
 	}
 	else {
 		iSpr.setTexture(iTex);
-		iSpr.setScale(1.05f, 1.05f);
+		
 	}
 	if (!jTex.loadFromFile("Assets/j.png")) {
 		return false;
 	}
 	else {
 		jSpr.setTexture(jTex);
-		jSpr.setScale(1.05f, 1.05f);
+		
 	}
 	if (!lTex.loadFromFile("Assets/l.png")) {
 		return false;
 	}
 	else {
 		lSpr.setTexture(lTex);
-		lSpr.setScale(1.05f, 1.05f);
+		
 	}
 	if (!oTex.loadFromFile("Assets/o.png")) {
 		return false;
 	}
 	else {
 		oSpr.setTexture(oTex);
-		oSpr.setScale(1.05f, 1.05f);
+		
 	}
 	if (!sTex.loadFromFile("Assets/s.png")) {
 		return false;
 	}
 	else {
 		sSpr.setTexture(sTex);
-		sSpr.setScale(1.05f, 1.05f);
+		
 	}
 	if (!tTex.loadFromFile("Assets/t.png")) {
 		return false;
 	}
 	else {
 		tSpr.setTexture(tTex);
-		tSpr.setScale(1.05f, 1.05f);
+		
 	}
 	if (!zTex.loadFromFile("Assets/z.png")) {
 		return false;
 	}
 	else {
 		zSpr.setTexture(zTex);
-		zSpr.setScale(1.05f, 1.05f);
+		
 	}
 
 	if (!font.loadFromFile("Assets/Coffee House.ttf")) {

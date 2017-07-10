@@ -1,3 +1,4 @@
-﻿  App.cpp
+﻿  GestorGrafico.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(10): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.exe
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.pdb (Partial PDB)

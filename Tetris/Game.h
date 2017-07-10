@@ -14,13 +14,16 @@ public:
 	Game();
 	//Game(Gestor &ges);
 	~Game();
-	void cargarTetrominos();
 	bool tick(sf::Keyboard::Key input);
 	void handleInput(sf::Keyboard::Key input);
 	bool stepDown();
+	bool stepDown2();
 	bool rotateTetro();
 	bool moveLeft();
 	bool moveRight();
+	bool rotateTetro2();
+	bool moveLeft2();
+	bool moveRight2();
 	bool fastDown();
 	void releaseFastDown();
 	Board* getBoard();
@@ -29,6 +32,7 @@ public:
 	int getScore();
 	Tetromino * getPiezaSig();
 	void subirNivel();
+	void mostrarTetromino();
 	
 	//TetrominoI pieza;
 
@@ -43,10 +47,11 @@ private:
 	Tetromino *tetroS;
 	Tetromino *tetroT;
 	Tetromino *tetroZ;
+//	Tetromino *prueba;
 	struct Piezas pieza;
 	struct Piezas piezaSig;
 	//Board *tablero;
 	void generarPieza();
-	void makeTableroPrueba();
+//	void makeTableroPrueba();
 };
 

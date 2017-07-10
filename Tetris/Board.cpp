@@ -33,11 +33,11 @@ void Board::mostrar() {
 }
 
 bool Board::hayColision(Tetromino *pieza, int x, int y) {
-	for (int i = 3; y+i >= y; --i)
+	for (int i = 0; i < pieza->tetroHeight; ++i)
 	{
 		for (short j = 0; j< pieza->tetroWidth; ++j)
 		{
-			if (pieza->getCelda(i,j) != 0) {
+			if (pieza->getCelda(j,i) != 0) {
 				if (x + i < softLeftBorder || x + i > softRightBorder || y + j > softBottomBorder) {
 					return true;;
 				}
@@ -58,8 +58,8 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 	{
 		for (int j = 0; j < pieza->tetroWidth; ++j)
 		{
-			if (pieza->getCelda(x, y) != 0) {
-				tablero[i][j] = 0;
+			if (pieza->getCelda(j, i) != 0) {
+				tablero[y+i][x+j] = 0;
 			}
 		}
 	}
@@ -70,17 +70,17 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 //me falta implementar los templates para la derivacion de los tetrominos
 bool Board::asentar(Tetromino *pieza, int x, int y) {
 
-	for (int i=0; i>=pieza->tetroHeight; ++i)
+	for (int i=0; i<pieza->tetroHeight; ++i)
 	{	
-		for (short j =0; j<pieza->tetroWidth; ++j)
+		for (short j=0; j<pieza->tetroWidth; ++j)
 		{
-			if(pieza->getCelda(i,j)>0){
+			if(pieza->getCelda(j,i)>0){
 				
-					tablero[y + i][x + j] = pieza->getCelda(i,j);
+					tablero[y + i][x + j] = pieza->getCelda(j,i);
 				
 			}
 			else {
-				if (pieza->getCelda(i, j) == -1) {
+				if (pieza->getCelda(j, i) == -1) {
 					return false;
 				}
 			}

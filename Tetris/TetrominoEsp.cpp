@@ -1,4 +1,6 @@
 #include "TetrominoEsp.h"
+#include <iostream>
+using namespace std;
 
 
 // ---------------------------TETROMINO I ------------------------------------------------
@@ -14,9 +16,6 @@ TetrominoI::~TetrominoI()
 {
 }
 
-int TetrominoI::rotar() {
-	return 0;
-}
 
 
 void TetrominoI::generarFormas() {
@@ -65,8 +64,8 @@ int TetrominoI::getCelda(int x, int y)
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
 		switch (rotacionActual) {
-		case 0: return pos0[x][y]; break;
-		case 1: return pos1[x][y]; break;
+		case 0: return pos0[y][x]; break;
+		case 1: return pos1[y][x]; break;
 		default: return -1;
 		}
 	}
@@ -90,9 +89,7 @@ TetrominoJ::~TetrominoJ()
 {
 }
 
-int TetrominoJ::rotar() {
-	return 0;
-}
+
 
 void TetrominoJ::generarFormas() {
 	for (short i = 0; i < tetroHeight; ++i)
@@ -111,7 +108,7 @@ void TetrominoJ::generarFormas() {
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((j == 1&&j==4)||(i>0&&j==2)) {
+			if ((j == 1&&i==3)||(i>0&&j==2)) {
 				pos1[i][j] = 2;
 			}
 			else {
@@ -172,10 +169,10 @@ int TetrominoJ::getCelda(int x, int y)
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
 		switch (rotacionActual) {
-		case 0: return pos0[x][y]; break;
-		case 1: return pos1[x][y]; break;
-		case 2: return pos2[x][y]; break;
-		case 3: return pos3[x][y]; break;
+		case 0: return pos0[y][x]; break;
+		case 1: return pos1[y][x]; break;
+		case 2: return pos2[y][x]; break;
+		case 3: return pos3[y][x]; break;
 		default: return -1;
 		}
 	}
@@ -195,15 +192,13 @@ TetrominoL::~TetrominoL()
 {
 }
 
-int TetrominoL::rotar() {
-	return 0;
-}
+
 void TetrominoL::generarFormas() {
 	for (short i = 0; i < tetroHeight; ++i)
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((i ==2  && j == 4) || (i == 3 && j>0)) {
+			if ((i ==2  && j == 3) || (i == 3 && j>0)) {
 				pos0[i][j] = 3;
 			}
 			else {
@@ -227,7 +222,7 @@ void TetrominoL::generarFormas() {
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if ((i == 2 && j>1) || (i == 4 && j == 2)) {
+			if ((i == 2 && j>1) || (i == 3 && j == 2)) {
 				pos2[i][j] = 3;
 			}
 			else {
@@ -276,14 +271,27 @@ int TetrominoL::getCelda(int x, int y)
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
 		switch (rotacionActual) {
-		case 0: return pos0[x][y]; break;
-		case 1: return pos1[x][y]; break;
-		case 2: return pos2[x][y]; break;
-		case 3: return pos3[x][y]; break;
+		case 0: return pos0[y][x]; break;
+		case 1: return pos1[y][x]; break;
+		case 2: return pos2[y][x]; break;
+		case 3: return pos3[y][x]; break;
 		default: return -1;
 		}
 	}
 	return -1;
+}
+void TetrominoL::mostrarTetro() {
+	cout << "Rotacion Nro: " << rotacionActual << endl;
+
+
+	cout << "tetro con acceso getCelda(x,y) con (j,i)" << endl;
+	for (int i = 0; i < tetroHeight; i++) {
+		for (int j = 0; j < tetroWidth; j++)
+		{
+			cout << getCelda(j, i);
+		}
+		cout << endl;
+	}
 }
 
 // ---------------------------TETROMINO O ------------------------------------------------
@@ -299,17 +307,13 @@ TetrominoO::~TetrominoO()
 {
 }
 
-int TetrominoO::rotar() {
-	return 0;
-}
-
 void TetrominoO::generarFormas() {
 	
 	for (short i = 0; i < tetroHeight; ++i)
 	{
 		for (short j = 0; j < tetroWidth; ++j)
 		{
-			if (i > 1 && j < 4 && j > 0 ) {
+			if (i > 1 && j < 3 && j > 0 ) {
 				pos0[i][j] = 4;
 			}
 			else {
@@ -322,7 +326,7 @@ void TetrominoO::generarFormas() {
 
 int TetrominoO::getCelda(int x, int y)
 {
-return pos0[x][y]; 
+return pos0[y][x];
 }
 
 
@@ -339,9 +343,7 @@ TetrominoS::~TetrominoS()
 {
 }
 
-int TetrominoS::rotar() {
-	return 0;
-}
+
 
 void TetrominoS::generarFormas() {
 	for (short i = 0; i < tetroHeight; ++i)
@@ -385,8 +387,8 @@ int TetrominoS::getCelda(int x, int y)
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
 		switch (rotacionActual) {
-		case 0: return pos0[x][y]; break;
-		case 1: return pos1[x][y]; break;
+		case 0: return pos0[y][x]; break;
+		case 1: return pos1[y][x]; break;
 		default: return -1;
 		}
 	}
@@ -407,9 +409,7 @@ TetrominoT::~TetrominoT()
 {
 }
 
-int TetrominoT::rotar() {
-	return 0;
-}
+
 void TetrominoT::generarFormas() {
 	for (short i = 0; i < tetroHeight; ++i)
 	{
@@ -512,9 +512,6 @@ TetrominoZ::~TetrominoZ()
 {
 }
 
-int TetrominoZ::rotar() {
-	return 0;
-}
 
 void TetrominoZ::generarFormas() {
 	for (short i = 0; i < tetroHeight; ++i)
