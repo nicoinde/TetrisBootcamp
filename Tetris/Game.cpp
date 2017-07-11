@@ -25,7 +25,6 @@ Game::~Game()
 {
 	//delete pieza.pieza;
 	//delete piezaSig.pieza;
-	tablero.~Board();
 	delete tetroI;
 	delete tetroJ;
 	delete tetroL;
