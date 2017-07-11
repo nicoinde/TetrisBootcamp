@@ -14,6 +14,7 @@ Board::Board()
 }
 
 void Board::mostrar() {
+	cout << "---------------------------" << endl;
 	for (short i = 0; i < boardHeight; ++i)
 	{
 		for (short j = 0; j < boardWidth; ++j)
@@ -31,7 +32,7 @@ bool Board::hayColision(Tetromino *pieza, int x, int y) {
 		for (short j = 0; j < pieza->tetroWidth; ++j)
 		{
 			if (pieza->getCelda(j, i) != 0) {
-				if (x + j <= softLeftBorder || x + j >= softRightBorder || y + i >= softBottomBorder) {
+				if (x + j <= softLeftBorder || x + j >= softRightBorder || y + i >= softBottomBorder /*|| y + i <= softUpperBorder*/) {
 					return true;;
 				}
 
@@ -102,8 +103,9 @@ void Board::restart()
 
 int Board::verificarLineasCompletas() {
 	int cont = 0;
+	bool completa;
 	for (short i = (softBottomBorder - 1); i > 1; --i) {
-		bool completa = true;
+		completa = true;
 		for (short j = softLeftBorder + 1; (j > softLeftBorder && j < softRightBorder&&i>0); ++j) {
 			if (tablero[i][j] == 0) {
 				completa = false;
@@ -125,18 +127,10 @@ int Board::verificarLineasCompletas() {
 
 void Board::limpiarLinea(int y) {
 	for (short i = y; i > softUpperBorder; --i) {
-		int cont = 0;
-		for (short j = softLeftBorder + 1; j < softRightBorder; ++j) {
+		for (short j = softLeftBorder; j < softRightBorder; ++j) {
 			tablero[i][j] = tablero[i - 1][j];
-			if (tablero[i][j] != 0) {
-				cont++;
-			}
-
-			/*mostrar();
-			cout << "---------------------------------------" << endl;*/
-		}
-		if (cont == 0) {
-			i = softUpperBorder;
+			mostrar();
+	
 		}
 	}
 

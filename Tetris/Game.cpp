@@ -15,7 +15,7 @@ const unsigned short posInicialX = 3;
 
 
 
-Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(4.0), lastIntervalo(4.0), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
+Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(10.0), lastIntervalo(10.0), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
 {
 	piezaSig.pieza = tetroL;
 	generarPieza();
@@ -62,8 +62,11 @@ bool Game::stepDown() {
 		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
 			endGame = true;
 		}
+		cout << "antes" << endl;
+		tablero.mostrar();
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-
+		cout << "despues" << endl;
+		tablero.mostrar();
 	}
 	return !endGame;
 }
@@ -71,7 +74,7 @@ bool Game::stepDown() {
 void Game::subirNivel() {
 	++nivel;
 	lastIntervalo = intervalo;
-	intervalo += 0.05f;
+	intervalo -= 0.25f;
 }
 
 bool Game::getEndGame()
@@ -87,13 +90,19 @@ void Game::showEndGame() // mensaje interno para ver si anda el corte
 void Game::stop() // esto es solo para pausar la ejecucion 
 {
 	char nombre =0;
-	cout << "ingrese su Nombre: ";
+	cout << "Su Puntaje es de: " << score << endl;
+	cout << "Restart?(Y/N): ";
 	cin >> nombre;
+	cout << endl;
+	if (nombre =='y') {
+		restart();
+	}
+	endGame = false;
 }
 
 bool Game::fastDown() {
 	if (!acelerado) {
-		intervalo /= 4;
+		intervalo /= 10;
 		acelerado = true;
 
 	}
@@ -124,9 +133,7 @@ void Game::restart()
 
 Tetromino * Game::getPiezaSig()
 {
-	if (piezaSig.pieza->getRotacion() == 0 || piezaSig.pieza->getRotacion() == 2) {
-		piezaSig.pieza->rotar();
-	}
+	piezaSig.pieza->setRotacion(1);
 	return piezaSig.pieza;
 }
 
@@ -187,12 +194,15 @@ bool Game::rotateTetro() {
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 	pieza.pieza->rotar();
 	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
-		//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+		cout << "asentar sin colision" << endl;
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		tablero.mostrar();
 	}
 	else {
 		pieza.pieza->rotarInverso();
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		cout << "asentar con colision" << endl;
+		tablero.mostrar();
 		return false;
 	}
 	return true;

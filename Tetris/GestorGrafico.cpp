@@ -201,6 +201,7 @@ void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
 		}
 
 	}
+	piezaSig->resetRotacion();
 }
 
 sf::RenderWindow* GestorGrafico::getVentana()

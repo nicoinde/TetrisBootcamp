@@ -24,7 +24,6 @@ App::~App()
 int App::loop() {
 	sf::Clock clock;
 	clock.restart();
-
 	while (ges.getVentana()->isOpen()) {
 		draw();
 		while (ges.getVentana()->pollEvent(ges.event)) {
@@ -50,17 +49,20 @@ int App::loop() {
 				case sf::Keyboard::R:
 					juego.restart();
 					break;
+
+				case sf::Keyboard::T:
+					juego.stepDown();
+					break;
 				case sf::Keyboard::S:
 				case sf::Keyboard::Down:
-					//juego.fastDown();
-					juego.stepDown();
+					juego.fastDown();
 					break;
 
 				default:break;
 				}
 			}
 			if (ges.event.type == sf::Event::EventType::KeyReleased) {
-				if (ges.event.key.code == sf::Keyboard::S) {
+				if (ges.event.key.code == sf::Keyboard::S|| ges.event.key.code == sf::Keyboard::Down) {
 					juego.releaseFastDown();
 				}
 			}

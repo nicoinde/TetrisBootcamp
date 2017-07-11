@@ -7,6 +7,7 @@ public:
 	virtual ~Tetromino();
 	int rotar();
 	int rotarInverso();
+	void setRotacion(int ind);
 	virtual int getRotacion();
 	virtual void resetRotacion();
 	virtual int getCelda(int x, int y) = 0;

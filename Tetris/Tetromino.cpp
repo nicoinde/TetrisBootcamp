@@ -25,6 +25,11 @@ int Tetromino::rotarInverso()
 	return rotacionActual;
 }
 
+void Tetromino::setRotacion(int ind)
+{
+	rotacionActual = ind;
+}
+
 int Tetromino::getRotacion()
 {
 	return rotacionActual;

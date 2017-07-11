@@ -1,5 +1,3 @@
-﻿  GestorGrafico.cpp
-d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(89): warning C4996: 'sf::Text::setColor': se declaró desusado
-  d:\globant\tetris\tetrisbootcamp\tetris\sfml\include\sfml\graphics\text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
+﻿  Game.cpp
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.exe
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.pdb (Partial PDB)
