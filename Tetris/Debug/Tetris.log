@@ -1,3 +1,44 @@
-﻿  Game.cpp
+﻿  TetrominoEsp.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(17): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(17): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(18): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(18): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(104): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(104): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(105): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(105): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(106): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(106): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(107): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(107): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(225): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(225): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(226): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(226): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(227): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(227): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(228): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(228): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(344): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(344): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(394): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(394): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(395): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(395): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(476): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(476): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(477): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(477): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(478): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(478): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(479): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(479): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(597): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(597): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(598): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+d:\globant\tetris\tetrisbootcamp\tetris\tetrominoesp.cpp(598): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+  Game.cpp
+  App.cpp
+  Generando código...
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.exe
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.pdb (Partial PDB)

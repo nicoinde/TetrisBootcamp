@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
 
 App::~App()
 {
+	juego.~Game();
+	ges.~GestorGrafico();
 	
 }
 
@@ -51,7 +53,10 @@ int App::loop() {
 				case sf::Keyboard::R:
 					juego.restart();
 					break;
-
+				case sf::Keyboard::P:
+					ges.playMusic(); break;
+				case sf::Keyboard::O:
+					ges.pauseMusic(); break;
 				case sf::Keyboard::T:
 					juego.stepDown();
 					break;
