@@ -24,6 +24,7 @@ App::~App()
 int App::loop() {
 	sf::Clock clock;
 	clock.restart();
+	ges.playMusic();
 	while (ges.getVentana()->isOpen()) {
 		draw();
 		while (ges.getVentana()->pollEvent(ges.event)) {
@@ -79,6 +80,7 @@ int App::loop() {
 		{
 			//a pretty lame excuse of an EndGame Sign until i found something better
 			juego.showEndGame();
+			ges.pauseMusic();
 			juego.stop();
 		}
 	}
@@ -90,7 +92,7 @@ void App::draw()
 	ges.getVentana()->clear();
 	ges.drawBg();
 	ges.drawPieces(juego.tablero);
-	ges.drawScore(juego.getScore());
+	ges.drawScore(juego.getScore(), juego.getNivel());
 	ges.drawPiezaSig(juego.getPiezaSig());
 	ges.getVentana()->display();
 }

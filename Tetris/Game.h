@@ -32,12 +32,13 @@ public:
 	bool getEndGame();
 	void showEndGame();
 	void stop();
+	int getNivel();
 	//void mostrarTetromino();
 	
 	//TetrominoI pieza;
 
 private:
-	int score, lineasCompletas, nivel;
+	int score, lineasCompletas, nivel, last;
 	bool endGame,acelerado;
 	float intervalo, lastIntervalo;
 	Tetromino *tetroI;
@@ -51,6 +52,7 @@ private:
 	struct Piezas piezaSig;
 	//Board *tablero;
 	void generarPieza();
+	
 
 };
 

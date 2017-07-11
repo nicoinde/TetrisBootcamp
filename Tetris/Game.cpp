@@ -15,7 +15,7 @@ const unsigned short posInicialX = 3;
 
 
 
-Game::Game() :score(0), lineasCompletas(0), nivel(1), endGame(false), acelerado(false), intervalo(10.0), lastIntervalo(10.0), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
+Game::Game() :score(0), lineasCompletas(0), nivel(1),last(0), endGame(false), acelerado(false), intervalo(10.0), lastIntervalo(10.0), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
 {
 	piezaSig.pieza = tetroL;
 	generarPieza();
@@ -62,11 +62,11 @@ bool Game::stepDown() {
 		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
 			endGame = true;
 		}
-		cout << "antes" << endl;
-		tablero.mostrar();
+		/*cout << "antes" << endl;
+		tablero.mostrar();*/
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		cout << "despues" << endl;
-		tablero.mostrar();
+		/*cout << "despues" << endl;
+		tablero.mostrar();*/
 	}
 	return !endGame;
 }
@@ -98,6 +98,11 @@ void Game::stop() // esto es solo para pausar la ejecucion
 		restart();
 	}
 	endGame = false;
+}
+
+int Game::getNivel()
+{
+	return nivel;
 }
 
 bool Game::fastDown() {
@@ -194,15 +199,15 @@ bool Game::rotateTetro() {
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 	pieza.pieza->rotar();
 	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
-		cout << "asentar sin colision" << endl;
+		//cout << "asentar sin colision" << endl;
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		tablero.mostrar();
+		//tablero.mostrar();
 	}
 	else {
 		pieza.pieza->rotarInverso();
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		cout << "asentar con colision" << endl;
-		tablero.mostrar();
+		//cout << "asentar con colision" << endl;
+		//tablero.mostrar();
 		return false;
 	}
 	return true;
@@ -215,6 +220,13 @@ void Game::generarPieza() {
 	pieza.posX = posInicialX;
 	pieza.posY = posInicialY;
 	int aux = randomPiezas(randomPieces);
+	if (aux == last) {
+		while (aux == last) {
+			aux = randomPiezas(randomPieces);
+		}
+	}
+	last = aux;
+
 	switch (aux)
 	{
 	case 0:

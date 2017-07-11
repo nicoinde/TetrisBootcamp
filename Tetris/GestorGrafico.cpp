@@ -2,15 +2,15 @@
 #include <string.h>
 using namespace std;
 
-const sf::Vector2u sizeVentana(412, 600); 
+const sf::Vector2u sizeVentana(412, 600);
 const float piezaSigOffsetX = 312.0;
 const float piezaSigOffsetY = 39.0;
 
 
-GestorGrafico::GestorGrafico(): offsetX(-19.0),offsetY(-48), squareOffset(29.0)
+GestorGrafico::GestorGrafico() : offsetX(-19.0), offsetY(-48), squareOffset(29.0)
 {
-	ventana = new sf::RenderWindow (sf::VideoMode(412, 600), "Tetris");
-	cargarImagenes();
+	ventana = new sf::RenderWindow(sf::VideoMode(412, 600), "Tetris");
+	cargarArchivos();
 }
 
 
@@ -18,7 +18,7 @@ GestorGrafico::~GestorGrafico()
 {
 }
 
-bool GestorGrafico::cargarImagenes() {
+bool GestorGrafico::cargarArchivos() {
 	if (!bgTex.loadFromFile("Assets/bg.png")) {
 		return false;
 	}
@@ -39,7 +39,7 @@ bool GestorGrafico::cargarImagenes() {
 	else {
 		jSpr.setTexture(jTex);
 		jSpr.setScale(1.04f, 1.04f);
-		
+
 	}
 	if (!lTex.loadFromFile("Assets/l.png")) {
 		return false;
@@ -47,7 +47,7 @@ bool GestorGrafico::cargarImagenes() {
 	else {
 		lSpr.setTexture(lTex);
 		lSpr.setScale(1.04f, 1.04f);
-		
+
 	}
 	if (!oTex.loadFromFile("Assets/o.png")) {
 		return false;
@@ -87,8 +87,26 @@ bool GestorGrafico::cargarImagenes() {
 		/*puntaje.setCharacterSize(25);*/
 		puntaje.setFillColor(sf::Color::White);
 		puntaje.setColor(sf::Color::Blue);
+
+		nivel.setFont(font);
+		nivel.setPosition(312.0, 238.0);
+		nivel.setFillColor(sf::Color::White);
+		nivel.setColor(sf::Color::Blue);
 	}
+
 	
+	
+
+	if (!tetrisSong.openFromFile("Assets/Tetris.ogg")) {
+		return false;
+	}
+	else
+	{
+		tetrisSong.setLoop(true);
+		tetrisSong.setVolume(50);
+
+	}
+
 	return true;
 }
 
@@ -151,11 +169,14 @@ void GestorGrafico::drawBg()
 	ventana->draw(bgSpr);
 }
 
-void GestorGrafico::drawScore(int score)
+void GestorGrafico::drawScore(int score, int lvl)
 {
-	std::string str=to_string(score);
-	puntaje.setString(str);
+	std::string strScore = to_string(score);
+	puntaje.setString(strScore);
 	ventana->draw(puntaje);
+	std::string strNivel = to_string(lvl);
+	nivel.setString(strNivel);
+	ventana->draw(nivel);
 }
 
 void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
@@ -167,11 +188,11 @@ void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
 			switch (aux)
 			{
 			case 1:
-				iSpr.setPosition(piezaSigOffsetX+ (j-1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				iSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
 				ventana->draw(iSpr);
 				break;
 			case 2:
-				jSpr.setPosition(piezaSigOffsetX + (j-1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				jSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
 				ventana->draw(jSpr);
 				break;
 			case 3:
@@ -210,11 +231,27 @@ sf::RenderWindow* GestorGrafico::getVentana()
 }
 
 void GestorGrafico::trySprites(sf::RenderWindow &vent) {
-		sSpr.setPosition(75, 120);
-		vent.draw(sSpr);
-		zSpr.setPosition(145,265);
-		vent.draw(zSpr);
-		sSpr.setPosition(175, 220);
-		vent.draw(sSpr);
-	
+	sSpr.setPosition(75, 120);
+	vent.draw(sSpr);
+	zSpr.setPosition(145, 265);
+	vent.draw(zSpr);
+	sSpr.setPosition(175, 220);
+	vent.draw(sSpr);
+
+}
+
+void GestorGrafico::playMusic()
+{
+	tetrisSong.play();
+}
+
+void GestorGrafico::stopMusic()
+{
+
+	tetrisSong.stop();
+}
+
+void GestorGrafico::pauseMusic()
+{
+	tetrisSong.pause();
 }

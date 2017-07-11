@@ -104,22 +104,22 @@ void Board::restart()
 int Board::verificarLineasCompletas() {
 	int cont = 0;
 	bool completa;
-	for (short i = (softBottomBorder - 1); i > 1; --i) {
-		completa = true;
-		for (short j = softLeftBorder + 1; (j > softLeftBorder && j < softRightBorder&&i>0); ++j) {
+	for (short i = (softBottomBorder - 1); i >softUpperBorder; --i) {
+		//completa = true;
+		for (short j = softLeftBorder + 1; (j > softLeftBorder && j < softRightBorder&&i>softUpperBorder); ++j) {
+			completa = true;
 			if (tablero[i][j] == 0) {
 				completa = false;
 				j = softLeftBorder;
-				if (i > 0) {
+				if (i > softUpperBorder) {
 					--i;
 				}
 			}
 		}
 		if (completa) {
 			limpiarLinea(i);
-			completa = false;
-			++cont;
-			++i;
+			cont++;
+			i=softBottomBorder-1; // deberia andar con ++i pero a veces se deja una linea completra sin limpiar
 		}
 	}
 	return cont;
@@ -129,7 +129,7 @@ void Board::limpiarLinea(int y) {
 	for (short i = y; i > softUpperBorder; --i) {
 		for (short j = softLeftBorder; j < softRightBorder; ++j) {
 			tablero[i][j] = tablero[i - 1][j];
-			mostrar();
+		//	mostrar();
 	
 		}
 	}
