@@ -16,6 +16,7 @@ GestorGrafico::GestorGrafico() : offsetX(-19.0), offsetY(-48), squareOffset(29.0
 
 GestorGrafico::~GestorGrafico()
 {
+	delete ventana;
 }
 
 bool GestorGrafico::cargarArchivos() {

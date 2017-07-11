@@ -14,6 +14,8 @@ TetrominoI::TetrominoI():Tetromino()
 
 TetrominoI::~TetrominoI()
 {
+	delete pos0;
+	delete pos1;
 }
 
 
@@ -99,6 +101,10 @@ TetrominoJ::TetrominoJ() :Tetromino()
 
 TetrominoJ::~TetrominoJ()
 {
+	delete pos0;
+	delete pos1;
+	delete pos2;
+	delete pos3;
 }
 
 
@@ -216,6 +222,10 @@ TetrominoL::TetrominoL() :Tetromino()
 
 TetrominoL::~TetrominoL()
 {
+	delete pos0;
+	delete pos1;
+	delete pos2;
+	delete pos3;
 }
 
 
@@ -331,6 +341,7 @@ TetrominoO::TetrominoO() :Tetromino()
 
 TetrominoO::~TetrominoO()
 {
+	delete pos0;
 }
 
 void TetrominoO::generarFormas() {
@@ -380,6 +391,8 @@ TetrominoS::TetrominoS()
 
 TetrominoS::~TetrominoS()
 {
+	delete pos0;
+	delete pos1;
 }
 
 
@@ -460,6 +473,10 @@ TetrominoT::TetrominoT() :Tetromino()
 
 TetrominoT::~TetrominoT()
 {
+	delete pos0;
+	delete pos1;
+	delete pos2;
+	delete pos3;
 }
 
 
@@ -577,6 +594,8 @@ TetrominoZ::TetrominoZ() :Tetromino()
 
 TetrominoZ::~TetrominoZ()
 {
+	delete pos0;
+	delete pos1;
 }
 
 

@@ -14,8 +14,6 @@ public:
 	Game();
 	//Game(Gestor &ges);
 	~Game();
-	bool tick(sf::Keyboard::Key input);
-	void handleInput(sf::Keyboard::Key input);
 	bool stepDown();
 	bool rotateTetro();
 	bool moveLeft();

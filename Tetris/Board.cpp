@@ -138,4 +138,5 @@ void Board::limpiarLinea(int y) {
 
 Board::~Board()
 {
+	delete tablero;
 }

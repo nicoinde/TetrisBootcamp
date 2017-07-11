@@ -23,6 +23,15 @@ Game::Game() :score(0), lineasCompletas(0), nivel(1),last(0), endGame(false), ac
 
 Game::~Game()
 {
+	//delete pieza.pieza;
+	//delete piezaSig.pieza;
+	delete tetroI;
+	delete tetroJ;
+	delete tetroL;
+	delete tetroO;
+	delete tetroS;
+	delete tetroT;
+	delete tetroZ;
 }
 
 void Game::releaseFastDown(){
@@ -220,13 +229,13 @@ void Game::generarPieza() {
 	pieza.posX = posInicialX;
 	pieza.posY = posInicialY;
 	int aux = randomPiezas(randomPieces);
+	//este pedazo de codigo es provisional hasta que descubra como arreglar el problema que surge a veces cuando sale la mismapieza varias veces seguidas
 	if (aux == last) {
 		while (aux == last) {
 			aux = randomPiezas(randomPieces);
 		}
 	}
 	last = aux;
-
 	switch (aux)
 	{
 	case 0:
