@@ -9,17 +9,17 @@ const float piezaSigOffsetY = 39.0;
 
 GestorGrafico::GestorGrafico() : offsetX(-19.0), offsetY(-48), squareOffset(29.0)
 {
-	ventana = new sf::RenderWindow(sf::VideoMode(412, 600), "Tetris");
-	cargarArchivos();
+	window = new sf::RenderWindow(sf::VideoMode(412, 600), "Tetris");
+	loadFiles();
 }
 
 
 GestorGrafico::~GestorGrafico()
 {
-	delete ventana;
+	//delete window;
 }
 
-bool GestorGrafico::cargarArchivos() {
+bool GestorGrafico::loadFiles() {
 	if (!bgTex.loadFromFile("Assets/bg.png")) {
 		return false;
 	}
@@ -116,7 +116,7 @@ sf::Event &GestorGrafico::getEvent()
 	return event;
 }
 
-sf::Clock GestorGrafico::getClock()
+sf::Clock &GestorGrafico::getClock()
 {
 	return clock;
 }
@@ -126,36 +126,36 @@ void GestorGrafico::drawPieces(Board &tablero)
 	for (int i = tablero.softUpperBorder; i < tablero.softBottomBorder; ++i)
 	{
 		for (int j = tablero.softLeftBorder; j < tablero.softRightBorder; ++j) {
-			int aux = tablero.getCelda(j, i);
+			int aux = tablero.getCell(j, i);
 			switch (aux)
 			{
 			case 1:
 				iSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				ventana->draw(iSpr);
+				window->draw(iSpr);
 				break;
 			case 2:
 				jSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				ventana->draw(jSpr);
+				window->draw(jSpr);
 				break;
 			case 3:
 				lSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				ventana->draw(lSpr);
+				window->draw(lSpr);
 				break;
 			case 4:
 				oSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				ventana->draw(oSpr);
+				window->draw(oSpr);
 				break;
 			case 5:
 				sSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				ventana->draw(sSpr);
+				window->draw(sSpr);
 				break;
 			case 6:
 				tSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				ventana->draw(tSpr);
+				window->draw(tSpr);
 				break;
 			case 7:
 				zSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				ventana->draw(zSpr);
+				window->draw(zSpr);
 				break;
 
 			default:
@@ -167,54 +167,54 @@ void GestorGrafico::drawPieces(Board &tablero)
 }
 void GestorGrafico::drawBg()
 {
-	ventana->draw(bgSpr);
+	window->draw(bgSpr);
 }
 
 void GestorGrafico::drawScore(int score, int lvl)
 {
 	std::string strScore = to_string(score);
 	puntaje.setString(strScore);
-	ventana->draw(puntaje);
+	window->draw(puntaje);
 	std::string strNivel = to_string(lvl);
 	nivel.setString(strNivel);
-	ventana->draw(nivel);
+	window->draw(nivel);
 }
 
 void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
 {
-	for (int i = 0; i < piezaSig->tetroHeight; ++i)
+	for (int i = 0; i < piezaSig->getTetroHeight(); ++i)
 	{
-		for (int j = 1; j < piezaSig->tetroWidth; ++j) {
-			int aux = piezaSig->getCelda(j, i);
+		for (int j = 1; j < piezaSig->getTetroWidth(); ++j) {
+			int aux = piezaSig->getCell(j, i);
 			switch (aux)
 			{
 			case 1:
 				iSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				ventana->draw(iSpr);
+				window->draw(iSpr);
 				break;
 			case 2:
 				jSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				ventana->draw(jSpr);
+				window->draw(jSpr);
 				break;
 			case 3:
 				lSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				ventana->draw(lSpr);
+				window->draw(lSpr);
 				break;
 			case 4:
 				oSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				ventana->draw(oSpr);
+				window->draw(oSpr);
 				break;
 			case 5:
 				sSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				ventana->draw(sSpr);
+				window->draw(sSpr);
 				break;
 			case 6:
 				tSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				ventana->draw(tSpr);
+				window->draw(tSpr);
 				break;
 			case 7:
 				zSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				ventana->draw(zSpr);
+				window->draw(zSpr);
 				break;
 
 			default:
@@ -223,23 +223,14 @@ void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
 		}
 
 	}
-	piezaSig->resetRotacion();
+	piezaSig->resetRotation();
 }
 
-sf::RenderWindow* GestorGrafico::getVentana()
+sf::RenderWindow* GestorGrafico::getWindow()
 {
-	return ventana;
+	return window;
 }
 
-void GestorGrafico::trySprites(sf::RenderWindow &vent) {
-	sSpr.setPosition(75, 120);
-	vent.draw(sSpr);
-	zSpr.setPosition(145, 265);
-	vent.draw(zSpr);
-	sSpr.setPosition(175, 220);
-	vent.draw(sSpr);
-
-}
 
 void GestorGrafico::playMusic()
 {

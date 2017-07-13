@@ -1,6 +1,13 @@
 #pragma once
 #include "GestorGrafico.h"
-#include "TetrominoEsp.h"
+#include "TetrominoI.h"
+#include "TetrominoJ.h"
+#include "TetrominoL.h"
+#include "TetrominoO.h"
+#include "TetrominoS.h"
+#include "TetrominoT.h"
+#include "TetrominoZ.h"
+
 struct Piezas {
 	Tetromino *pieza;
 	int posX;

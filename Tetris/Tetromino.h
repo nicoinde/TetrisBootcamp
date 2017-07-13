@@ -5,18 +5,19 @@ class Tetromino
 public:
 	Tetromino();
 	virtual ~Tetromino();
-	int rotar();
-	int rotarInverso();
-	void setRotacion(int ind);
-	virtual int getRotacion();
-	virtual void resetRotacion();
-	virtual int getCelda(int x, int y) = 0;
-	virtual void mostrarTetro();
-	static const unsigned tetroWidth = 4;
-	static const unsigned tetroHeight = 4;
+	int rotate();
+	int rotateInversed();
+	void setRotation(int ind);
+	virtual int getRotation();
+	virtual void resetRotation();
+	virtual int getCell(int x, int y) = 0;
+	unsigned getTetroWidth();
+	unsigned getTetroHeight();
 
 
 protected:
+	static const short tetroWidth = 4;
+	static const short tetroHeight = 4;
 	int cantRotPosibles;
 	int rotacionActual;
 	

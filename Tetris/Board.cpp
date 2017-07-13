@@ -13,25 +13,13 @@ Board::Board()
 	restart();
 }
 
-void Board::mostrar() {
-	cout << "---------------------------" << endl;
-	for (short i = 0; i < boardHeight; ++i)
-	{
-		for (short j = 0; j < boardWidth; ++j)
-		{
-			cout << tablero[i][j];
-		}
-		cout << endl;
-	}
-
-}
 
 bool Board::hayColision(Tetromino *pieza, int x, int y) {
-	for (int i = 0; i < pieza->tetroHeight; ++i)
+	for (int i = 0; i < pieza->getTetroHeight(); ++i)
 	{
-		for (short j = 0; j < pieza->tetroWidth; ++j)
+		for (short j = 0; j < pieza->getTetroWidth(); ++j)
 		{
-			if (pieza->getCelda(j, i) != 0) {
+			if (pieza->getCell(j, i) != 0) {
 				if (x + j <= softLeftBorder || x + j >= softRightBorder || y + i >= softBottomBorder /*|| y + i <= softUpperBorder*/) {
 					return true;;
 				}
@@ -48,11 +36,11 @@ bool Board::hayColision(Tetromino *pieza, int x, int y) {
 }
 
 bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
-	for (int i = 0; i < pieza->tetroHeight; ++i)
+	for (int i = 0; i < pieza->getTetroHeight(); ++i)
 	{
-		for (int j = 0; j < pieza->tetroWidth; ++j)
+		for (int j = 0; j < pieza->getTetroWidth(); ++j)
 		{
-			if (pieza->getCelda(j, i) != 0) {
+			if (pieza->getCell(j, i) != 0) {
 				tablero[y + i][x + j] = 0;
 			}
 		}
@@ -64,17 +52,17 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 //me falta implementar los templates para la derivacion de los tetrominos
 bool Board::asentar(Tetromino *pieza, int x, int y) {
 
-	for (int i = 0; i < pieza->tetroHeight; ++i)
+	for (int i = 0; i < pieza->getTetroHeight(); ++i)
 	{
-		for (short j = 0; j < pieza->tetroWidth; ++j)
+		for (short j = 0; j < pieza->getTetroWidth(); ++j)
 		{
-			if (pieza->getCelda(j, i) > 0) {
+			if (pieza->getCell(j, i) > 0) {
 
-				tablero[y + i][x + j] = pieza->getCelda(j, i);
+				tablero[y + i][x + j] = pieza->getCell(j, i);
 
 			}
 			else {
-				if (pieza->getCelda(j, i) == -1) {
+				if (pieza->getCell(j, i) == -1) {
 					return false;
 				}
 			}
@@ -84,7 +72,7 @@ bool Board::asentar(Tetromino *pieza, int x, int y) {
 	return true;
 }
 
-int Board::getCelda(int x, int y)
+int Board::getCell(int x, int y)
 {
 	return tablero[y][x];
 }
@@ -138,5 +126,5 @@ void Board::limpiarLinea(int y) {
 
 Board::~Board()
 {
-	delete tablero;
+	//delete tablero;
 }

@@ -26,11 +26,11 @@ int App::loop() {
 	sf::Clock clock;
 	clock.restart();
 	ges.playMusic();
-	while (ges.getVentana()->isOpen()) {
+	while (ges.getWindow()->isOpen()) {
 		draw();
-		while (ges.getVentana()->pollEvent(ges.event)) {
+		while (ges.getWindow()->pollEvent(ges.event)) {
 			if (ges.event.type == sf::Event::EventType::Closed) {
-				ges.getVentana()->close();
+				ges.getWindow()->close();
 			}
 
 			if (ges.event.type == sf::Event::EventType::KeyPressed) {
@@ -90,10 +90,10 @@ int App::loop() {
 
 void App::draw()
 {
-	ges.getVentana()->clear();
+	ges.getWindow()->clear();
 	ges.drawBg();
 	ges.drawPieces(juego.tablero);
 	ges.drawScore(juego.getScore(), juego.getNivel());
 	ges.drawPiezaSig(juego.getPiezaSig());
-	ges.getVentana()->display();
+	ges.getWindow()->display();
 }

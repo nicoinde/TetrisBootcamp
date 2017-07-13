@@ -15,7 +15,20 @@ const unsigned short posInicialX = 3;
 
 
 
-Game::Game() :score(0), lineasCompletas(0), nivel(1),last(0), endGame(false), acelerado(false), intervalo(10.0), lastIntervalo(10.0), tetroI(new TetrominoI), tetroJ(new TetrominoJ), tetroL(new TetrominoL), tetroO(new TetrominoO), tetroS(new TetrominoS), tetroT(new TetrominoT), tetroZ(new TetrominoZ)
+Game::Game() :score(0),
+	lineasCompletas(0), 
+	nivel(1), last(0), 
+	endGame(false), 
+	acelerado(false), 
+	intervalo(3.0), 
+	lastIntervalo(3.0),
+	tetroI(new TetrominoI),
+	tetroJ(new TetrominoJ),
+	tetroL(new TetrominoL),
+	tetroO(new TetrominoO),
+	tetroS(new TetrominoS),
+	tetroT(new TetrominoT),
+	tetroZ(new TetrominoZ)
 {
 	piezaSig.pieza = tetroL;
 	generarPieza();
@@ -25,13 +38,13 @@ Game::~Game()
 {
 	//delete pieza.pieza;
 	//delete piezaSig.pieza;
-	delete tetroI;
-	delete tetroJ;
-	delete tetroL;
-	delete tetroO;
-	delete tetroS;
-	delete tetroT;
-	delete tetroZ;
+	//delete tetroI;
+	//delete tetroJ;
+	//delete tetroL;
+	//delete tetroO;
+	//delete tetroS;
+	//delete tetroT;
+	//delete tetroZ;
 }
 
 void Game::releaseFastDown(){
@@ -82,8 +95,26 @@ bool Game::stepDown() {
 
 void Game::subirNivel() {
 	++nivel;
+	releaseFastDown();
 	lastIntervalo = intervalo;
-	intervalo -= 0.25f;
+	float aumento = 0;
+	if (lastIntervalo>1.5f) {
+		aumento = 0.25f;
+	}
+	else if (lastIntervalo<=1.5f&&lastIntervalo>0.7f) {
+		aumento = 0.20f;
+	}
+	else if (lastIntervalo<=0.7f&&lastIntervalo>0.2f) {
+		aumento = 0.1f;
+	}
+	else if((lastIntervalo<=0.2f&&lastIntervalo>0.0f)){
+		aumento = 0;
+	}
+	intervalo -= aumento;
+
+
+	
+
 }
 
 bool Game::getEndGame()
@@ -147,7 +178,7 @@ void Game::restart()
 
 Tetromino * Game::getPiezaSig()
 {
-	piezaSig.pieza->setRotacion(1);
+	piezaSig.pieza->setRotation(1);
 	return piezaSig.pieza;
 }
 
@@ -206,14 +237,14 @@ bool Game::moveRight() {
 
 bool Game::rotateTetro() {
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-	pieza.pieza->rotar();
+	pieza.pieza->rotate();
 	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
 		//cout << "asentar sin colision" << endl;
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
 		//tablero.mostrar();
 	}
 	else {
-		pieza.pieza->rotarInverso();
+		pieza.pieza->rotateInversed();
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
 		//cout << "asentar con colision" << endl;
 		//tablero.mostrar();
@@ -255,7 +286,7 @@ void Game::generarPieza() {
 	default:
 		break;
 	}
-	pieza.pieza->resetRotacion();
-	piezaSig.pieza->resetRotacion();
+	pieza.pieza->resetRotation();
+	piezaSig.pieza->resetRotation();
 
 }
