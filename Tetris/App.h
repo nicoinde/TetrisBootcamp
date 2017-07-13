@@ -1,14 +1,17 @@
 #pragma once
-#include "Gestor.h"
 #include "Game.h"
 class App
 {
 public:
 	App();
 	~App();
-	int main();
+	int loop();
+	void draw();
 private:
-	Gestor ges;
+	
+	bool modified;
+	GestorGrafico ges;
 	Game juego;
+	
 };
 

@@ -1,49 +1,292 @@
 #include "Game.h"
+#include <random>
+#include <iostream>
+#include <string.h>
+
+
+using namespace std;
+
+uniform_int_distribution<int> randomPiezas(0, 6);
+random_device rd;
+mt19937 randomPieces(rd());
+
+const unsigned short posInicialY = 0;
+const unsigned short posInicialX = 3;
 
 
 
-Game::Game()
+Game::Game() :score(0),
+	lineasCompletas(0), 
+	nivel(1), last(0), 
+	endGame(false), 
+	acelerado(false), 
+	intervalo(3.0), 
+	lastIntervalo(3.0),
+	tetroI(new TetrominoI),
+	tetroJ(new TetrominoJ),
+	tetroL(new TetrominoL),
+	tetroO(new TetrominoO),
+	tetroS(new TetrominoS),
+	tetroT(new TetrominoT),
+	tetroZ(new TetrominoZ)
 {
-	endGame = false;
-	intervalo = 0.5;
+	piezaSig.pieza = tetroL;
+	generarPieza();
 }
 
 Game::~Game()
 {
+	//delete pieza.pieza;
+	//delete piezaSig.pieza;
+	//delete tetroI;
+	//delete tetroJ;
+	//delete tetroL;
+	//delete tetroO;
+	//delete tetroS;
+	//delete tetroT;
+	//delete tetroZ;
 }
 
-int Game::iniciar() {
-	gestor.cargarImagenes();
-	ciclo();
-	return 0;
+void Game::releaseFastDown(){
+	intervalo = lastIntervalo;
+	acelerado = false;
 }
 
-bool Game::ciclo() {
-	sf::Event event;
-	sf::Clock clock;
-	while (gestor.ventana.isOpen()) {
-		while (gestor.ventana.pollEvent(event)) {
-			if (event.type == sf::Event::EventType::Closed) {
-				gestor.ventana.close();
-			}
 
-			if (event.type==sf::Event::EventType::KeyPressed) {
-				switch (event.key.code) {
-				case sf::Keyboard::Q: gestor.ventana.close();
-					break;
-				}
+bool Game::stepDown() {
+	int lineas = 0;
+	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+	/*cout << "despues del clear" << endl;
+	tablero.mostrar();*/
+	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
+		//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
+		/*cout << "despues del asentar sin colision" << endl;
+		tablero.mostrar();*/
+		pieza.posY++;
+	}
+	else
+	{
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		/*cout << "despues del asentar con colision" << endl;
+		tablero.mostrar();*/
+		lineas = tablero.verificarLineasCompletas();
+		if (lineas > 0) {
+			score += lineas * 10;
+
+			if (lineasCompletas / 10 != (lineasCompletas + lineas) / 10) {
+				subirNivel();
 			}
+			lineasCompletas += lineas;
+
 		}
-		if (clock.getElapsedTime().asSeconds() > intervalo) {
-			stepDown();
+		generarPieza();
+		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+			endGame = true;
 		}
-		gestor.ventana.clear();
-		gestor.ventana.draw(gestor.bg);
-		gestor.ventana.display();
+		/*cout << "antes" << endl;
+		tablero.mostrar();*/
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		/*cout << "despues" << endl;
+		tablero.mostrar();*/
 	}
 	return !endGame;
 }
 
-bool Game::stepDown() {
+void Game::subirNivel() {
+	++nivel;
+	releaseFastDown();
+	lastIntervalo = intervalo;
+	float aumento = 0;
+	if (lastIntervalo>1.5f) {
+		aumento = 0.25f;
+	}
+	else if (lastIntervalo<=1.5f&&lastIntervalo>0.7f) {
+		aumento = 0.20f;
+	}
+	else if (lastIntervalo<=0.7f&&lastIntervalo>0.2f) {
+		aumento = 0.1f;
+	}
+	else if((lastIntervalo<=0.2f&&lastIntervalo>0.0f)){
+		aumento = 0;
+	}
+	intervalo -= aumento;
+
+
+	
+
+}
+
+bool Game::getEndGame()
+{
+	return endGame;
+}
+
+void Game::showEndGame() // mensaje interno para ver si anda el corte
+{
+	cout << "Hay EndGame==TRUE!!!"<<endl;
+}
+
+void Game::stop() // esto es solo para pausar la ejecucion 
+{
+	char nombre =0;
+	cout << "Su Puntaje es de: " << score << endl;
+	cout << "Restart?(Y/N): ";
+	cin >> nombre;
+	cout << endl;
+	if (nombre =='y') {
+		restart();
+	}
+	endGame = false;
+}
+
+int Game::getNivel()
+{
+	return nivel;
+}
+
+bool Game::fastDown() {
+	if (!acelerado) {
+		intervalo /= 10;
+		acelerado = true;
+
+	}
 	return true;
+}
+
+Board* Game::getBoard()
+{
+	return &tablero;
+}
+
+float Game::getIntervalo()
+{
+	return intervalo;
+}
+
+int Game::getScore()
+{
+	return score;
+}
+
+void Game::restart()
+{
+	tablero.restart();
+	score = 0;
+	generarPieza();
+}
+
+Tetromino * Game::getPiezaSig()
+{
+	piezaSig.pieza->setRotation(1);
+	return piezaSig.pieza;
+}
+
+bool Game::moveLeft() {
+	if (pieza.posX >= tablero.softLeftBorder) {
+		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+		/*cout << "despues del clear" << endl;
+		tablero.mostrar();*/
+		if (!tablero.hayColision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
+			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+			pieza.posX--;
+			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del asentar sin colision" << endl;
+			tablero.mostrar();*/
+		}
+		else {
+			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del asentar con colision" << endl;
+			tablero.mostrar();*/
+			return false;
+		}
+	}
+	else {
+
+		return false;
+	}
+	return true;
+}
+
+
+bool Game::moveRight() {
+	if (pieza.posX < tablero.softRightBorder) {
+		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+		/*cout << "despues del clear" << endl;
+		tablero.mostrar();*/
+		if (!tablero.hayColision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
+			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+			pieza.posX++;
+			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del asentar sin colision" << endl;
+			tablero.mostrar();*/
+		}
+		else {
+			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del asentar con colision" << endl;
+			tablero.mostrar();*/
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+	return true;
+}
+
+
+bool Game::rotateTetro() {
+	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+	pieza.pieza->rotate();
+	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+		//cout << "asentar sin colision" << endl;
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		//tablero.mostrar();
+	}
+	else {
+		pieza.pieza->rotateInversed();
+		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		//cout << "asentar con colision" << endl;
+		//tablero.mostrar();
+		return false;
+	}
+	return true;
+
+}
+
+
+void Game::generarPieza() {
+	pieza.pieza = piezaSig.pieza;
+	pieza.posX = posInicialX;
+	pieza.posY = posInicialY;
+	int aux = randomPiezas(randomPieces);
+	//este pedazo de codigo es provisional hasta que descubra como arreglar el problema que surge a veces cuando sale la mismapieza varias veces seguidas
+	if (aux == last) {
+		while (aux == last) {
+			aux = randomPiezas(randomPieces);
+		}
+	}
+	last = aux;
+	switch (aux)
+	{
+	case 0:
+		piezaSig.pieza = tetroI; break;
+	case 1:
+		piezaSig.pieza = tetroJ; break;
+	case 2:
+		piezaSig.pieza = tetroL; break;
+	case 3:
+		piezaSig.pieza = tetroO; break;
+	case 4:
+		piezaSig.pieza = tetroS; break;
+	case 5:
+		piezaSig.pieza = tetroT; break;
+	case 6:
+		piezaSig.pieza = tetroZ; break;
+	default:
+		break;
+	}
+	pieza.pieza->resetRotation();
+	piezaSig.pieza->resetRotation();
+
 }
