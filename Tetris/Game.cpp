@@ -20,8 +20,8 @@ Game::Game() :score(0),
 	nivel(1), last(0), 
 	endGame(false), 
 	acelerado(false), 
-	intervalo(3.0), 
-	lastIntervalo(3.0),
+	intervalo(1.0), 
+	lastIntervalo(1.0),
 	tetroI(new TetrominoI),
 	tetroJ(new TetrominoJ),
 	tetroL(new TetrominoL),
@@ -30,7 +30,8 @@ Game::Game() :score(0),
 	tetroT(new TetrominoT),
 	tetroZ(new TetrominoZ)
 {
-	piezaSig.pieza = tetroL;
+	piezaSig.pieza = tetroI;
+	generarPieza();
 	generarPieza();
 }
 
@@ -96,24 +97,21 @@ bool Game::stepDown() {
 void Game::subirNivel() {
 	++nivel;
 	releaseFastDown();
-	lastIntervalo = intervalo;
 	float aumento = 0;
-	if (lastIntervalo>1.5f) {
+	if (intervalo>1.5f) {
 		aumento = 0.25f;
 	}
-	else if (lastIntervalo<=1.5f&&lastIntervalo>0.7f) {
-		aumento = 0.20f;
+	else if (intervalo<=1.5f&&intervalo>0.5f) {
+		aumento = 0.10f;
 	}
-	else if (lastIntervalo<=0.7f&&lastIntervalo>0.2f) {
-		aumento = 0.1f;
+	else if (intervalo<=0.5f&&intervalo>0.2f) {
+		aumento = 0.05f;
 	}
-	else if((lastIntervalo<=0.2f&&lastIntervalo>0.0f)){
+	else if((intervalo<=0.2f)){
 		aumento = 0;
 	}
 	intervalo -= aumento;
-
-
-	
+	lastIntervalo = intervalo;
 
 }
 
@@ -173,6 +171,7 @@ void Game::restart()
 {
 	tablero.restart();
 	score = 0;
+	nivel = 1;
 	generarPieza();
 }
 

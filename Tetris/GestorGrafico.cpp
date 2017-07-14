@@ -1,15 +1,29 @@
 #include "GestorGrafico.h"
+#include <iostream>
 #include <string.h>
 using namespace std;
 
-const sf::Vector2u sizeVentana(412, 600);
+const float sizeX = 412.0;
+const float sizeY = 600.0;
 const float piezaSigOffsetX = 312.0;
 const float piezaSigOffsetY = 39.0;
+const char* title = "Tetris";
+const char* dirBg= "Assets/bg.png";
+const char* dirI = "Assets/i.png";
+const char* dirJ = "Assets/j.png";
+const char* dirL = "Assets/l.png";
+const char* dirO = "Assets/o.png";
+const char* dirS = "Assets/s.png";
+const char* dirT = "Assets/t.png";
+const char* dirZ = "Assets/z.png";
+const char* dirFont = "Assets/Coffee House.ttf";
+const char* dirMusic = "Assets/Tetris.ogg";
+
 
 
 GestorGrafico::GestorGrafico() : offsetX(-19.0), offsetY(-48), squareOffset(29.0)
 {
-	window = new sf::RenderWindow(sf::VideoMode(412, 600), "Tetris");
+	window = new sf::RenderWindow(sf::VideoMode(sizeX, sizeY), title);
 	loadFiles();
 }
 
@@ -20,66 +34,55 @@ GestorGrafico::~GestorGrafico()
 }
 
 bool GestorGrafico::loadFiles() {
-	if (!bgTex.loadFromFile("Assets/bg.png")) {
+	if (!bgTex.loadFromFile(dirBg)) {
+		cout << "No se pudo cargar " << dirBg<< endl;
+		window->close();
 		return false;
 	}
 	else {
 		bgSpr.setTexture(bgTex);
 		bgSpr.setPosition(0.0f, 0.0f);
 	}
-	if (!iTex.loadFromFile("Assets/i.png")) {
+	tetroSpr.setScale(1.04f, 1.04f);
+	if (!iTex.loadFromFile(dirI)) {
+		cout << "No se pudo cargar " << dirI << endl;
+		window->close();
 		return false;
-	}
-	else {
-		iSpr.setTexture(iTex);
-		iSpr.setScale(1.04f, 1.04f);
 	}
 	if (!jTex.loadFromFile("Assets/j.png")) {
+		cout << "No se pudo cargar " << dirJ << endl;
+		window->close();
 		return false;
-	}
-	else {
-		jSpr.setTexture(jTex);
-		jSpr.setScale(1.04f, 1.04f);
-
 	}
 	if (!lTex.loadFromFile("Assets/l.png")) {
+		cout << "No se pudo cargar " << dirL << endl;
+		window->close();
 		return false;
-	}
-	else {
-		lSpr.setTexture(lTex);
-		lSpr.setScale(1.04f, 1.04f);
-
 	}
 	if (!oTex.loadFromFile("Assets/o.png")) {
+		cout << "No se pudo cargar " << dirO << endl;
+		window->close();
 		return false;
-	}
-	else {
-		oSpr.setTexture(oTex);
-		oSpr.setScale(1.04f, 1.04f);
 	}
 	if (!sTex.loadFromFile("Assets/s.png")) {
+		cout << "No se pudo cargar " << dirS << endl;
+		window->close();
 		return false;
-	}
-	else {
-		sSpr.setTexture(sTex);
-		sSpr.setScale(1.04f, 1.04f);
 	}
 	if (!tTex.loadFromFile("Assets/t.png")) {
+		cout << "No se pudo cargar " << dirT << endl;
+		window->close();
 		return false;
-	}
-	else {
-		tSpr.setTexture(tTex);
-		tSpr.setScale(1.04f, 1.04f);
 	}
 	if (!zTex.loadFromFile("Assets/z.png")) {
+		cout << "No se pudo cargar " << dirZ << endl;
+		window->close();
 		return false;
 	}
-	else {
-		zSpr.setTexture(zTex);
-		zSpr.setScale(1.04f, 1.04f);
-	}
 
-	if (!font.loadFromFile("Assets/Coffee House.ttf")) {
+	if (!font.loadFromFile(dirFont)) {
+		cout << "No se pudo cargar la fuente" << dirFont << endl;
+		window->close();
 		return false;
 	}
 	else {
@@ -98,7 +101,9 @@ bool GestorGrafico::loadFiles() {
 	
 	
 
-	if (!tetrisSong.openFromFile("Assets/Tetris.ogg")) {
+	if (!tetrisSong.openFromFile(dirMusic)) {
+		cout << "No se pudo cargar " << dirMusic << endl;
+		window->close();
 		return false;
 	}
 	else
@@ -130,32 +135,39 @@ void GestorGrafico::drawPieces(Board &tablero)
 			switch (aux)
 			{
 			case 1:
-				iSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				window->draw(iSpr);
+				tetroSpr.setTexture(iTex);
+				tetroSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 2:
-				jSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				window->draw(jSpr);
+				tetroSpr.setTexture(jTex);
+				tetroSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 3:
-				lSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				window->draw(lSpr);
+				tetroSpr.setTexture(lTex);
+				tetroSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 4:
-				oSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				window->draw(oSpr);
+				tetroSpr.setTexture(oTex);
+				tetroSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 5:
-				sSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				window->draw(sSpr);
+				tetroSpr.setTexture(sTex);
+				tetroSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 6:
-				tSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				window->draw(tSpr);
+				tetroSpr.setTexture(tTex);
+				tetroSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 7:
-				zSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
-				window->draw(zSpr);
+				tetroSpr.setTexture(zTex);
+				tetroSpr.setPosition(offsetX + j*squareOffset, offsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 
 			default:
@@ -189,32 +201,40 @@ void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
 			switch (aux)
 			{
 			case 1:
-				iSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				window->draw(iSpr);
+				tetroSpr.setTexture(iTex);
+				tetroSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 2:
-				jSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				window->draw(jSpr);
+
+				tetroSpr.setTexture(jTex);
+				tetroSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 3:
-				lSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				window->draw(lSpr);
+				tetroSpr.setTexture(lTex);
+				tetroSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 4:
-				oSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				window->draw(oSpr);
+				tetroSpr.setTexture(oTex);
+				tetroSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 5:
-				sSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				window->draw(sSpr);
+				tetroSpr.setTexture(sTex);
+				tetroSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 6:
-				tSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				window->draw(tSpr);
+				tetroSpr.setTexture(tTex);
+				tetroSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 			case 7:
-				zSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
-				window->draw(zSpr);
+				tetroSpr.setTexture(zTex);
+				tetroSpr.setPosition(piezaSigOffsetX + (j - 1)*squareOffset, piezaSigOffsetY + i*squareOffset);
+				window->draw(tetroSpr);
 				break;
 
 			default:

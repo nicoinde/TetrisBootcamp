@@ -29,7 +29,7 @@ private:
 	float squareOffset = 30.0;
 	sf::RenderWindow * window;
 	sf::Texture bgTex, iTex, jTex, lTex, oTex, sTex, tTex, zTex;
-	sf::Sprite bgSpr, iSpr, jSpr, lSpr, oSpr, sSpr, tSpr, zSpr;
+	sf::Sprite bgSpr, tetroSpr;
 	sf::Clock clock;
 	sf::Font font;
 	sf::Text puntaje;
