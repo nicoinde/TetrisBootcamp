@@ -92,7 +92,7 @@ void App::draw()
 {
 	ges.getWindow()->clear();
 	ges.drawBg();
-	ges.drawPieces(juego.tablero);
+	ges.drawPieces(juego.getBoard());
 	ges.drawScore(juego.getScore(), juego.getNivel());
 	ges.drawPiezaSig(juego.getPiezaSig());
 	ges.getWindow()->display();

@@ -152,9 +152,9 @@ bool Game::fastDown() {
 	return true;
 }
 
-Board* Game::getBoard()
+Board &Game::getBoard()
 {
-	return &tablero;
+	return tablero;
 }
 
 float Game::getIntervalo()

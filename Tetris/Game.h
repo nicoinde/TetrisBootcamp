@@ -27,8 +27,8 @@ public:
 	bool moveRight();
 	bool fastDown();
 	void releaseFastDown();
-	Board* getBoard();
-	Board tablero;
+	Board &getBoard();
+	
 	float getIntervalo();
 	int getScore();
 	void restart();
@@ -46,6 +46,7 @@ private:
 	int score, lineasCompletas, nivel, last;
 	bool endGame,acelerado;
 	float intervalo, lastIntervalo;
+	Board tablero;
 	Tetromino *tetroI;
 	Tetromino *tetroJ;
 	Tetromino *tetroL;
