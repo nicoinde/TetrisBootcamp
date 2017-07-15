@@ -59,7 +59,7 @@ bool Game::stepDown() {
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 	/*cout << "despues del clear" << endl;
 	tablero.mostrar();*/
-	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
+	if (!tablero.collision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
 		//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
 		/*cout << "despues del asentar sin colision" << endl;
@@ -82,7 +82,7 @@ bool Game::stepDown() {
 
 		}
 		generarPieza();
-		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+		if (tablero.collision(pieza.pieza, pieza.posX, pieza.posY)) {
 			endGame = true;
 		}
 		/*cout << "antes" << endl;
@@ -186,7 +186,7 @@ bool Game::moveLeft() {
 		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 		/*cout << "despues del clear" << endl;
 		tablero.mostrar();*/
-		if (!tablero.hayColision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
+		if (!tablero.collision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
 			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 			pieza.posX--;
 			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
@@ -213,7 +213,7 @@ bool Game::moveRight() {
 		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 		/*cout << "despues del clear" << endl;
 		tablero.mostrar();*/
-		if (!tablero.hayColision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
+		if (!tablero.collision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
 			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 			pieza.posX++;
 			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
@@ -237,7 +237,7 @@ bool Game::moveRight() {
 bool Game::rotateTetro() {
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 	pieza.pieza->rotate();
-	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+	if (!tablero.collision(pieza.pieza, pieza.posX, pieza.posY)) {
 		//cout << "asentar sin colision" << endl;
 		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
 		//tablero.mostrar();

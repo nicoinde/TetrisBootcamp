@@ -7,7 +7,7 @@ public:
 	~Board();
 	int verificarLineasCompletas();
 	void limpiarLinea(int x);
-	bool hayColision(Tetromino *pieza, int x, int y);
+	bool collision(Tetromino *pieza, int x, int y);
 	bool clearTetromino(Tetromino *pieza, int x, int y);
 	bool asentar(Tetromino *pieza, int x, int y);
 	int getCell(int x, int y);

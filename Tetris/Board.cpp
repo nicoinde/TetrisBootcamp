@@ -14,14 +14,14 @@ Board::Board()
 }
 
 
-bool Board::hayColision(Tetromino *pieza, int x, int y) {
+bool Board::collision(Tetromino *pieza, int x, int y) {
 	for (int i = 0; i < pieza->getTetroHeight(); ++i)
 	{
 		for (short j = 0; j < pieza->getTetroWidth(); ++j)
 		{
 			if (pieza->getCell(j, i) != 0) {
-				if (x + j <= softLeftBorder || x + j >= softRightBorder || y + i >= softBottomBorder /*|| y + i <= softUpperBorder*/) {
-					return true;;
+				if (x + j <= softLeftBorder || x + j >= softRightBorder || y + i >= softBottomBorder || y + i <= softUpperBorder) {
+					return true;
 				}
 
 				if (tablero[y + i][x + j] != 0) {
