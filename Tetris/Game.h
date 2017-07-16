@@ -43,7 +43,7 @@ public:
 	//TetrominoI pieza;
 
 private:
-	int score, lineasCompletas, nivel, last;
+	int score, fullLines, nivel, last;
 	bool endGame,acelerado;
 	float intervalo, lastIntervalo;
 	Board tablero;
@@ -57,7 +57,7 @@ private:
 	struct Piezas pieza;
 	struct Piezas piezaSig;
 	//Board *tablero;
-	void generarPieza();
+	void generatePieces();
 	
 
 };

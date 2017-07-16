@@ -1,9 +1,9 @@
 ﻿  Board.cpp
-d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(18): warning C4018: '<': no coinciden signed/unsigned
-d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(20): warning C4018: '<': no coinciden signed/unsigned
-d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(39): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(19): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(21): warning C4018: '<': no coinciden signed/unsigned
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(41): warning C4018: '<': no coinciden signed/unsigned
-d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(55): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(43): warning C4018: '<': no coinciden signed/unsigned
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(57): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(59): warning C4018: '<': no coinciden signed/unsigned
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.exe
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.pdb (Partial PDB)

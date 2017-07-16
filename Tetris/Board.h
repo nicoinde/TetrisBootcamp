@@ -5,11 +5,11 @@ class Board
 public:
 	Board();
 	~Board();
-	int verificarLineasCompletas();
-	void limpiarLinea(int x);
+	int checkFullLines(float y);
+	void clearLine(int x);
 	bool collision(Tetromino *pieza, int x, int y);
 	bool clearTetromino(Tetromino *pieza, int x, int y);
-	bool asentar(Tetromino *pieza, int x, int y);
+	bool settle(Tetromino *pieza, int x, int y);
 	int getCell(int x, int y);
 	void restart();
 	static const unsigned short boardWidth = 13;

@@ -16,7 +16,7 @@ const unsigned short posInicialX = 3;
 
 
 Game::Game() :score(0),
-	lineasCompletas(0), 
+	fullLines(0), 
 	nivel(1), last(0), 
 	endGame(false), 
 	acelerado(false), 
@@ -31,8 +31,8 @@ Game::Game() :score(0),
 	tetroZ(new TetrominoZ)
 {
 	piezaSig.pieza = tetroI;
-	generarPieza();
-	generarPieza();
+	generatePieces();
+	generatePieces();
 }
 
 Game::~Game()
@@ -55,39 +55,39 @@ void Game::releaseFastDown(){
 
 
 bool Game::stepDown() {
-	int lineas = 0;
+	int lines = 0;
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 	/*cout << "despues del clear" << endl;
 	tablero.mostrar();*/
 	if (!tablero.collision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
 		//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
-		/*cout << "despues del asentar sin colision" << endl;
+		tablero.settle(pieza.pieza, pieza.posX, pieza.posY + 1);
+		/*cout << "despues del settle sin colision" << endl;
 		tablero.mostrar();*/
 		pieza.posY++;
 	}
 	else
 	{
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		/*cout << "despues del asentar con colision" << endl;
+		tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
+		/*cout << "despues del settle con colision" << endl;
 		tablero.mostrar();*/
-		lineas = tablero.verificarLineasCompletas();
-		if (lineas > 0) {
-			score += lineas * 10;
+		lines = tablero.checkFullLines(pieza.posY);
+		if (lines > 0) {
+			score += lines * 10;
 
-			if (lineasCompletas / 10 != (lineasCompletas + lineas) / 10) {
+			if (fullLines / 10 != (fullLines + lines) / 10) {
 				subirNivel();
 			}
-			lineasCompletas += lineas;
+			fullLines += lines;
 
 		}
-		generarPieza();
+		generatePieces();
 		if (tablero.collision(pieza.pieza, pieza.posX, pieza.posY)) {
 			endGame = true;
 		}
 		/*cout << "antes" << endl;
 		tablero.mostrar();*/
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
 		/*cout << "despues" << endl;
 		tablero.mostrar();*/
 	}
@@ -172,7 +172,7 @@ void Game::restart()
 	tablero.restart();
 	score = 0;
 	nivel = 1;
-	generarPieza();
+	generatePieces();
 }
 
 Tetromino * Game::getPiezaSig()
@@ -189,13 +189,13 @@ bool Game::moveLeft() {
 		if (!tablero.collision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
 			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 			pieza.posX--;
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar sin colision" << endl;
+			tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del settle sin colision" << endl;
 			tablero.mostrar();*/
 		}
 		else {
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar con colision" << endl;
+			tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del settle con colision" << endl;
 			tablero.mostrar();*/
 			return false;
 		}
@@ -216,13 +216,13 @@ bool Game::moveRight() {
 		if (!tablero.collision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
 			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 			pieza.posX++;
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar sin colision" << endl;
+			tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del settle sin colision" << endl;
 			tablero.mostrar();*/
 		}
 		else {
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar con colision" << endl;
+			tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
+			/*cout << "despues del settle con colision" << endl;
 			tablero.mostrar();*/
 			return false;
 		}
@@ -238,14 +238,14 @@ bool Game::rotateTetro() {
 	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
 	pieza.pieza->rotate();
 	if (!tablero.collision(pieza.pieza, pieza.posX, pieza.posY)) {
-		//cout << "asentar sin colision" << endl;
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+		//cout << "settle sin colision" << endl;
+		tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
 		//tablero.mostrar();
 	}
 	else {
 		pieza.pieza->rotateInversed();
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		//cout << "asentar con colision" << endl;
+		tablero.settle(pieza.pieza, pieza.posX, pieza.posY);
+		//cout << "settle con colision" << endl;
 		//tablero.mostrar();
 		return false;
 	}
@@ -254,7 +254,7 @@ bool Game::rotateTetro() {
 }
 
 
-void Game::generarPieza() {
+void Game::generatePieces() {
 	pieza.pieza = piezaSig.pieza;
 	pieza.posX = posInicialX;
 	pieza.posY = posInicialY;

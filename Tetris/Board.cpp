@@ -13,7 +13,8 @@ Board::Board()
 	restart();
 }
 
-
+//this method takes care of checking if there are any tetromino's collisions on the position determined with parameters "x" and "y" 
+//by checking tetromino's cells one by one, only doing something when the current cell value is != 0, which means there is a part of the tetromino in that place
 bool Board::collision(Tetromino *pieza, int x, int y) {
 	for (int i = 0; i < pieza->getTetroHeight(); ++i)
 	{
@@ -35,6 +36,7 @@ bool Board::collision(Tetromino *pieza, int x, int y) {
 	return false;
 }
 
+//this method clears the shape of a tetromino on the board, avoiding collision checking faliures by colliding with them selves
 bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 	for (int i = 0; i < pieza->getTetroHeight(); ++i)
 	{
@@ -49,8 +51,8 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 }
 
 
-//me falta implementar los templates para la derivacion de los tetrominos
-bool Board::asentar(Tetromino *pieza, int x, int y) {
+//this settle the piece on the board
+bool Board::settle(Tetromino *pieza, int x, int y) {
 
 	for (int i = 0; i < pieza->getTetroHeight(); ++i)
 	{
@@ -77,6 +79,7 @@ int Board::getCell(int x, int y)
 	return tablero[y][x];
 }
 
+//this make every cell of "tablero" change it's value to 0, thus restarting the game
 void Board::restart()
 {
 	for (int i = 0; i < boardHeight; ++i)
@@ -89,35 +92,38 @@ void Board::restart()
 	}
 }
 
-int Board::verificarLineasCompletas() {
+
+//this method is responsible of check every line of the board looking for full lines, and, every time it found it, calls the "clearLine" function,
+int Board::checkFullLines(float y) {
 	int cont = 0;
 	bool completa;
-	for (short i = (softBottomBorder - 1); i >softUpperBorder; --i) {
-		//completa = true;
-		for (short j = softLeftBorder + 1; (j > softLeftBorder && j < softRightBorder&&i>softUpperBorder); ++j) {
+	short i;
+	for (i =softBottomBorder-1; i >=y; --i) {
+		completa = true;
+		for (short j = softLeftBorder + 1; (j > softLeftBorder && j < softRightBorder&&i>=y); ++j) {
 			completa = true;
 			if (tablero[i][j] == 0) {
 				completa = false;
 				j = softLeftBorder;
-				if (i > softUpperBorder) {
+				if (i >= y-1) {
 					--i;
 				}
 			}
 		}
 		if (completa) {
-			limpiarLinea(i);
+			clearLine(i);
 			cont++;
-			i=softBottomBorder-1; // deberia andar con ++i pero a veces se deja una linea completra sin limpiar
+			i=softBottomBorder-1; 
 		}
 	}
 	return cont;
 }
 
-void Board::limpiarLinea(int y) {
+//this replace the full line with the upper line and update the rest of the board
+void Board::clearLine(int y) {
 	for (short i = y; i > softUpperBorder; --i) {
 		for (short j = softLeftBorder; j < softRightBorder; ++j) {
 			tablero[i][j] = tablero[i - 1][j];
-		//	mostrar();
 	
 		}
 	}
