@@ -2,7 +2,7 @@
 
 
 
-Tetromino::Tetromino() :rotacionActual(0)
+Tetromino::Tetromino() :currentRotation(0)
 {
 }
 
@@ -13,31 +13,31 @@ Tetromino::~Tetromino()
 
 int Tetromino::rotate()
 {
-	int aux = (rotacionActual + 1) % cantRotPosibles;
-	rotacionActual = aux;
-	return rotacionActual;
+	int aux = (currentRotation + 1) % cantRotPosibles;
+	currentRotation = aux;
+	return currentRotation;
 }
 
 int Tetromino::rotateInversed()
 {
-	int aux = (rotacionActual +cantRotPosibles - 1) % cantRotPosibles;
-	rotacionActual = aux;
-	return rotacionActual;
+	int aux = (currentRotation +cantRotPosibles - 1) % cantRotPosibles;
+	currentRotation = aux;
+	return currentRotation;
 }
 
 void Tetromino::setRotation(int ind)
 {
-	rotacionActual = ind;
+	currentRotation = ind;
 }
 
 int Tetromino::getRotation()
 {
-	return rotacionActual;
+	return currentRotation;
 }
 
 void Tetromino::resetRotation()
 {
-	rotacionActual = 0;
+	currentRotation = 0;
 }
 
 unsigned Tetromino::getTetroWidth()

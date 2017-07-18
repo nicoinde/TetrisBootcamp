@@ -1,9 +1,47 @@
-﻿  Board.cpp
+﻿  TetrominoZ.cpp
+  TetrominoT.cpp
+  TetrominoS.cpp
+  TetrominoL.cpp
+  TetrominoJ.cpp
+  TetrominoI.cpp
+  Tetromino.cpp
+  GestorGrafico.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(26): warning C4244: 'argumento': conversión de 'const float' a 'unsigned int'; posible pérdida de datos
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(93): warning C4996: 'sf::Text::setColor': se declaró desusado
+  d:\globant\tetris\tetrisbootcamp\tetris\sfml\include\sfml\graphics\text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(98): warning C4996: 'sf::Text::setColor': se declaró desusado
+  d:\globant\tetris\tetrisbootcamp\tetris\sfml\include\sfml\graphics\text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(197): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(199): warning C4018: '<': no coinciden signed/unsigned
+  Game.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\game.cpp(74): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  Board.cpp
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(19): warning C4018: '<': no coinciden signed/unsigned
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(21): warning C4018: '<': no coinciden signed/unsigned
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(41): warning C4018: '<': no coinciden signed/unsigned
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(43): warning C4018: '<': no coinciden signed/unsigned
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(57): warning C4018: '<': no coinciden signed/unsigned
 d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(59): warning C4018: '<': no coinciden signed/unsigned
-  Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.exe
-  Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.pdb (Partial PDB)
+  App.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\app.cpp(31): error C2248: 'GestorGrafico::event': no se puede obtener acceso al miembro private miembro declarado en la clase 'GestorGrafico'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(24): note: vea la declaración de 'GestorGrafico::event'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(7): note: vea la declaración de 'GestorGrafico'
+d:\globant\tetris\tetrisbootcamp\tetris\app.cpp(32): error C2248: 'GestorGrafico::event': no se puede obtener acceso al miembro private miembro declarado en la clase 'GestorGrafico'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(24): note: vea la declaración de 'GestorGrafico::event'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(7): note: vea la declaración de 'GestorGrafico'
+d:\globant\tetris\tetrisbootcamp\tetris\app.cpp(36): error C2248: 'GestorGrafico::event': no se puede obtener acceso al miembro private miembro declarado en la clase 'GestorGrafico'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(24): note: vea la declaración de 'GestorGrafico::event'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(7): note: vea la declaración de 'GestorGrafico'
+d:\globant\tetris\tetrisbootcamp\tetris\app.cpp(38): error C2248: 'GestorGrafico::event': no se puede obtener acceso al miembro private miembro declarado en la clase 'GestorGrafico'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(24): note: vea la declaración de 'GestorGrafico::event'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(7): note: vea la declaración de 'GestorGrafico'
+d:\globant\tetris\tetrisbootcamp\tetris\app.cpp(66): error C2248: 'GestorGrafico::event': no se puede obtener acceso al miembro private miembro declarado en la clase 'GestorGrafico'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(24): note: vea la declaración de 'GestorGrafico::event'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(7): note: vea la declaración de 'GestorGrafico'
+d:\globant\tetris\tetrisbootcamp\tetris\app.cpp(67): error C2248: 'GestorGrafico::event': no se puede obtener acceso al miembro private miembro declarado en la clase 'GestorGrafico'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(24): note: vea la declaración de 'GestorGrafico::event'
+  d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.h(7): note: vea la declaración de 'GestorGrafico'
+  Generando código...
+  Compilando...
+  TetrominoO.cpp
+  Generando código...

@@ -15,12 +15,12 @@ Board::Board()
 
 //this method takes care of checking if there are any tetromino's collisions on the position determined with parameters "x" and "y" 
 //by checking tetromino's cells one by one, only doing something when the current cell value is != 0, which means there is a part of the tetromino in that place
-bool Board::collision(Tetromino *pieza, int x, int y) {
-	for (int i = 0; i < pieza->getTetroHeight(); ++i)
+bool Board::collision(Tetromino *piece, int x, int y) {
+	for (int i = 0; i < piece->getTetroHeight(); ++i)
 	{
-		for (short j = 0; j < pieza->getTetroWidth(); ++j)
+		for (short j = 0; j < piece->getTetroWidth(); ++j)
 		{
-			if (pieza->getCell(j, i) != 0) {
+			if (piece->getCell(j, i) != 0) {
 				if (x + j <= softLeftBorder || x + j >= softRightBorder || y + i >= softBottomBorder || y + i <= softUpperBorder) {
 					return true;
 				}
@@ -37,12 +37,12 @@ bool Board::collision(Tetromino *pieza, int x, int y) {
 }
 
 //this method clears the shape of a tetromino on the board, avoiding collision checking faliures by colliding with them selves
-bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
-	for (int i = 0; i < pieza->getTetroHeight(); ++i)
+bool Board::clearTetromino(Tetromino *piece, int x, int y) {
+	for (int i = 0; i < piece->getTetroHeight(); ++i)
 	{
-		for (int j = 0; j < pieza->getTetroWidth(); ++j)
+		for (int j = 0; j < piece->getTetroWidth(); ++j)
 		{
-			if (pieza->getCell(j, i) != 0) {
+			if (piece->getCell(j, i) != 0) {
 				tablero[y + i][x + j] = 0;
 			}
 		}
@@ -52,19 +52,19 @@ bool Board::clearTetromino(Tetromino *pieza, int x, int y) {
 
 
 //this settle the piece on the board
-bool Board::settle(Tetromino *pieza, int x, int y) {
+bool Board::settle(Tetromino *piece, int x, int y) {
 
-	for (int i = 0; i < pieza->getTetroHeight(); ++i)
+	for (int i = 0; i < piece->getTetroHeight(); ++i)
 	{
-		for (short j = 0; j < pieza->getTetroWidth(); ++j)
+		for (short j = 0; j < piece->getTetroWidth(); ++j)
 		{
-			if (pieza->getCell(j, i) > 0) {
+			if (piece->getCell(j, i) > 0) {
 
-				tablero[y + i][x + j] = pieza->getCell(j, i);
+				tablero[y + i][x + j] = piece->getCell(j, i);
 
 			}
 			else {
-				if (pieza->getCell(j, i) == -1) {
+				if (piece->getCell(j, i) == -1) {
 					return false;
 				}
 			}
@@ -130,6 +130,29 @@ void Board::clearLine(int y) {
 
 }
 
+unsigned short Board::getBoardHeight() {
+	return boardHeight;
+}
+
+unsigned short Board::getBoardWidth() {
+	return boardWidth;
+}
+
+unsigned short Board::getSoftLeftBorder() {
+	return softLeftBorder;
+}
+
+unsigned short Board::getSoftRightBorder() {
+	return softRightBorder;
+}
+
+unsigned short Board::getSoftUpperBorder() {
+	return softUpperBorder;
+}
+
+unsigned short Board::getSoftBottomBorder() {
+	return softBottomBorder;
+}
 Board::~Board()
 {
 	//delete tablero;

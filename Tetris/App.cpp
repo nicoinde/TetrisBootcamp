@@ -72,7 +72,7 @@ int App::loop() {
 
 		}
 
-		if (clock.getElapsedTime().asSeconds() > juego.getIntervalo()) {
+		if (clock.getElapsedTime().asSeconds() > juego.getInterval()) {
 			juego.stepDown();
 			clock.restart();
 		}
@@ -93,7 +93,7 @@ void App::draw()
 	ges.getWindow()->clear();
 	ges.drawBg();
 	ges.drawPieces(juego.getBoard());
-	ges.drawScore(juego.getScore(), juego.getNivel());
-	ges.drawPiezaSig(juego.getPiezaSig());
+	ges.drawScore(juego.getScore(), juego.getLevel());
+	ges.drawNextPiece(juego.getNextPiece());
 	ges.getWindow()->display();
 }

@@ -92,10 +92,10 @@ bool GestorGrafico::loadFiles() {
 		puntaje.setFillColor(sf::Color::White);
 		puntaje.setColor(sf::Color::Blue);
 
-		nivel.setFont(font);
-		nivel.setPosition(312.0, 238.0);
-		nivel.setFillColor(sf::Color::White);
-		nivel.setColor(sf::Color::Blue);
+		level.setFont(font);
+		level.setPosition(312.0, 238.0);
+		level.setFillColor(sf::Color::White);
+		level.setColor(sf::Color::Blue);
 	}
 
 	
@@ -128,9 +128,9 @@ sf::Clock &GestorGrafico::getClock()
 
 void GestorGrafico::drawPieces(Board &tablero)
 {
-	for (int i = tablero.softUpperBorder; i < tablero.softBottomBorder; ++i)
+	for (int i = tablero.getSoftUpperBorder(); i < tablero.getSoftBottomBorder(); ++i)
 	{
-		for (int j = tablero.softLeftBorder; j < tablero.softRightBorder; ++j) {
+		for (int j = tablero.getSoftLeftBorder(); j < tablero.getSoftRightBorder(); ++j) {
 			int aux = tablero.getCell(j, i);
 			switch (aux)
 			{
@@ -188,16 +188,16 @@ void GestorGrafico::drawScore(int score, int lvl)
 	puntaje.setString(strScore);
 	window->draw(puntaje);
 	std::string strNivel = to_string(lvl);
-	nivel.setString(strNivel);
-	window->draw(nivel);
+	level.setString(strNivel);
+	window->draw(level);
 }
 
-void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
+void GestorGrafico::drawNextPiece(Tetromino * nextPiece)
 {
-	for (int i = 0; i < piezaSig->getTetroHeight(); ++i)
+	for (int i = 0; i < nextPiece->getTetroHeight(); ++i)
 	{
-		for (int j = 1; j < piezaSig->getTetroWidth(); ++j) {
-			int aux = piezaSig->getCell(j, i);
+		for (int j = 1; j < nextPiece->getTetroWidth(); ++j) {
+			int aux = nextPiece->getCell(j, i);
 			switch (aux)
 			{
 			case 1:
@@ -243,7 +243,7 @@ void GestorGrafico::drawPiezaSig(Tetromino * piezaSig)
 		}
 
 	}
-	piezaSig->resetRotation();
+	nextPiece->resetRotation();
 }
 
 sf::RenderWindow* GestorGrafico::getWindow()

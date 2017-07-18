@@ -19,7 +19,7 @@ protected:
 	static const short tetroWidth = 4;
 	static const short tetroHeight = 4;
 	int cantRotPosibles;
-	int rotacionActual;
+	int currentRotation;
 	
 	
 };
