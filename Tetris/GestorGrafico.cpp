@@ -97,8 +97,7 @@ bool GestorGrafico::loadFiles() {
 
 		level.setFont(font);
 		level.setPosition(levelOffsetX, levelOffsetY);
-		level.setFillColor(sf::Color::White);
-		level.setColor(sf::Color::Blue);
+		level.setColor(sf::Color::White);
 	}
 
 	
