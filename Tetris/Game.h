@@ -37,7 +37,7 @@ public:
 	int getLevel();
 private:
 	int score, fullLines, level, last;
-	bool endGame,acelerated;
+	bool endGame,accelerated;
 	float interval, lastInterval;
 	Board tablero;
 	Tetromino *tetroI;

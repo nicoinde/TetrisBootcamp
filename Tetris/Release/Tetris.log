@@ -1,6 +1,32 @@
-﻿  Generando código
-  0 of 219 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    15 functions had inline decision re-evaluated but remain unchanged
+﻿  App.cpp
+  Board.cpp
+Board.cpp(19): warning C4018: '<': no coinciden signed/unsigned
+Board.cpp(21): warning C4018: '<': no coinciden signed/unsigned
+Board.cpp(41): warning C4018: '<': no coinciden signed/unsigned
+Board.cpp(43): warning C4018: '<': no coinciden signed/unsigned
+Board.cpp(57): warning C4018: '<': no coinciden signed/unsigned
+Board.cpp(59): warning C4018: '<': no coinciden signed/unsigned
+  Game.cpp
+Game.cpp(32): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+Game.cpp(87): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+Game.cpp(114): warning C4305: '=': truncamiento de 'double' a 'float'
+  GestorGrafico.cpp
+GestorGrafico.cpp(29): warning C4244: 'argumento': conversión de 'const float' a 'unsigned int'; posible pérdida de datos
+GestorGrafico.cpp(96): warning C4996: 'sf::Text::setColor': se declaró desusado
+  D:\Globant\Tetris\TetrisBootcamp\Tetris\SFML\include\SFML/Graphics/Text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
+GestorGrafico.cpp(100): warning C4996: 'sf::Text::setColor': se declaró desusado
+  D:\Globant\Tetris\TetrisBootcamp\Tetris\SFML\include\SFML/Graphics/Text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
+GestorGrafico.cpp(201): warning C4018: '<': no coinciden signed/unsigned
+GestorGrafico.cpp(203): warning C4018: '<': no coinciden signed/unsigned
+  Tetromino.cpp
+  TetrominoI.cpp
+  TetrominoJ.cpp
+  TetrominoL.cpp
+  TetrominoO.cpp
+  TetrominoS.cpp
+  TetrominoT.cpp
+  TetrominoZ.cpp
+  Generando código
+  All 225 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Generación de código finalizada
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Release\Tetris.exe

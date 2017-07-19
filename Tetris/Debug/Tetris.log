@@ -1,10 +1,31 @@
-﻿  GestorGrafico.cpp
+﻿  TetrominoZ.cpp
+  TetrominoT.cpp
+  TetrominoS.cpp
+  TetrominoO.cpp
+  TetrominoL.cpp
+  TetrominoJ.cpp
+  TetrominoI.cpp
+  Tetromino.cpp
+  GestorGrafico.cpp
 d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(29): warning C4244: 'argumento': conversión de 'const float' a 'unsigned int'; posible pérdida de datos
 d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(96): warning C4996: 'sf::Text::setColor': se declaró desusado
   d:\globant\tetris\tetrisbootcamp\tetris\sfml\include\sfml\graphics\text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
-d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(101): warning C4996: 'sf::Text::setColor': se declaró desusado
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(100): warning C4996: 'sf::Text::setColor': se declaró desusado
   d:\globant\tetris\tetrisbootcamp\tetris\sfml\include\sfml\graphics\text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
-d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(202): warning C4018: '<': no coinciden signed/unsigned
-d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(204): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(201): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(203): warning C4018: '<': no coinciden signed/unsigned
+  Game.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\game.cpp(32): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+d:\globant\tetris\tetrisbootcamp\tetris\game.cpp(87): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+d:\globant\tetris\tetrisbootcamp\tetris\game.cpp(114): warning C4305: '=': truncamiento de 'double' a 'float'
+  Board.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(19): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(21): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(41): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(43): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(57): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\board.cpp(59): warning C4018: '<': no coinciden signed/unsigned
+  App.cpp
+  Generando código...
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.exe
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.pdb (Partial PDB)
