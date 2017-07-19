@@ -19,7 +19,7 @@ Game::Game() :score(0),
 	fullLines(0), 
 	level(1), last(0), 
 	endGame(false), 
-	acelerated(false), 
+	accelerated(false), 
 	interval(1.7), 
 	lastInterval(1.7),
 	tetroI(new TetrominoI),
@@ -50,7 +50,7 @@ Game::~Game()
 
 void Game::releaseFastDown(){
 	interval = lastInterval;
-	acelerated = false;
+	accelerated = false;
 }
 
 //this method handles the timed movement DOWN, and if there any collision it calls updateScore and generatePieces functions making a new piece to start moving
@@ -149,9 +149,9 @@ int Game::getLevel()
 }
 
 bool Game::fastDown() {
-	if (!acelerated) {
+	if (!accelerated) {
 		interval /= 10;
-		acelerated = true;
+		accelerated = true;
 
 	}
 	return true;
