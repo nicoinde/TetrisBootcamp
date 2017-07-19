@@ -20,8 +20,8 @@ Game::Game() :score(0),
 	level(1), last(0), 
 	endGame(false), 
 	acelerated(false), 
-	interval(1.0), 
-	lastInterval(1.0),
+	interval(1.7), 
+	lastInterval(1.7),
 	tetroI(new TetrominoI),
 	tetroJ(new TetrominoJ),
 	tetroL(new TetrominoL),
@@ -53,9 +53,9 @@ void Game::releaseFastDown(){
 	acelerated = false;
 }
 
-
+//this method handles the timed movement DOWN, and if there any collision it calls updateScore and generatePieces functions making a new piece to start moving
 bool Game::stepDown() {
-	int lines = 0;
+	
 	tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
 	/*cout << "despues del clear" << endl;
 	tablero.mostrar();*/
@@ -68,32 +68,35 @@ bool Game::stepDown() {
 	}
 	else
 	{
+		
 		tablero.settle(piece.piece, piece.posX, piece.posY);
-		/*cout << "despues del settle con colision" << endl;
-		tablero.mostrar();*/
-		lines = tablero.checkFullLines(piece.posY);
-		if (lines > 0) {
-			score += lines * 10;
-
-			if (fullLines / 10 != (fullLines + lines) / 10) {
-				levelUp();
-			}
-			fullLines += lines;
-
-		}
+		updateScore();
+		updateScore();//sometimes just one call fails to get all.. this is something I must change ASAP
 		generatePieces();
 		if (tablero.collision(piece.piece, piece.posX, piece.posY)) {
 			endGame = true;
 		}
-		/*cout << "antes" << endl;
-		tablero.mostrar();*/
 		tablero.settle(piece.piece, piece.posX, piece.posY);
-		/*cout << "despues" << endl;
-		tablero.mostrar();*/
 	}
 	return !endGame;
 }
 
+void Game::updateScore()
+{
+	int lines = 0;
+	lines = tablero.checkFullLines(piece.posY);
+	if (lines > 0) {
+		score += lines * 10;
+
+		if (fullLines / 10 != (fullLines + lines) / 10) {
+			levelUp();
+		}
+		fullLines += lines;
+
+	}
+}
+
+//handles the interval increase amount
 void Game::levelUp() {
 	++level;
 	releaseFastDown();
@@ -104,12 +107,16 @@ void Game::levelUp() {
 	else if (interval<=1.5f&&interval>0.5f) {
 		aumento = 0.10f;
 	}
-	else if (interval<=0.5f&&interval>0.2f) {
+	else if (interval<=0.5f&&interval>0.15f) {
 		aumento = 0.05f;
 	}
-	else if((interval<=0.2f)){
+	else if((interval<=0.15f&&interval>0.03f)){
+		aumento = 0.01;
+	}
+	else {
 		aumento = 0;
 	}
+
 	interval -= aumento;
 	lastInterval = interval;
 
@@ -119,21 +126,19 @@ bool Game::getEndGame()
 {
 	return endGame;
 }
-
-void Game::showEndGame() // mensaje interno para ver si anda el corte
+bool Game::restartGame() // this stops the loop when endGame==true, and allow to restart the game
 {
-	cout << "Hay EndGame==TRUE!!!"<<endl;
-}
-
-void Game::stop() // esto es solo para pausar la ejecucion 
-{
-	char nombre =0;
+	char answer =0;
 	cout << "Su Puntaje es de: " << score << endl;
 	cout << "Restart?(Y/N): ";
-	cin >> nombre;
+	cin >> answer;
 	cout << endl;
-	if (nombre =='y') {
+	if (answer =='y'|| answer == 'Y'|| answer == 'R'|| answer == 'r') {
 		restart();
+		return true;
+	}
+	else {
+		return false;
 	}
 	endGame = false;
 }
@@ -170,9 +175,12 @@ int Game::getScore()
 void Game::restart()
 {
 	tablero.restart();
+	endGame = false;
 	score = 0;
 	level = 1;
 	generatePieces();
+	interval = 1.7f;
+	lastInterval = 1.7f;
 }
 
 Tetromino * Game::getNextPiece()

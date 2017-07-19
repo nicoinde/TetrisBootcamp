@@ -20,6 +20,7 @@ public:
 	Game();
 	~Game();
 	bool stepDown();
+	void updateScore();
 	bool rotateTetro();
 	bool moveLeft();
 	bool moveRight();
@@ -32,8 +33,7 @@ public:
 	Tetromino * getNextPiece();
 	void levelUp();
 	bool getEndGame();
-	void showEndGame();
-	void stop();
+	bool restartGame();
 	int getLevel();
 private:
 	int score, fullLines, level, last;

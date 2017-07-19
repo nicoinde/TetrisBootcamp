@@ -28,18 +28,22 @@ int App::loop() {
 	ges.playMusic();
 	while (ges.getWindow()->isOpen()) {
 		draw();
-		while (ges.getWindow()->pollEvent(ges.event)) {
-			if (ges.event.type == sf::Event::EventType::Closed) {
+		while (ges.getWindow()->pollEvent(ges.getEvent())) {
+			if (ges.getEvent().type == sf::Event::EventType::Closed) {
 				ges.getWindow()->close();
 			}
 
-			if (ges.event.type == sf::Event::EventType::KeyPressed) {
+			if (ges.getEvent().type == sf::Event::EventType::KeyPressed) {
 				//juego.tick(ges.getEvent().key.code);
-				switch (ges.event.key.code) {
+				switch (ges.getEvent().key.code) {
+				case sf::Keyboard::Escape:
+				case sf::Keyboard::Q:
+					ges.getWindow()->close();
+					break; 
 				case sf::Keyboard::A:
 				case sf::Keyboard::Left:
 					juego.moveLeft();
-					break;
+					break; 
 				case sf::Keyboard::W:
 				case sf::Keyboard::Up:
 					juego.rotateTetro();
@@ -63,12 +67,11 @@ int App::loop() {
 				default:break;
 				}
 			}
-			if (ges.event.type == sf::Event::EventType::KeyReleased) {
-				if (ges.event.key.code == sf::Keyboard::S|| ges.event.key.code == sf::Keyboard::Down) {
+			if (ges.getEvent().type == sf::Event::EventType::KeyReleased) {
+				if (ges.getEvent().key.code == sf::Keyboard::S|| ges.getEvent().key.code == sf::Keyboard::Down) {
 					juego.releaseFastDown();
 				}
 			}
-			//std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
 		}
 
@@ -80,9 +83,14 @@ int App::loop() {
 		if (juego.getEndGame())
 		{
 			//a pretty lame excuse of an EndGame Sign until i found something better
-			juego.showEndGame();
 			ges.pauseMusic();
-			juego.stop();
+			bool restart = juego.restartGame();
+			if (restart) {
+				ges.playMusic();
+			}
+			else {
+				ges.getWindow()->close();
+			}
 		}
 	}
 	return 0;

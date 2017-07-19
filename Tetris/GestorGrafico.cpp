@@ -7,6 +7,10 @@ const float sizeX = 412.0;
 const float sizeY = 600.0;
 const float piezaSigOffsetX = 312.0;
 const float piezaSigOffsetY = 39.0;
+const float scoreOffsetX = 312.0;
+const float scoreOffsetY = 198.0;
+const float levelOffsetX = 312.0;
+const float levelOffsetY = 238.0;
 const char* title = "Tetris";
 const char* dirBg= "Assets/bg.png";
 const char* dirI = "Assets/i.png";
@@ -18,7 +22,6 @@ const char* dirT = "Assets/t.png";
 const char* dirZ = "Assets/z.png";
 const char* dirFont = "Assets/Coffee House.ttf";
 const char* dirMusic = "Assets/Tetris.ogg";
-
 
 
 GestorGrafico::GestorGrafico() : offsetX(-19.0), offsetY(-48), squareOffset(29.0)
@@ -87,13 +90,13 @@ bool GestorGrafico::loadFiles() {
 	}
 	else {
 		puntaje.setFont(font);
-		puntaje.setPosition(312.0, 198.0);
+		puntaje.setPosition(scoreOffsetX, scoreOffsetY);
 		/*puntaje.setCharacterSize(25);*/
 		puntaje.setFillColor(sf::Color::White);
 		puntaje.setColor(sf::Color::Blue);
 
 		level.setFont(font);
-		level.setPosition(312.0, 238.0);
+		level.setPosition(levelOffsetX, levelOffsetY);
 		level.setFillColor(sf::Color::White);
 		level.setColor(sf::Color::Blue);
 	}
@@ -184,11 +187,13 @@ void GestorGrafico::drawBg()
 
 void GestorGrafico::drawScore(int score, int lvl)
 {
+	std::string lev = "NIVEL ";
 	std::string strScore = to_string(score);
 	puntaje.setString(strScore);
 	window->draw(puntaje);
 	std::string strNivel = to_string(lvl);
-	level.setString(strNivel);
+	lev.append(strNivel);
+	level.setString(lev);
 	window->draw(level);
 }
 
