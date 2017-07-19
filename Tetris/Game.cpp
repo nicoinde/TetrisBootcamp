@@ -16,12 +16,12 @@ const unsigned short posInicialX = 3;
 
 
 Game::Game() :score(0),
-	lineasCompletas(0), 
-	nivel(1), last(0), 
+	fullLines(0), 
+	level(1), last(0), 
 	endGame(false), 
-	acelerado(false), 
-	intervalo(3.0), 
-	lastIntervalo(3.0),
+	acelerated(false), 
+	interval(1.7), 
+	lastInterval(1.7),
 	tetroI(new TetrominoI),
 	tetroJ(new TetrominoJ),
 	tetroL(new TetrominoL),
@@ -30,14 +30,15 @@ Game::Game() :score(0),
 	tetroT(new TetrominoT),
 	tetroZ(new TetrominoZ)
 {
-	piezaSig.pieza = tetroL;
-	generarPieza();
+	nextPiece.piece = tetroI;
+	generatePieces();
+	generatePieces();
 }
 
 Game::~Game()
 {
-	//delete pieza.pieza;
-	//delete piezaSig.pieza;
+	//delete piece.piece;
+	//delete nextPiece.piece;
 	//delete tetroI;
 	//delete tetroJ;
 	//delete tetroL;
@@ -48,72 +49,76 @@ Game::~Game()
 }
 
 void Game::releaseFastDown(){
-	intervalo = lastIntervalo;
-	acelerado = false;
+	interval = lastInterval;
+	acelerated = false;
 }
 
-
+//this method handles the timed movement DOWN, and if there any collision it calls updateScore and generatePieces functions making a new piece to start moving
 bool Game::stepDown() {
-	int lineas = 0;
-	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+	
+	tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
 	/*cout << "despues del clear" << endl;
 	tablero.mostrar();*/
-	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY + 1)) {
-		//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY + 1);
-		/*cout << "despues del asentar sin colision" << endl;
+	if (!tablero.collision(piece.piece, piece.posX, piece.posY + 1)) {
+		//tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
+		tablero.settle(piece.piece, piece.posX, piece.posY + 1);
+		/*cout << "despues del settle sin colision" << endl;
 		tablero.mostrar();*/
-		pieza.posY++;
+		piece.posY++;
 	}
 	else
 	{
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		/*cout << "despues del asentar con colision" << endl;
-		tablero.mostrar();*/
-		lineas = tablero.verificarLineasCompletas();
-		if (lineas > 0) {
-			score += lineas * 10;
-
-			if (lineasCompletas / 10 != (lineasCompletas + lineas) / 10) {
-				subirNivel();
-			}
-			lineasCompletas += lineas;
-
-		}
-		generarPieza();
-		if (tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
+		
+		tablero.settle(piece.piece, piece.posX, piece.posY);
+		updateScore();
+		updateScore();//sometimes just one call fails to get all.. this is something I must change ASAP
+		generatePieces();
+		if (tablero.collision(piece.piece, piece.posX, piece.posY)) {
 			endGame = true;
 		}
-		/*cout << "antes" << endl;
-		tablero.mostrar();*/
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		/*cout << "despues" << endl;
-		tablero.mostrar();*/
+		tablero.settle(piece.piece, piece.posX, piece.posY);
 	}
 	return !endGame;
 }
 
-void Game::subirNivel() {
-	++nivel;
+void Game::updateScore()
+{
+	int lines = 0;
+	lines = tablero.checkFullLines(piece.posY);
+	if (lines > 0) {
+		score += lines * 10;
+
+		if (fullLines / 10 != (fullLines + lines) / 10) {
+			levelUp();
+		}
+		fullLines += lines;
+
+	}
+}
+
+//handles the interval increase amount
+void Game::levelUp() {
+	++level;
 	releaseFastDown();
-	lastIntervalo = intervalo;
 	float aumento = 0;
-	if (lastIntervalo>1.5f) {
+	if (interval>1.5f) {
 		aumento = 0.25f;
 	}
-	else if (lastIntervalo<=1.5f&&lastIntervalo>0.7f) {
-		aumento = 0.20f;
+	else if (interval<=1.5f&&interval>0.5f) {
+		aumento = 0.10f;
 	}
-	else if (lastIntervalo<=0.7f&&lastIntervalo>0.2f) {
-		aumento = 0.1f;
+	else if (interval<=0.5f&&interval>0.15f) {
+		aumento = 0.05f;
 	}
-	else if((lastIntervalo<=0.2f&&lastIntervalo>0.0f)){
+	else if((interval<=0.15f&&interval>0.03f)){
+		aumento = 0.01;
+	}
+	else {
 		aumento = 0;
 	}
-	intervalo -= aumento;
 
-
-	
+	interval -= aumento;
+	lastInterval = interval;
 
 }
 
@@ -121,47 +126,45 @@ bool Game::getEndGame()
 {
 	return endGame;
 }
-
-void Game::showEndGame() // mensaje interno para ver si anda el corte
+bool Game::restartGame() // this stops the loop when endGame==true, and allow to restart the game
 {
-	cout << "Hay EndGame==TRUE!!!"<<endl;
-}
-
-void Game::stop() // esto es solo para pausar la ejecucion 
-{
-	char nombre =0;
+	char answer =0;
 	cout << "Su Puntaje es de: " << score << endl;
 	cout << "Restart?(Y/N): ";
-	cin >> nombre;
+	cin >> answer;
 	cout << endl;
-	if (nombre =='y') {
+	if (answer =='y'|| answer == 'Y'|| answer == 'R'|| answer == 'r') {
 		restart();
+		return true;
+	}
+	else {
+		return false;
 	}
 	endGame = false;
 }
 
-int Game::getNivel()
+int Game::getLevel()
 {
-	return nivel;
+	return level;
 }
 
 bool Game::fastDown() {
-	if (!acelerado) {
-		intervalo /= 10;
-		acelerado = true;
+	if (!acelerated) {
+		interval /= 10;
+		acelerated = true;
 
 	}
 	return true;
 }
 
-Board* Game::getBoard()
+Board &Game::getBoard()
 {
-	return &tablero;
+	return tablero;
 }
 
-float Game::getIntervalo()
+float Game::getInterval()
 {
-	return intervalo;
+	return interval;
 }
 
 int Game::getScore()
@@ -172,31 +175,35 @@ int Game::getScore()
 void Game::restart()
 {
 	tablero.restart();
+	endGame = false;
 	score = 0;
-	generarPieza();
+	level = 1;
+	generatePieces();
+	interval = 1.7f;
+	lastInterval = 1.7f;
 }
 
-Tetromino * Game::getPiezaSig()
+Tetromino * Game::getNextPiece()
 {
-	piezaSig.pieza->setRotation(1);
-	return piezaSig.pieza;
+	nextPiece.piece->setRotation(1);
+	return nextPiece.piece;
 }
 
 bool Game::moveLeft() {
-	if (pieza.posX >= tablero.softLeftBorder) {
-		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+	if (piece.posX >= tablero.getSoftLeftBorder()) {
+		tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
 		/*cout << "despues del clear" << endl;
 		tablero.mostrar();*/
-		if (!tablero.hayColision(pieza.pieza, pieza.posX - 1, pieza.posY)) {
-			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-			pieza.posX--;
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar sin colision" << endl;
+		if (!tablero.collision(piece.piece, piece.posX - 1, piece.posY)) {
+			//tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
+			piece.posX--;
+			tablero.settle(piece.piece, piece.posX, piece.posY);
+			/*cout << "despues del settle sin colision" << endl;
 			tablero.mostrar();*/
 		}
 		else {
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar con colision" << endl;
+			tablero.settle(piece.piece, piece.posX, piece.posY);
+			/*cout << "despues del settle con colision" << endl;
 			tablero.mostrar();*/
 			return false;
 		}
@@ -210,20 +217,20 @@ bool Game::moveLeft() {
 
 
 bool Game::moveRight() {
-	if (pieza.posX < tablero.softRightBorder) {
-		tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
+	if (piece.posX < tablero.getSoftRightBorder()) {
+		tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
 		/*cout << "despues del clear" << endl;
 		tablero.mostrar();*/
-		if (!tablero.hayColision(pieza.pieza, pieza.posX + 1, pieza.posY)) {
-			//tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-			pieza.posX++;
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar sin colision" << endl;
+		if (!tablero.collision(piece.piece, piece.posX + 1, piece.posY)) {
+			//tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
+			piece.posX++;
+			tablero.settle(piece.piece, piece.posX, piece.posY);
+			/*cout << "despues del settle sin colision" << endl;
 			tablero.mostrar();*/
 		}
 		else {
-			tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-			/*cout << "despues del asentar con colision" << endl;
+			tablero.settle(piece.piece, piece.posX, piece.posY);
+			/*cout << "despues del settle con colision" << endl;
 			tablero.mostrar();*/
 			return false;
 		}
@@ -236,17 +243,17 @@ bool Game::moveRight() {
 
 
 bool Game::rotateTetro() {
-	tablero.clearTetromino(pieza.pieza, pieza.posX, pieza.posY);
-	pieza.pieza->rotate();
-	if (!tablero.hayColision(pieza.pieza, pieza.posX, pieza.posY)) {
-		//cout << "asentar sin colision" << endl;
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
+	tablero.clearTetromino(piece.piece, piece.posX, piece.posY);
+	piece.piece->rotate();
+	if (!tablero.collision(piece.piece, piece.posX, piece.posY)) {
+		//cout << "settle sin colision" << endl;
+		tablero.settle(piece.piece, piece.posX, piece.posY);
 		//tablero.mostrar();
 	}
 	else {
-		pieza.pieza->rotateInversed();
-		tablero.asentar(pieza.pieza, pieza.posX, pieza.posY);
-		//cout << "asentar con colision" << endl;
+		piece.piece->rotateInversed();
+		tablero.settle(piece.piece, piece.posX, piece.posY);
+		//cout << "settle con colision" << endl;
 		//tablero.mostrar();
 		return false;
 	}
@@ -255,10 +262,10 @@ bool Game::rotateTetro() {
 }
 
 
-void Game::generarPieza() {
-	pieza.pieza = piezaSig.pieza;
-	pieza.posX = posInicialX;
-	pieza.posY = posInicialY;
+void Game::generatePieces() {
+	piece.piece = nextPiece.piece;
+	piece.posX = posInicialX;
+	piece.posY = posInicialY;
 	int aux = randomPiezas(randomPieces);
 	//este pedazo de codigo es provisional hasta que descubra como arreglar el problema que surge a veces cuando sale la mismapieza varias veces seguidas
 	if (aux == last) {
@@ -270,23 +277,23 @@ void Game::generarPieza() {
 	switch (aux)
 	{
 	case 0:
-		piezaSig.pieza = tetroI; break;
+		nextPiece.piece = tetroI; break;
 	case 1:
-		piezaSig.pieza = tetroJ; break;
+		nextPiece.piece = tetroJ; break;
 	case 2:
-		piezaSig.pieza = tetroL; break;
+		nextPiece.piece = tetroL; break;
 	case 3:
-		piezaSig.pieza = tetroO; break;
+		nextPiece.piece = tetroO; break;
 	case 4:
-		piezaSig.pieza = tetroS; break;
+		nextPiece.piece = tetroS; break;
 	case 5:
-		piezaSig.pieza = tetroT; break;
+		nextPiece.piece = tetroT; break;
 	case 6:
-		piezaSig.pieza = tetroZ; break;
+		nextPiece.piece = tetroZ; break;
 	default:
 		break;
 	}
-	pieza.pieza->resetRotation();
-	piezaSig.pieza->resetRotation();
+	piece.piece->resetRotation();
+	nextPiece.piece->resetRotation();
 
 }

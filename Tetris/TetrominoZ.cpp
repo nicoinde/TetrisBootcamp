@@ -57,7 +57,7 @@ int TetrominoZ::getCell(int x, int y)
 {
 	if (x >= 0 && x < tetroHeight && y >= 0 && y < tetroWidth) {
 
-		switch (rotacionActual) {
+		switch (currentRotation) {
 		case 0: return pos0[y][x]; break;
 		case 1: return pos1[y][x]; break;
 		default: return -1;

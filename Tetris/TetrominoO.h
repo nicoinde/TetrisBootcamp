@@ -8,8 +8,9 @@ public:
 	TetrominoO();
 	~TetrominoO();
 	int getCell(int x, int y);
-	void generateShapes();
+	
 private:
+	void generateShapes();
 	int pos0[tetroHeight][tetroWidth];
 
 }; 

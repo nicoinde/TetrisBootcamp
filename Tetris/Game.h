@@ -9,7 +9,7 @@
 #include "TetrominoZ.h"
 
 struct Piezas {
-	Tetromino *pieza;
+	Tetromino *piece;
 	int posX;
 	int posY;
 };
@@ -17,35 +17,29 @@ struct Piezas {
 class Game
 {
 public:
-	//template<Tetromino Tetro>
 	Game();
-	//Game(Gestor &ges);
 	~Game();
 	bool stepDown();
+	void updateScore();
 	bool rotateTetro();
 	bool moveLeft();
 	bool moveRight();
 	bool fastDown();
 	void releaseFastDown();
-	Board* getBoard();
-	Board tablero;
-	float getIntervalo();
+	Board &getBoard();	
+	float getInterval();
 	int getScore();
 	void restart();
-	Tetromino * getPiezaSig();
-	void subirNivel();
+	Tetromino * getNextPiece();
+	void levelUp();
 	bool getEndGame();
-	void showEndGame();
-	void stop();
-	int getNivel();
-	//void mostrarTetromino();
-	
-	//TetrominoI pieza;
-
+	bool restartGame();
+	int getLevel();
 private:
-	int score, lineasCompletas, nivel, last;
-	bool endGame,acelerado;
-	float intervalo, lastIntervalo;
+	int score, fullLines, level, last;
+	bool endGame,acelerated;
+	float interval, lastInterval;
+	Board tablero;
 	Tetromino *tetroI;
 	Tetromino *tetroJ;
 	Tetromino *tetroL;
@@ -53,10 +47,10 @@ private:
 	Tetromino *tetroS;
 	Tetromino *tetroT;
 	Tetromino *tetroZ;
-	struct Piezas pieza;
-	struct Piezas piezaSig;
+	struct Piezas piece;
+	struct Piezas nextPiece;
 	//Board *tablero;
-	void generarPieza();
+	void generatePieces();
 	
 
 };

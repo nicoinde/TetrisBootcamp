@@ -1,5 +1,10 @@
-﻿  Omitiendo... (no se detectaron cambios relevantes)
-  Game.cpp
-  App.cpp
+﻿  GestorGrafico.cpp
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(29): warning C4244: 'argumento': conversión de 'const float' a 'unsigned int'; posible pérdida de datos
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(96): warning C4996: 'sf::Text::setColor': se declaró desusado
+  d:\globant\tetris\tetrisbootcamp\tetris\sfml\include\sfml\graphics\text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(101): warning C4996: 'sf::Text::setColor': se declaró desusado
+  d:\globant\tetris\tetrisbootcamp\tetris\sfml\include\sfml\graphics\text.hpp(177): note: vea la declaración de 'sf::Text::setColor'
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(202): warning C4018: '<': no coinciden signed/unsigned
+d:\globant\tetris\tetrisbootcamp\tetris\gestorgrafico.cpp(204): warning C4018: '<': no coinciden signed/unsigned
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.exe
   Tetris.vcxproj -> D:\Globant\Tetris\TetrisBootcamp\Debug\Tetris.pdb (Partial PDB)
